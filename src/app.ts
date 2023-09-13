@@ -1,5 +1,8 @@
-const firstName: string = 'Will';
+import dotenv from 'dotenv';
+dotenv.config();
 
-console.log(`Hola Mundo, yo soy ${ firstName }`);
+import { Server } from './models/server';
 
-console.log("El bicho, siuuuuu");
+const server = new Server();
+
+server.listen();
