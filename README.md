@@ -12,5 +12,5 @@ npm install
 3. Ejecutar el proyecto
 
 ```
-npm start
+npm run start
 ```
