@@ -20,15 +20,15 @@ export const getUsers = async( req: Request, res: Response ) => {
 
 export const saveUser = async( req: Request, res: Response) => {
     
-    const { firstName, lastName, age } = req.body;
+    const { name, email, status } = req.body;
 
-    console.log({ firstName, lastName, age });
+    console.log({ name, email, status });
     
 
     const user = Object.assign(new User(), {
-        firstName,
-        lastName,
-        age
+        name,
+        email,
+        status
     })
 
     const savedUser = await userRepository.save(user)
