@@ -3,6 +3,7 @@ import cors from 'cors';
 
 import userRoutes from '../routes/user.route';
 
+import db from "../db/connection"
 
 
 export class Server {
@@ -18,9 +19,21 @@ export class Server {
         this.app.disable('x-powered-by'); // Hide X-Powered-By: Express
         this.port = process.env.PORT || '1234';
 
+
+        this.dbConnection();
+
         this.middlewares();
-        
+
         this.routes();
+    }
+
+    async dbConnection() {
+        try {
+            await db.initialize();
+            console.log('Connection has been established successfully.');
+        } catch (error) {
+            console.error('Unable to connect to the database:', error);
+        }
     }
 
 

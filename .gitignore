@@ -1,4 +1,11 @@
-node_modules
-.env
-
+.idea/
+.vscode/
+node_modules/
 dist/
+tmp/
+temp/
+mysql-data/
+
+
+.env
+app.http

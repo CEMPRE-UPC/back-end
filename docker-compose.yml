@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: mysql-db
+    image: mysql:8.1.0
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_USER=cempre
+      - MYSQL_PASSWORD=123456
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  phpmyadmin:
+    depends_on:
+      - db
+    container_name: phpmyadminV5.2.1
+    image: phpmyadmin:5.2.1
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+
+volumes:
+  postgres-db:
+    external: true
+      
