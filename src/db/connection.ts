@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "../models/user.model";
+import { Role } from '../models/role.model';
 
 const db = new DataSource({
     type: "mysql",
@@ -11,7 +12,7 @@ const db = new DataSource({
     database: "cempredb",
     synchronize: true,
     logging: false,
-    entities: [User],
+    entities: [User, Role],
     migrations: [],
     subscribers: [],
 })

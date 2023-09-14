@@ -5,12 +5,13 @@ import { User } from '../models/user.model';
 
 export const validateField = async(req: Request, res: Response, next: NextFunction) => {
 
-    const { name, email, status } = req.body;
+    const { name, email, password, role } = req.body;
 
     const user = Object.assign(new User(), {
         name,
         email,
-        status
+        password,
+        role
     })
 
     const errors = await validate(user, { 
@@ -19,7 +20,6 @@ export const validateField = async(req: Request, res: Response, next: NextFuncti
     });
 
     if (errors.length > 0) {
-        // transform error to: { field: 'name', message: 'El nombre debe tener al menos 3 caracteres' }
         const errorResult = errors.map(error => {
             const { property, constraints } = error;
             if(constraints) {
@@ -28,7 +28,6 @@ export const validateField = async(req: Request, res: Response, next: NextFuncti
             }
         })
         return res.status(400).json(errorResult);
-
         
     }
     next();

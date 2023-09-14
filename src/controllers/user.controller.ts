@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
-import db from '../db/connection';
+import bcrypt from 'bcryptjs';
 
+
+import db from '../db/connection';
 import { User } from '../models/user.model';
 
 const userRepository = db.getRepository(User);
@@ -20,18 +22,19 @@ export const getUsers = async( req: Request, res: Response ) => {
 
 export const saveUser = async( req: Request, res: Response) => {
     
-    const { name, email, status } = req.body;
-
-    console.log({ name, email, status });
-    
+    const { name, email, password, role } = req.body;
 
     const user = Object.assign(new User(), {
         name,
         email,
-        status
+        password,
+        role
     })
+
+    //Encrypt Password
+    const salt = bcrypt.genSaltSync();
+    user.password = bcrypt.hashSync( password, salt );
 
     const savedUser = await userRepository.save(user)
     console.log({savedUser});
-    
 }
