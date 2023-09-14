@@ -1,18 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { IsEmail, MinLength, IsNotEmpty } from 'class-validator'
 
 @Entity()
 export class User {
 
-    @PrimaryGeneratedColumn()
-    id!: number
+    @PrimaryGeneratedColumn("uuid")
+    id!: string
 
     @Column()
-    firstName!: string
+    @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres' })
+    name!: string
 
     @Column()
-    lastName!: string
+    @IsEmail({}, { message: 'Email incorrecto' })
+    email!: string
 
     @Column()
-    age!: number
+    //Default value
+    @IsNotEmpty({ message: 'El status es requerido' })
+    status: boolean = true
 
 }
