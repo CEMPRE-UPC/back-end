@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
-import { IsEmail, MinLength, IsNotEmpty, Validate, IsString } from 'class-validator'
+import { IsEmail, MinLength, IsNotEmpty, Validate, IsString, Matches } from 'class-validator'
 import { CustomIsEmailInDb } from '../validators/CustomIsEmailInDb'
 import { CustomIsValidRole } from '../validators/CustomIsVaildRole'
 
@@ -16,7 +16,8 @@ export class User {
 
     @Column()
     @IsEmail({}, { message: 'Email incorrecto' })
-    @Validate( CustomIsEmailInDb, { message: 'El correo ya se encuentra registrado' })
+    @Matches(/@unicesar\.edu\.co$/, { message: 'El correo debe ser de dominio @unicesar.edu.co' })
+    @Validate( CustomIsEmailInDb )
     email!: string
 
     @Column()
@@ -24,7 +25,7 @@ export class User {
     password!: string
 
     @Column({ default: 'STUDENT_ROLE' })
-    @Validate( CustomIsValidRole, { message: 'El rol no es válido' } )
+    @Validate( CustomIsValidRole )
     role!: string
 
     @Column({ default: true })
