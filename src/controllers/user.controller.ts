@@ -35,6 +35,13 @@ export const saveUser = async( req: Request, res: Response) => {
     const salt = bcrypt.genSaltSync();
     user.password = bcrypt.hashSync( password, salt );
 
-    const savedUser = await userRepository.save(user)
-    console.log({savedUser});
+    try {
+        const savedUser = await userRepository.save(user)
+        res.send(savedUser);
+    } catch (error) {
+        res.status(500).json({
+            msg: 'Error en el servidor'
+        })
+    }
+    
 }
