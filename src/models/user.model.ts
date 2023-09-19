@@ -1,23 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
-import { IsEmail, MinLength, IsNotEmpty } from 'class-validator'
+import { DataTypes } from 'sequelize';
+import db from '../db/connection';
 
-@Entity()
-export class User {
+const User = db.define('User', {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+    },
+    name: {
+        type: DataTypes.STRING,
+    },
+    email: {
+        type: DataTypes.STRING,
+    },
+    password: {
+        type: DataTypes.STRING,
+    },
+    status: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    },
+}, {
+    timestamps: false
+})
 
-    @PrimaryGeneratedColumn("uuid")
-    id!: string
-
-    @Column()
-    @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres' })
-    name!: string
-
-    @Column()
-    @IsEmail({}, { message: 'Email incorrecto' })
-    email!: string
-
-    @Column()
-    //Default value
-    @IsNotEmpty({ message: 'El status es requerido' })
-    status: boolean = true
-
-}
+export default User;

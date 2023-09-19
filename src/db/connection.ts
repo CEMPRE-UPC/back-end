@@ -1,19 +1,11 @@
-import "reflect-metadata";
-import { DataSource } from "typeorm";
-import { User } from "../models/user.model";
+import { Sequelize } from 'sequelize';
 
-const db = new DataSource({
-    type: "mysql",
-    host: "localhost",
+
+const db = new Sequelize('cempredb', 'cempre','123456', {
+    host: 'localhost',
+    dialect: 'mysql',
     port: 3306,
-    username: "cempre",
-    password: "123456",
-    database: "cempredb",
-    synchronize: true,
-    logging: false,
-    entities: [User],
-    migrations: [],
-    subscribers: [],
-})
+    // logging: false
+});
 
 export default db;
