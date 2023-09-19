@@ -3,12 +3,15 @@ import { deleteUser, getUsers, saveUser, updateUser } from '../controllers/user.
 import { check } from 'express-validator';
 import { existUserById, isValidRole, validateEmailInDB } from '../validations/db-validator';
 import { validateFields } from '../middlewares/validate-fields';
+import { validateJWT } from '../middlewares/validate-jwt';
+import { isAdminRole } from '../middlewares/validate-role';
 
 const router = Router();
 
 router.get('/', getUsers);
 
 router.post('/',[
+    isValidRole,
     check('name', 'El nombre es obligatorio').notEmpty(),
     check('password', 'La contrasena debe tener mas de 6 caracteres').isLength({ min: 6 }),
     check('email', 'El correo ingresado no es valido').isEmail(),
@@ -17,11 +20,12 @@ router.post('/',[
         return email.endsWith('@unicesar.edu.co');
     }),
     check('email').custom( validateEmailInDB ),
-    check('role').custom( isValidRole ),
     validateFields,
 ], saveUser);
 
 router.delete('/:id',
+    validateJWT,
+    isAdminRole,
     check('id').custom( existUserById ),
     validateFields
 , deleteUser)

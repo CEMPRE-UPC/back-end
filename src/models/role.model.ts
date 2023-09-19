@@ -5,7 +5,7 @@ const Role = db.define('Role', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
     },
     role: {
         type: DataTypes.STRING,
@@ -16,5 +16,6 @@ const Role = db.define('Role', {
 {
     timestamps: false
 })
+
 
 export default Role;

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import User from '../models/user.model';
+import { CustomRequest } from '../interfaces/custom-request';
 
 
 export const getUsers = async (req: Request, res: Response) => {
@@ -16,11 +17,15 @@ export const getUsers = async (req: Request, res: Response) => {
 
 }
 
-export const saveUser = async (req: Request, res: Response) => {
+export const saveUser = async (req: Request | CustomRequest, res: Response) => {
 
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
+    const roleId = ( req as CustomRequest ).roleId;
 
-    const user = User.build({ name, email, password, role });
+    console.log(roleId);
+    
+
+    const user = User.build({ name, email, password, roleId });
     
     //Encrypt Password
     const salt = bcrypt.genSaltSync();
