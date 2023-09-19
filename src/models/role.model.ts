@@ -1,11 +1,20 @@
-import { IsNotEmpty } from 'class-validator';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { DataTypes } from 'sequelize';
+import db from '../db/connection';
 
-@Entity()
-export class Role {
-    @PrimaryGeneratedColumn()
-    id!: number;
+const Role = db.define('Role', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    role: {
+        type: DataTypes.STRING,
+        defaultValue: 'STUDENT_ROLE',
+        unique: true,
+    }
+},
+{
+    timestamps: false
+})
 
-    @Column({ default: 'STUDENT_ROLE', unique: true })
-    role!: string;
-}
+export default Role;
