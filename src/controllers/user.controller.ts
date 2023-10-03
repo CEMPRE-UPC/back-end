@@ -26,28 +26,6 @@ export const getUsers = async (req: Request, res: Response) => {
 
 }
 
-export const saveUser = async (req: Request | CustomRequest, res: Response) => {
-
-    const { name, email, password } = req.body;
-    const roleId = ( req as CustomRequest ).roleId;
-
-    const user = User.build({ name, email, password, roleId });
-    
-    //Encrypt Password
-    const salt = bcrypt.genSaltSync();
-    user.set({ password: bcrypt.hashSync(password, salt) });
-
-    try {
-        const savedUser = await user.save();
-        res.send(savedUser);
-    } catch (error) {
-        res.status(500).json({
-            msg: 'Error en el servidor'
-        })
-    }
-
-}
-
 export const deleteUser = async (req: Request, res: Response) => {
     const { id } = req.params;
 

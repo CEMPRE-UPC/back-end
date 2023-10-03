@@ -8,11 +8,11 @@ export const isValidRole = async(req: Request, res: Response, next: NextFunction
     const { role = 'STUDENT_ROLE' } = req.body;
 
     try {
-        const { dataValues: existRole } = await Role.findOne({ where: { role }  }) ?? {};
+        const { dataValues: roleResp } = await Role.findOne({ where: { role }  }) ?? {};
 
-        if (!existRole) { return res.status(400).json({ msg: `El rol ${role} no se encuentra registrado en DB`}) }
+        if (!roleResp) { return res.status(400).json({ msg: `El rol ${role} no se encuentra registrado en DB`}) }
 
-        (req as CustomRequest).roleId = existRole.id;
+        (req as CustomRequest).role = roleResp;
         next();
 
     } catch (error) {

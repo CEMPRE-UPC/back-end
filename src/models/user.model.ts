@@ -1,8 +1,10 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from '../db/connection';
 import Role from './role.model';
 
-const User = db.define('User', {
+class User extends Model {}
+
+User.init({
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -21,9 +23,7 @@ const User = db.define('User', {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
     }
-}, {
-    timestamps: false
-})
+}, {sequelize: db, modelName: 'user', timestamps: false})
 
 User.belongsTo(Role, { as: 'role', foreignKey: { name: 'roleId' } });
 Role.hasMany(User,{ foreignKey: { name: 'roleId' } } );
