@@ -6,6 +6,7 @@ import { authRouter, userRouter, studentRouter } from '../routes';
 import db from "../db/connection"
 import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
+import { uploadRouter } from '../routes/upload.router';
 
 
 export class Server {
@@ -15,7 +16,8 @@ export class Server {
     private apiPaths = {
         users: '/api/users',
         auth: '/api/auth',
-        student: '/api/student'
+        student: '/api/student',
+        upload: '/api/upload'
     }
 
     constructor() {
@@ -62,6 +64,7 @@ export class Server {
         this.app.use(this.apiPaths.users, userRouter);
         this.app.use(this.apiPaths.auth, authRouter);
         this.app.use(this.apiPaths.student, studentRouter);
+        this.app.use(this.apiPaths.upload, uploadRouter);
     }
 
 

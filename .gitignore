@@ -5,7 +5,11 @@ dist/
 tmp/
 temp/
 mysql-data/
-
+uploads/
+uploads/student/
+/uploads/student/personal-data/
 
 .env
 app.http
+
+insert-role.sql
