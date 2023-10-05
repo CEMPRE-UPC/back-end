@@ -1,10 +1,12 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 
-import userRoutes from '../routes/user.route';
-import authRoutes from '../routes/auth.route';
+import { authRouter, userRouter, studentRouter } from '../routes';
 
 import db from "../db/connection"
+import bodyParser from 'body-parser';
+import fileUpload from 'express-fileupload';
+import { uploadRouter } from '../routes/upload.router';
 
 
 export class Server {
@@ -13,7 +15,9 @@ export class Server {
     private port: string;
     private apiPaths = {
         users: '/api/users',
-        auth: '/api/auth'
+        auth: '/api/auth',
+        student: '/api/student',
+        upload: '/api/upload'
     }
 
     constructor() {
@@ -45,12 +49,22 @@ export class Server {
 
         this.app.use(express.json());
 
+        this.app.use(bodyParser.urlencoded({ extended: true }));
+
+        this.app.use(fileUpload({
+            useTempFiles: true,
+            tempFileDir: '/tmp/',
+            createParentPath: true
+        }));
+
         this.app.use(express.static('public'));
     }
 
     routes() {
-        this.app.use(this.apiPaths.users, userRoutes);
-        this.app.use(this.apiPaths.auth, authRoutes);
+        this.app.use(this.apiPaths.users, userRouter);
+        this.app.use(this.apiPaths.auth, authRouter);
+        this.app.use(this.apiPaths.student, studentRouter);
+        this.app.use(this.apiPaths.upload, uploadRouter);
     }
 
 

@@ -23,7 +23,7 @@ User.init({
         type: DataTypes.BOOLEAN,
         defaultValue: true,
     }
-}, {sequelize: db, modelName: 'user', timestamps: false})
+}, {sequelize: db, timestamps: false})
 
 User.belongsTo(Role, { as: 'role', foreignKey: { name: 'roleId' } });
 Role.hasMany(User,{ foreignKey: { name: 'roleId' } } );
