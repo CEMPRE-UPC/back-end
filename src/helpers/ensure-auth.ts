@@ -1,11 +1,8 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-import Role from '../models/role.model';
-import User from '../models/user.model';
-import { UserResponse } from '../interfaces/user-response';
+import { User, Role } from '../models';
 
-
-export const ensureAuth = (authHeader: string | undefined): Promise<UserResponse|string> => {
+export const ensureAuth = (authHeader: string | undefined): Promise<User|string> => {
     return new Promise((resolve, reject) => {
 
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -25,11 +22,9 @@ export const ensureAuth = (authHeader: string | undefined): Promise<UserResponse
                     as: 'role',
                 },
             })
-                .then((resp) => {
+                .then((user: User | null) => {
 
                     
-                    
-                    const { dataValues: user } = resp ?? {};
                     // Validar existencia del usuario
                     if (!user) return reject({ msg: 'Token inválido - [no existe en DB]' });
 

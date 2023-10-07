@@ -1,17 +1,20 @@
 import { DataTypes, Model } from 'sequelize';
-import db from '../db/connection';
-import Role from './role.model';
 
-class User extends Model {}
+import db from '../db/connection';
+import { Role } from './';
+
+class User extends Model {
+    public id!: string;
+    public email!: string;
+    public password!: string;
+    public status!: boolean;
+}
 
 User.init({
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-    },
-    name: {
-        type: DataTypes.STRING,
     },
     email: {
         type: DataTypes.STRING,
@@ -25,7 +28,8 @@ User.init({
     }
 }, {sequelize: db, timestamps: false})
 
-User.belongsTo(Role, { as: 'role', foreignKey: { name: 'roleId' } });
-Role.hasMany(User,{ foreignKey: { name: 'roleId' } } );
 
-export default User;
+Role.hasMany(User, { as : 'role', foreignKey: { name: 'roleId', }  });
+User.belongsTo(Role, { as : 'role', foreignKey: { name: 'roleId', }  });
+
+export { User };

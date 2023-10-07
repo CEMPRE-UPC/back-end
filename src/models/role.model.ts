@@ -1,21 +1,27 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from '../db/connection';
 
-const Role = db.define('Role', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+class Role extends Model {
+    public id!: number;
+    public name!: string;
+}
+
+Role.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        name: {
+            type: DataTypes.STRING,
+            defaultValue: 'STUDENT_ROLE',
+            unique: true,
+        },
     },
-    role: {
-        type: DataTypes.STRING,
-        defaultValue: 'STUDENT_ROLE',
-        unique: true,
+    {
+        sequelize: db, timestamps: false
     }
-},
-{
-    timestamps: false
-})
+)
 
-
-export default Role;
+export { Role };

@@ -1,13 +1,9 @@
 import { Request, Response } from 'express';
-import User from '../models/user.model';
 import bcrypt from 'bcryptjs';
-import { generateJWT } from '../helpers/generate-jwt';
-import { ensureAuth } from '../helpers/ensure-auth';
-import Role from '../models/role.model';
-import { CustomRequest } from '../interfaces/custom-request';
-import { Model } from 'sequelize';
-import { UserResponse } from '../interfaces/user-response';
 
+import { User, Role } from '../models';
+import { generateJWT, ensureAuth } from '../helpers';
+import { CustomRequest } from '../interfaces';
 
 
 export const login = async (req: Request, res: Response) => {
@@ -19,7 +15,7 @@ export const login = async (req: Request, res: Response) => {
         // Verifies if the email exists
         const response = await  User.findOne({
             where: { email },
-            attributes: { exclude: ['roleId'] },
+            attributes: { exclude: ['role_id'] },
             include: {
                 model: Role,
                 as: 'role',

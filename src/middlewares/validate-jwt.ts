@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { CustomRequest } from '../interfaces/custom-request';
-import { ensureAuth } from '../helpers/ensure-auth';
-import { UserResponse } from '../interfaces/user-response';
+
+import { CustomRequest } from '../interfaces';
+import { ensureAuth } from '../helpers';
+import { User } from '../models';
 
 
 export const validateJWT = async (req: Request, res: Response, next: NextFunction) => {
@@ -10,7 +11,7 @@ export const validateJWT = async (req: Request, res: Response, next: NextFunctio
 
     try {
         const user = await ensureAuth(authHeader);
-        (req as CustomRequest).user = user as UserResponse;
+        (req as CustomRequest).user = user as User;
         next();
 
     } catch (msg) {

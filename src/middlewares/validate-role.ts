@@ -1,16 +1,19 @@
 import { Response, NextFunction, Request } from 'express';
-import { CustomRequest } from '../interfaces/custom-request';
-import Role from '../models/role.model';
+
+import { CustomRequest } from '../interfaces';
+import { Role } from '../models';
 
 
 export const isValidRole = async(req: Request, res: Response, next: NextFunction ) => {
 
-    const { role = 'STUDENT_ROLE' } = req.body;
+    const { role: name = 'STUDENT_ROLE' } = req.body;
 
     try {
-        const { dataValues: roleResp } = await Role.findOne({ where: { role }  }) ?? {};
+        const { dataValues: roleResp } = await Role.findOne({ where: { name }  }) ?? {};
 
-        if (!roleResp) { return res.status(400).json({ msg: `El rol ${role} no se encuentra registrado en DB`}) }
+        if (!roleResp) { return res.status(400).json({ msg: `El rol ${name} no se encuentra registrado en DB`}) }
+
+        
 
         (req as CustomRequest).role = roleResp;
         next();
@@ -18,7 +21,7 @@ export const isValidRole = async(req: Request, res: Response, next: NextFunction
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            msg: 'Error, contact with admin 😁'
+            msg: 'Error, contact with admin 😁, jeje'
         })
         
     }
@@ -27,13 +30,13 @@ export const isValidRole = async(req: Request, res: Response, next: NextFunction
 
 export const isAdminRole = (req: CustomRequest | Request, res: Response, next: NextFunction) => {
     
-    const { user } = (req as CustomRequest);
+    const { user, role } = (req as CustomRequest);
 
     if (!user) {
         return res.status(500).json({ msg: 'Está intentando verificar el rol si validar el token antes' });
     }
 
-    if(user.role.role !== 'ADMIN_ROLE') {
+    if(role.name !== 'ADMIN_ROLE') {
         return res.status(401).json({ msg: 'No es usuario ADMIN - No puede realizar esta accion' });
     }
 

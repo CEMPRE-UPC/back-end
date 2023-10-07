@@ -1,39 +1,46 @@
 import path from 'path';
 import { Request, Response } from 'express';
 
-import Student from '../models/student.model';
-import { StudentTypeFiles } from '../interfaces/student-type-files';
+import { Student } from '../models';
+import { StudentTypeFiles } from '../interfaces';
 
 
-export const showFile = async(req: Request, res: Response) => {
+export const showFile = async (req: Request, res: Response) => {
 
-    const { table, typeInfo, cedula, typeFile } = req.params;
+    const { typeUser, typeInfo, cedula, file } = req.params;
 
-    if (table !== 'student') {
+    if (typeUser !== 'student') {
         return res.status(400).json({
             msg: 'La tabla no es válida'
         });
     }
 
-    // validate que typeFile sea un tipo de archivo válido
-    if (!Object.values(StudentTypeFiles).includes(typeFile as StudentTypeFiles)) {
-        return res.status(400).json({
-            msg: 'El tipo de archivo no es válido'
-        });
-    }
-
     const { dataValues: student } = await Student.findOne({ where: { cedula } }) ?? {};
 
-    if( !student ) {
+    if (!student) {
         return res.status(400).json({
             msg: 'El estudiante no existe'
         });
     }
 
-    const nameFile: string = `${typeFile}File`;
+    //obtener los valores del objeto student
+    const studentValues = Object.values(student) as string[];
 
-    const file = student[nameFile as keyof Student];
+    const foundFile = studentValues.find(item => {
+        if (typeof item === 'string') {
+            const fileName = item.split('.')[0]; // Obtener el nombre del archivo sin extensión
+            return fileName === file;
+        }
+        return false;
+    });
 
-    const pathFile = path.join(__dirname, `../uploads/${ table }/${ cedula }/${ typeInfo }/${ file }`);
+    if (!foundFile) {
+        return res.status(400).json({
+            msg: 'El archivo no existe'
+        });
+
+    }
+
+    const pathFile = path.join(__dirname, `../uploads/${typeUser}/${cedula}/${typeInfo}/${foundFile}`);
     return res.sendFile(pathFile);
 }
