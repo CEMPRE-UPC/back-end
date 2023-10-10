@@ -52,10 +52,10 @@ export const login = async (req: Request, res: Response) => {
 
 export const saveUser = async (req: Request | CustomRequest, res: Response) => {
 
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
     const role = ( req as CustomRequest ).role;
 
-    const user = User.build({ name, email, password, roleId: role.id });
+    const user = User.build({ email, password, roleId: role.id });
     
     //Encrypt Password
     const salt = bcrypt.genSaltSync();
