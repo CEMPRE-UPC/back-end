@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcryptjs';
-import User from '../models/user.model';
-import { CustomRequest } from '../interfaces/custom-request';
-import Role from '../models/role.model';
+
+import { User, Role } from '../models';
 
 
 export const getUsers = async (req: Request, res: Response) => {

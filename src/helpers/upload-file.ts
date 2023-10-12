@@ -1,6 +1,7 @@
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
-import { FileUpload } from '../interfaces/file-upload';
+
+import { FileUpload } from '../interfaces';
 
 export const uploadFile = async (file: FileUpload, validExtensions: string[] = ['png', 'jpg', 'jpeg', 'pdf'], folder = ''): Promise<string> => {
     return new Promise((resolve, reject) => {

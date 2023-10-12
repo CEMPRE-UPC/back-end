@@ -18,7 +18,6 @@ userRouter.delete('/:id',
 , deleteUser)
 
 userRouter.put('/:id', 
-    check('name', 'El nombre es obligatorio').notEmpty(),
     check('email', 'El correo ingresado no es valido').isEmail(),
     check('email', 'El correo debe ser institucional').custom( (email) => {
         return email.endsWith('@unicesar.edu.co');

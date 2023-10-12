@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { checkToken, login, saveUser } from '../controllers/auth.controller';
 import { check } from 'express-validator';
-import { validateFields } from '../middlewares/validate-fields';
-import { isValidRole } from '../middlewares/validate-role';
-import { validateEmailInDB } from '../validations/db-validator';
+
+import { checkToken, login, saveUser } from '../controllers';
+import { validateFields, isValidRole } from '../middlewares/';
+import { validateEmailInDB } from '../validations';
 
 
 const authRouter = Router();
@@ -22,7 +22,6 @@ authRouter.post('/login',
 
 authRouter.post('/register',[
     isValidRole,
-    check('name', 'El nombre es obligatorio').notEmpty(),
     check('password', 'La contrasena debe tener mas de 6 caracteres').isLength({ min: 6 }),
     check('email', 'El correo ingresado no es valido').isEmail(),
     // validate that the email is from the domain @unicesar.edu.co

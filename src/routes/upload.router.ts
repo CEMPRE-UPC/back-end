@@ -6,7 +6,7 @@ import { showFile } from '../controllers/upload.controller';
 const uploadRouter = Router();
 
 
-uploadRouter.get('/:table/:typeInfo/:cedula/:typeFile', showFile);
+uploadRouter.get('/:typeUser/:typeInfo/:cedula/:file', showFile);
 
 
 export { uploadRouter }

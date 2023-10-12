@@ -1,9 +1,8 @@
 import { Request } from 'express';
-import { UserResponse } from './user-response';
-import { RoleResponse } from './role-response';
+import { User, Role } from '../models';
 
 
 export interface CustomRequest extends Request {
-    user: UserResponse;
-    role: RoleResponse;
+    user: User;
+    role: Role;
 }
