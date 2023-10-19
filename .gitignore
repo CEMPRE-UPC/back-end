@@ -1,15 +1,10 @@
-.idea/
-.vscode/
-node_modules/
-dist/
-tmp/
-temp/
-mysql-data/
-uploads/
-uploads/student/
-/uploads/student/personal-data/
+
 
 .env
-app.http
+node_modules/
 
-insert-role.sql
+dist/
+build/
+mongo/
+mysql/
+```
