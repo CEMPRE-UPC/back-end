@@ -1,29 +1,35 @@
 version: '3.8'
 
 services:
-  db:
-    container_name: mysql-db
+  mongo-db:
+    container_name: mongodb
+    image: mongo:6.0.6
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+    volumes:
+      - ./mongo:/data/db
+    ports:
+      - 27017:27017
+  
+  mysql-db:
+    container_name: mysqldb
     image: mysql:8.1.0
     ports:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_USER=cempre
+      - MYSQL_USER=mysql
       - MYSQL_PASSWORD=123456
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
 
   phpmyadmin:
     depends_on:
-      - db
-    container_name: phpmyadminV5.2.1
+      - mysql-db
+    container_name: phpmyadmin
     image: phpmyadmin:5.2.1
     ports:
       - 8080:80
     environment:
       - PMA_ARBITRARY=1
-
-volumes:
-  postgres-db:
-    external: true
-      

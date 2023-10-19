@@ -1,0 +1,31 @@
+### GET 
+GET http://localhost:3001
+
+### Login
+POST http://localhost:3001/api/auth/login
+Content-Type: application/json
+
+{   
+    "email": "wferney@unicesar.edu.co",
+    "password": "123456"
+}
+
+### Register
+POST http://localhost:3001/api/auth/register
+Content-Type: application/json
+
+{   
+    "email": "tpmiranda@unicesar.edu.co",
+    "password": "123456"
+}
+
+### CKECK TOKEN
+GET http://localhost:3001/api/auth/check-token
+Content-Type: application/json
+// enviar token en el header autorization
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjk3NjYxNTI5LCJleHAiOjE2OTc2Njg3Mjl9.OaVpy1KHzxaNh_I6STP2rdt3ajs9M-co-al0AtOE7Xo
+
+
+
+### UPLOAD ENDPOINT
+POST http://localhost:3001/api/upload/student/id
