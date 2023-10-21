@@ -26,6 +26,51 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjk3NjYxNTI5LCJleHAiOjE2OTc2Njg3Mjl9.OaVpy1KHzxaNh_I6STP2rdt3ajs9M-co-al0AtOE7Xo
 
 
+### STUDENT ENDPOINT
+## SAVE STUDENT
+POST http://localhost:3001/api/student
+Content-Type: application/json
+
+{   
+    "cedula": "1006889657",
+    "firstName": "Tatiana",
+    "secondName": "Patricia",
+    "lastName": "Miranda",
+    "middleName": "Mendoza",
+    "birthDate": "1999-10-14",
+    "placeOfBirth": "Chimichagua Cesar",
+    "martialStatus": "Soltero",
+    "program": "Administracion de empresas",
+    "address": "Calle 71 #28-84",
+    "phone": "3012345678",
+    "eps": "Salud Total",
+    "email": "tpmiranda@unicesar.edu.co",
+    "city": "Valledupar",
+    "userId": "1"
+
+}
+
+### UPDATE STUDENT
+PATCH  http://localhost:3001/api/student/1006889651
+Content-Type: application/json
+
+{   
+    "firstName": "Tatiana",
+    "secondName": "Patricia",
+    "lastName": "Miranda",
+    "middleName": "Molina",
+    "birthDate": "1999-10-14",
+    "placeOfBirth": "Chimichagua Cesar",
+    "martialStatus": "Soltero",
+    "program": "Administracion de empresas",
+    "address": "Calle 71 #28-84 Chiriqui",
+    "phone": "3012345678",
+    "eps": "Sura",
+    "email": "tpmiranda@unicesar.edu.co",
+    "city": "Valledupar",
+    "userId": "1"
+
+}
 
 ### UPLOAD ENDPOINT
 POST http://localhost:3001/api/upload/student/id

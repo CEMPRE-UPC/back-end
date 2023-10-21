@@ -5,7 +5,7 @@ export type UserToken = {
         id: number;
         email: string;
         isActive: boolean;
-        role: Role
+        role?: Role
     },
     token: string;
 }

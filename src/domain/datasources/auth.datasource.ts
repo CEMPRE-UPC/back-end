@@ -8,4 +8,7 @@ export interface IAuthDataSource {
     login( loginUserDto: LoginUserDto): Promise<UserEntity>
 
     getUserById( id: number ): Promise<UserEntity|null>
+
+    getUserByEmail( email: string ): Promise<UserEntity|null>
+
 }

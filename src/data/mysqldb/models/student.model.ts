@@ -25,12 +25,12 @@ class StudentModel extends Model {
     public eps!: string;
     public email!: string;
     public city!: string;
-    public userId!: string;
+    public userId!: number;
 }
 
 StudentModel.init({
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
     },
@@ -48,13 +48,11 @@ StudentModel.init({
     eps: { type: DataTypes.STRING },
     email: { type: DataTypes.STRING, unique: true },
     city: { type: DataTypes.STRING },
-    userId: {
-        type: DataTypes.UUID,
-        unique: true,
-    }
-}, {sequelize, timestamps: false})
+    userId: { type: DataTypes.INTEGER.UNSIGNED, unique: true },
+
+}, {sequelize, timestamps: false, tableName: 'students'})
 
 UserModel.hasOne(StudentModel, { as : 'user', foreignKey: { name: 'userId' }  });
 StudentModel.belongsTo(UserModel, { as : 'user', foreignKey: { name: 'userId' }  });
 
-export { StudentModel as Student };
+export { StudentModel };

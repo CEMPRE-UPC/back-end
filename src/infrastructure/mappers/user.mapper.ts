@@ -21,7 +21,7 @@ export class UserMapper {
       email,
       password,
       isActive,
-      RoleMapper.roleEntityFromObject(role ?? roles)
+      (role || roles) && RoleMapper.roleEntityFromObject(role ?? roles)
     );
   }
 
