@@ -9,4 +9,7 @@ export interface IAuthRepository {
 
     getUserById( id: number ): Promise<UserEntity|null>
 
+    getUserByEmail( email: string ): Promise<UserEntity|null>
+
+
 }

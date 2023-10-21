@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 
 import { MysqlDatabase } from '../mysql-database';
 import { envs } from '../../../config';
+import { StudentModel } from './student.model';
 
 const sequelize = MysqlDatabase.initialize({
   mysqlUrl: envs.MYSQL_URL,
@@ -11,7 +12,7 @@ const sequelize = MysqlDatabase.initialize({
 class AttachedFileModel extends Model {
     public id!: number;
     public name!: string;
-    public file!: string;
+    public file!: string;  
 }
 
 AttachedFileModel.init(
@@ -35,5 +36,7 @@ AttachedFileModel.init(
     }
 )
 
+StudentModel.hasOne(AttachedFileModel, { as : 'attachedFile', foreignKey: { name: 'studentId' }  });
+AttachedFileModel.belongsTo(StudentModel, { as : 'attachedFile', foreignKey: { name: 'studentId' }  });
 
-export { AttachedFileModel };
+export { AttachedFileModel };  

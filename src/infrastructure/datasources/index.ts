@@ -1,1 +1,2 @@
-export * from './mongo/auth-mongo.datasource';
+export * from './mongo';
+export * from './mysql';

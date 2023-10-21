@@ -9,7 +9,7 @@ interface IRegisterUseCase {
     execute( registerUserDto: RegisterUserDto): Promise<UserToken>;
 }
 
-export class RegisterUseCase implements IRegisterUseCase{
+export class RegisterUserUseCase implements IRegisterUseCase{
 
     constructor(
         private readonly authRepository: IAuthRepository,

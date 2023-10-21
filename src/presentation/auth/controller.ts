@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 
 import { IAuthRepository } from '../../domain/repositories';
-import { LoginUseCase, RegisterUseCase, CheckTokenUseCase } from '../../domain/use-cases';
+import { LoginUseCase, RegisterUserUseCase, CheckTokenUseCase } from '../../domain/use-cases';
 import { LoginUserDto, RegisterUserDto, CheckTokenDto } from '../../domain/dtos';
-import { CustomError } from '../../domain/errors';
+import { handleError } from '../helpers';
 
 export class AuthController {
 
@@ -12,14 +12,6 @@ export class AuthController {
     ) { }   
 
 
-    private handleError = (error: unknown, res: Response) => {
-        if (error instanceof CustomError) {
-            return res.status(error.statusCode).json({ message: error.message });
-        }
-
-        return res.status(500).json({ message: 'Internal server error' });
-    }
-
     login = async(req: Request, res: Response) => {
         const [ error, loginUserDto ] = LoginUserDto.create(req.body);
         if(error) return res.status(400).json(error);
@@ -27,7 +19,7 @@ export class AuthController {
         
         new LoginUseCase( this.authRepositoy ).execute( loginUserDto! )
             .then( userToken => res.json( userToken ) )
-            .catch( error => this.handleError( error, res ) );
+            .catch( error => handleError( error, res ) );
     }
     
     register = (req: Request, res: Response) => {
@@ -36,9 +28,9 @@ export class AuthController {
         if ( error ) return res.status(400).json( error );
 
         
-       new RegisterUseCase( this.authRepositoy ).execute( registerUserDto! )
+       new RegisterUserUseCase( this.authRepositoy ).execute( registerUserDto! )
             .then( userToken => res.json( userToken ) )
-            .catch( error => this.handleError( error, res ) );
+            .catch( error => handleError( error, res ) );
     }
 
     checkToken = (req: Request, res: Response) => {
@@ -48,7 +40,7 @@ export class AuthController {
 
         new CheckTokenUseCase( this.authRepositoy ).execute( token! )
             .then( userChecked => res.json( userChecked ) )
-            .catch( error => this.handleError( error, res ) );
+            .catch( error => handleError( error, res ) );
     }
 
 }
