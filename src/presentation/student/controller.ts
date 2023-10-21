@@ -1,7 +1,7 @@
 import { Request, Response,  } from 'express'
 import { IStudentRepository, OptionalStudentDto, RegisterStudentUseCase, StudentDto } from '../../domain'
 import { handleError } from '../helpers';
-import { UpdateStudentUseCase } from '../../domain/use-cases/student/update.usecase';
+import { UpdateStudentUseCase } from '../../domain/use-cases';
 
 export class StudentController {
 

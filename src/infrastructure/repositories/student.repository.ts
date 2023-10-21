@@ -1,18 +1,18 @@
 import { IStudentDataSource, IStudentRepository, OptionalStudentDto, StudentDto, StudentEntity } from '../../domain';
 
 
-export class StudentRepository implements IStudentDataSource {
+export class StudentRepository implements IStudentRepository {
 
     constructor(
-        private readonly studentRepository: IStudentRepository
+        private readonly studentDataSource: IStudentDataSource
     ) {}
     
     register(stundetDto: StudentDto): Promise<StudentEntity> {
-        return this.studentRepository.register(stundetDto);
+        return this.studentDataSource.register(stundetDto);
     }
 
     update(optionalStudentDto: OptionalStudentDto): Promise<number[]> {
-       return this.studentRepository.update(optionalStudentDto);
+       return this.studentDataSource.update(optionalStudentDto);
     }
 
 }

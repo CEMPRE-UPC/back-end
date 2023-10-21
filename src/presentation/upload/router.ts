@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { UploadController } from './controller';
+import { UploadDataSource } from '../../infrastructure/datasources';
+import { UploadRepository } from '../../infrastructure/repositories';
 
 export class UploadRouter {
 
@@ -9,9 +11,11 @@ export class UploadRouter {
         const router = Router();
 
 
-        const controller = new UploadController();
+        const datasource = new UploadDataSource();
+        const repository = new UploadRepository(datasource);
+        const controller = new UploadController(repository);
 
-        router.post('/:table/:id', controller.loadFile);
+        router.post('/', controller.loadFile);
 
         return router;
     }

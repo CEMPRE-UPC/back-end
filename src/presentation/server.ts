@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import fileUpload from 'express-fileupload';
 
 interface Options {
     port: number;
@@ -24,6 +25,13 @@ export class Server {
         // Middlewares
         this.app.use( express.json() );
         this.app.use( express.urlencoded({ extended: true }) );
+
+          // Fileupload - Carga de archivos
+          this.app.use( fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/',
+            createParentPath: true
+        }));
         
         this.app.use( this.routes )
 
