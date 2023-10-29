@@ -1,4 +1,4 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes, ENUM, Model } from 'sequelize';
 
 import { MysqlDatabase } from '../mysql-database';
 import { envs } from '../../../config';
@@ -10,7 +10,7 @@ const sequelize = MysqlDatabase.initialize({
 })
 
 class AttachedFileModel extends Model {
-    public id!: number;
+    public id!: string;
     public name!: string;
     public file!: string;  
 }
@@ -18,12 +18,13 @@ class AttachedFileModel extends Model {
 AttachedFileModel.init(
     {
         id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
-            autoIncrement: true
         },
-        name: {
-            type: DataTypes.STRING,
+        type: {
+                    
+            type: ENUM('identification', 'photo', 'class_schedule', 'eps', 'graduate_certificate'),
         },
         file: {
             type: DataTypes.STRING,
@@ -36,7 +37,7 @@ AttachedFileModel.init(
     }
 )
 
-StudentModel.hasOne(AttachedFileModel, { as : 'attachedFile', foreignKey: { name: 'studentId' }  });
-AttachedFileModel.belongsTo(StudentModel, { as : 'attachedFile', foreignKey: { name: 'studentId' }  });
+StudentModel.hasOne(AttachedFileModel, { as : 'student', foreignKey: { name: 'studentId' }  });
+AttachedFileModel.belongsTo(StudentModel, { as : 'student', foreignKey: { name: 'studentId' }  });
 
 export { AttachedFileModel };  

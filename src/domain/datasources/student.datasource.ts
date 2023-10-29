@@ -8,4 +8,9 @@ export interface IStudentDataSource {
 
     update( optionalStudentDto: OptionalStudentDto ): Promise<number[]>;
 
+    getStudentByIdAndCedula(id: string, cedula: string): Promise<StudentEntity | null>;
+
+    getStudentByIdUser( id: string ): Promise<StudentEntity | null>;
+
+
 }
