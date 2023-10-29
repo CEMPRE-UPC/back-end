@@ -10,9 +10,17 @@ export class StudentRepository implements IStudentRepository {
     register(stundetDto: StudentDto): Promise<StudentEntity> {
         return this.studentDataSource.register(stundetDto);
     }
-
+    
     update(optionalStudentDto: OptionalStudentDto): Promise<number[]> {
-       return this.studentDataSource.update(optionalStudentDto);
+        return this.studentDataSource.update(optionalStudentDto);
     }
 
+    getStudentByIdAndCedula(id: string, cedula: string): Promise<StudentEntity | null> {
+        return this.studentDataSource.getStudentByIdAndCedula(id, cedula);
+    }
+    
+    getStudentByIdUser(id: string): Promise<StudentEntity | null> {
+        return this.studentDataSource.getStudentByIdUser(id);
+    }
+    
 }

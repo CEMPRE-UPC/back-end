@@ -1,8 +1,8 @@
 ### GET 
-GET http://localhost:3001
+GET http://localhost:3000
 
 ### Login
-POST http://localhost:3001/api/auth/login
+POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {   
@@ -11,16 +11,16 @@ Content-Type: application/json
 }
 
 ### Register
-POST http://localhost:3001/api/auth/register
+POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {   
-    "email": "tpmiranda@unicesar.edu.co",
+    "email": "tpmirandda@unicesar.edu.co",
     "password": "123456"
 }
 
 ### CKECK TOKEN
-GET http://localhost:3001/api/auth/check-token
+GET http://localhost:3000/api/auth/check-token
 Content-Type: application/json
 // enviar token en el header autorization
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjk3NjYxNTI5LCJleHAiOjE2OTc2Njg3Mjl9.OaVpy1KHzxaNh_I6STP2rdt3ajs9M-co-al0AtOE7Xo
@@ -28,15 +28,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxN
 
 ### STUDENT ENDPOINT
 ## SAVE STUDENT
-POST http://localhost:3001/api/student
+POST http://localhost:3000/api/student/personal-data
 Content-Type: application/json
 
 {   
     "cedula": "1006889657",
     "firstName": "Tatiana",
-    "secondName": "Patricia",
+    "secondName": "",
     "lastName": "Miranda",
-    "middleName": "Mendoza",
+    "middleName": "Mendoza3",
     "birthDate": "1999-10-14",
     "placeOfBirth": "Chimichagua Cesar",
     "martialStatus": "Soltero",
@@ -46,21 +46,21 @@ Content-Type: application/json
     "eps": "Salud Total",
     "email": "tpmiranda@unicesar.edu.co",
     "city": "Valledupar",
-    "userId": "1"
+    "userId": "2"
 
 }
 
 ### UPDATE STUDENT
-PATCH  http://localhost:3001/api/student/1006889651
+PATCH  http://localhost:3000/api/student/personal-data/1006811987
 Content-Type: application/json
 
 {   
-    "firstName": "Tatiana",
+    "firstName": "Tatianaxx",
     "secondName": "Patricia",
     "lastName": "Miranda",
     "middleName": "Mendoza",
     "birthDate": "1999-10-14",
-    "placeOfBirth": "Chimichagua Cesar",
+    "placeOfBirth": "Chimichagua, Cesar",
     "martialStatus": "Soltero",
     "program": "Administracion de empresas",
     "address": "Calle 71 #28-84 Chiriqui",
@@ -73,4 +73,8 @@ Content-Type: application/json
 }
 
 ### UPLOAD ENDPOINT
-POST http://localhost:3001/api/upload/student/id
+POST http://localhost:3000/api/upload/student/id
+
+
+### GET STUDENT BY ID USER
+GET  http://localhost:3000/api/student/personal-data/2

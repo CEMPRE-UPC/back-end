@@ -49,8 +49,8 @@ export class OptionalStudentDto {
         if (!Validators.onlyLettersPattern.test(middleName)) return ['El segundo apellido solo puede contener letras'];
 
         if ( !Validators.datePattern.test(birthDate) ) return ['La fecha debe tener el formato yyyy-mm-dd'];
-
-        if (!Validators.onlyLettersPattern.test(placeOfBirth)) return ['El lugar de nacimiento solo puede contener letras'];
+        
+        if (!Validators.placeOfBirthPattern.test(placeOfBirth)) return ['El campo debe tener el formato: "Ciudad, Departamento"'];
 
         if (!Validators.onlyLettersPattern.test(martialStatus)) return ['El estado civil solo puede contener letras'];
 

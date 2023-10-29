@@ -52,7 +52,10 @@ export class StudentDto {
         if ( !firstName ) return ['El primer nombre es requerido'];
         if (!Validators.onlyLettersPattern.test(firstName)) return ['El primer nombre solo puede contener letras'];
 
-        if (!Validators.onlyLettersPattern.test(secondName)) return ['El segunndo nombre solo puede contener letras'];
+
+        if (secondName.length > 0) {
+            if (!Validators.onlyLettersPattern.test(secondName)) return ['El segunndo nombre solo puede contener letras'];
+        }
 
         if ( !lastName ) return ['El primer apellido es requerido'];
         if (!Validators.onlyLettersPattern.test(lastName)) return ['El primer apellido solo puede contener letras'];
@@ -64,7 +67,7 @@ export class StudentDto {
         if ( !Validators.datePattern.test(birthDate) ) return ['La fecha debe tener el formato yyyy-mm-dd'];
 
         if ( !placeOfBirth ) return ['El lugar de nacimiento es requerido'];
-        if (!Validators.onlyLettersPattern.test(placeOfBirth)) return ['El lugar de nacimiento solo puede contener letras'];
+        if (!Validators.placeOfBirthPattern.test(placeOfBirth)) return ['El campo debe tener el formato: "Ciudad, Departamento"'];
 
         if ( !martialStatus ) return ['El estado civil es requerido'];
         if (!Validators.onlyLettersPattern.test(martialStatus)) return ['El estado civil solo puede contener letras'];

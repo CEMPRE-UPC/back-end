@@ -5,8 +5,8 @@ node_modules/
 
 dist/
 build/
-mongo/
-mysql/
-uploads/
+/mongo
+/mysql
+/uploads
 
 ```

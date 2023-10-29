@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { UploadController } from './controller';
-import { UploadDataSource } from '../../infrastructure/datasources';
-import { UploadRepository } from '../../infrastructure/repositories';
+import { StudentDataSource, UploadDataSource } from '../../infrastructure/datasources';
+import { StudentRepository, UploadRepository } from '../../infrastructure/repositories';
+import { UploadMiddleware } from '../middlewares';
 
 export class UploadRouter {
 
@@ -10,12 +11,18 @@ export class UploadRouter {
 
         const router = Router();
 
+        const studentRepository = new StudentRepository(new StudentDataSource())
 
-        const datasource = new UploadDataSource();
-        const repository = new UploadRepository(datasource);
-        const controller = new UploadController(repository);
+        const uploadRepository = new UploadRepository(new UploadDataSource());
+        const controller = new UploadController(uploadRepository);
 
-        router.post('/', controller.loadFile);
+        router.post('/', 
+            new UploadMiddleware(studentRepository, uploadRepository).validateStudent,
+        controller.saveFile);
+
+        router.get('/:studentId', controller.getFilesOfStudent);
+
+        router.get('/:table/:id', controller.getFile)
 
         return router;
     }
