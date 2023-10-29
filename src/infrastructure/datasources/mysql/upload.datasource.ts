@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { UUIDAdapter, envs } from '../../../config';
-import { AttachedFileEntity, CustomError, IUploadDataSource, ShowFileDto, UploadDto } from '../../../domain';
+import { AttachedFileEntity, CustomError, FileUpload, IUploadDataSource, ShowFileDto, UploadDto } from '../../../domain';
 import { AttachedFileModel, MysqlDatabase } from '../../../data/mysqldb';
 import { UploadMapper } from '../../mappers';
 
@@ -21,15 +21,7 @@ export class UploadDataSource implements IUploadDataSource {
 
         const { cedula, table, file, typeFile, studentId } = uploadDto;
 
-        console.log(uploadDto);
-        
-
-        const cutName = file.name.split('.');
-        const extension = cutName[cutName.length - 1];
-
-        const fileName = this.generateUUID() + '.' + extension;
- 
-        const uploadPath = path.join(__dirname, '../../../../uploads/', table, cedula, fileName);
+        const { uploadPath, fileName } = this.createfilePath(file, table, cedula);
 
         const transaction = await sequelize.transaction();
 
@@ -53,6 +45,7 @@ export class UploadDataSource implements IUploadDataSource {
         }
 
     }
+
     async getFilesByStudentId(studentId: string): Promise<AttachedFileEntity[]> {
         
         try {
@@ -101,8 +94,56 @@ export class UploadDataSource implements IUploadDataSource {
         }
     }
 
+    async updateFile(uploadDto: UploadDto): Promise<boolean> {
+
+        const { cedula, table, file, typeFile, studentId } = uploadDto;
+
+        const attachedFile = await AttachedFileModel.findOne({ where: { studentId, type: typeFile } });
+
+        if(!attachedFile) throw CustomError.badRequest('File not found');
+
+        const attached = UploadMapper.uploadEntityFromObject(attachedFile.toJSON());
 
 
+        // borramos el archivo anterior
+
+        const filePath = path.join(__dirname, '../../../../uploads/', table, cedula ,attached.file);
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+
+        const { uploadPath, fileName } = this.createfilePath(file, table, cedula);
 
 
+        const transaction = await sequelize.transaction();
+
+        try {
+            await file.mv(uploadPath);
+
+            await attachedFile.update({
+                file: fileName
+            }, { transaction });
+
+            await transaction.commit();
+            return true;
+        } catch (error) {
+            console.log(error);
+            
+            await transaction.rollback();
+            fs.unlinkSync(uploadPath);
+            return false;
+        }
+        
+    }
+
+
+    private createfilePath(file: FileUpload, table: string, cedula: string) {
+        const cutName = file.name.split('.');
+        const extension = cutName[cutName.length - 1];
+
+        const fileName = this.generateUUID() + '.' + extension;
+
+        const uploadPath = path.join(__dirname, '../../../../uploads/', table, cedula, fileName);
+        return { uploadPath, fileName };
+    }
 }

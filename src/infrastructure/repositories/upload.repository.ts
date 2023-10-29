@@ -1,7 +1,6 @@
 import { AttachedFileEntity, IUploadDataSource, IUploadRepository, ShowFileDto, UploadDto } from '../../domain';
 
 
-
 export class UploadRepository implements IUploadRepository {
 
     constructor(
@@ -18,5 +17,9 @@ export class UploadRepository implements IUploadRepository {
     
     getFile(showFileDto: ShowFileDto): Promise<string> {
         return this.uploadDatasource.getFile(showFileDto);
+    }
+
+    updateFile(uploadDto: UploadDto): Promise<boolean> {
+        return this.uploadDatasource.updateFile(uploadDto);
     }
 }

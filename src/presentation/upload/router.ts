@@ -6,7 +6,6 @@ import { UploadMiddleware } from '../middlewares';
 
 export class UploadRouter {
 
-
     static get routes(): Router {
 
         const router = Router();
@@ -16,13 +15,20 @@ export class UploadRouter {
         const uploadRepository = new UploadRepository(new UploadDataSource());
         const controller = new UploadController(uploadRepository);
 
+        const middleware = new UploadMiddleware(studentRepository, uploadRepository);
+
         router.post('/', 
-            new UploadMiddleware(studentRepository, uploadRepository).validateStudent,
+            middleware.validateStudent,
+            middleware.validateFile,
         controller.saveFile);
 
         router.get('/:studentId', controller.getFilesOfStudent);
 
         router.get('/:table/:id', controller.getFile)
+
+        router.patch('/', 
+         middleware.validateStudent,
+        controller.updateFile);
 
         return router;
     }
