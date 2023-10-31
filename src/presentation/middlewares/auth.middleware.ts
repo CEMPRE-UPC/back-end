@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { JwtAdapter } from '../../config';
 import { AuthRepository } from '../../infrastructure/repositories';
-import { VerifyToken } from '../../domain/types/auth.type';
+import { VerifyToken } from '../../domain/types/auth/auth.type';
 
 
 export class AuthMiddleware {

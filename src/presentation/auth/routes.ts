@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { AuthController } from './controller';
 import { AuthRepository, RoleRepository } from '../../infrastructure/repositories';
-import { AuthDataSource } from '../../infrastructure/datasources/mysql/auth.datasource';
+import { AuthDataSource } from '../../infrastructure/datasources/mysql/auth/auth.datasource';
 import { RoleMiddleware } from '../middlewares/role.middleware';
-import { RoleDataSouce } from '../../infrastructure/datasources/mysql/role.datasource';
+import { RoleDataSouce } from '../../infrastructure/datasources/mysql/auth/role.datasource';
 
 
 export class AuthRoutes {

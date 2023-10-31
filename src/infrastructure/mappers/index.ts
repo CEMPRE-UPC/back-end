@@ -1,5 +1,5 @@
-export * from './user.mapper';
-export * from './role.mapper';
-export * from './student.mapper';
+export * from './auth';
+export * from './student';
+export * from './upload';
+
 export * from './sequelize-error.mapper';
-export * from './upload.mapper';
