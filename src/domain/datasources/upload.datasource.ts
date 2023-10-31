@@ -8,4 +8,6 @@ export interface IUploadDataSource {
     getFilesByStudentId(studentId: string): Promise<AttachedFileEntity[]>
 
     getFile(showFileDto: ShowFileDto): Promise<string>
+
+    updateFile(uploadDto: UploadDto): Promise<boolean>
 }

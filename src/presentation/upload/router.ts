@@ -1,28 +1,42 @@
 import { Router } from 'express';
 import { UploadController } from './controller';
-import { StudentDataSource, UploadDataSource } from '../../infrastructure/datasources';
-import { StudentRepository, UploadRepository } from '../../infrastructure/repositories';
-import { UploadMiddleware } from '../middlewares';
+import { AuthDataSource, StudentDataSource, UploadDataSource } from '../../infrastructure/datasources';
+import { AuthRepository, StudentRepository, UploadRepository } from '../../infrastructure/repositories';
+import { AuthMiddleware, UploadMiddleware } from '../middlewares';
 
 export class UploadRouter {
-
 
     static get routes(): Router {
 
         const router = Router();
 
         const studentRepository = new StudentRepository(new StudentDataSource())
-
         const uploadRepository = new UploadRepository(new UploadDataSource());
-        const controller = new UploadController(uploadRepository);
+        const authRepository = new AuthRepository( new AuthDataSource());
+
+
+        const uploadController = new UploadController(uploadRepository);
+        const uploadMiddleware = new UploadMiddleware(studentRepository, uploadRepository);
+        const authMiddleware = new AuthMiddleware( authRepository );
 
         router.post('/', 
-            new UploadMiddleware(studentRepository, uploadRepository).validateStudent,
-        controller.saveFile);
+            authMiddleware.validateJWT,
+            uploadMiddleware.validateStudent,
+            uploadMiddleware.validateFile,
+        uploadController.saveFile);
 
-        router.get('/:studentId', controller.getFilesOfStudent);
+        router.get('/:studentId', 
+            authMiddleware.validateJWT,
+        uploadController.getFilesOfStudent);
 
-        router.get('/:table/:id', controller.getFile)
+        router.get('/:table/:id',
+            authMiddleware.validateJWT,
+        uploadController.getFile)
+
+        router.patch('/', 
+            authMiddleware.validateJWT,
+            uploadMiddleware.validateStudent,
+        uploadController.updateFile);
 
         return router;
     }
