@@ -81,7 +81,7 @@ export class AuthDataSource implements IAuthDataSource {
        
         return new Promise( async (resolve) => {
 
-            const user = await UserModel.findByPk(id);
+            const user = await UserModel.findByPk(id, { include: 'role' });
             if(!user) return resolve(null);
 
             resolve( UserMapper.userEntityFromObject(user.toJSON()) );

@@ -3,15 +3,8 @@ import { IAuthRepository } from '../../repositories';
 import { UserToken, VerifyToken } from '../../types';
 import { CustomError } from '../../errors/custom.error';
 
-
-type UserChecked = {
-    id: number;
-    email: string;
-    isActive: boolean;
-}
-
 interface ICheckTokenUseCase {
-    execute( token: string ): Promise<UserChecked>;
+    execute( token: string ): Promise<UserToken>;
 }
 
 
@@ -22,7 +15,7 @@ export class CheckTokenUseCase implements ICheckTokenUseCase {
         private readonly verifyToken: VerifyToken = JwtAdapter.validateToken
     ) {}
     
-    async execute(token: string): Promise<UserChecked> {
+    async execute(token: string): Promise<UserToken> {
         
         const payload = await this.verifyToken<{ id: number }>(token);
         if (!payload) throw CustomError.unauthorized('Invalid token');
@@ -30,10 +23,15 @@ export class CheckTokenUseCase implements ICheckTokenUseCase {
         const user = await this.authRepository.getUserById(payload.id);
         if (!user ) throw CustomError.unauthorized('Invalid token - user not found');
 
+       
         return {
-            id: user.id,
-            email: user.email,
-            isActive: user.isActive
+            user: {
+                id: user.id,
+                email: user.email,
+                isActive: user.isActive,
+                role: user.role
+            },
+            token
         }
 
     }
