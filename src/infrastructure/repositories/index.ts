@@ -1,4 +1,3 @@
-export * from './auth.repository';
-export * from './role.repository';
-export * from './student.repository';
-export * from './upload.repository';
+export * from './auth';
+export * from './student';
+export * from './upload';

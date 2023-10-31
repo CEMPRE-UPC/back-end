@@ -1,6 +1,5 @@
 import { Server, AppRoutes } from './presentation';
 import { envs } from './config';
-import { MongoDatabase } from './data/mongodb';
 import { MysqlDatabase } from './data/mysqldb';
 
 
