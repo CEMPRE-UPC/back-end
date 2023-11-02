@@ -1,5 +1,5 @@
-import { StudentEntity } from '../../entities';
-import { IStudentRepository } from '../../repositories';
+import { StudentEntity } from '../../../entities';
+import { IStudentRepository } from '../../../repositories';
 
 
 interface IStudentUseCase {

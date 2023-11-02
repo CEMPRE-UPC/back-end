@@ -1,6 +1,6 @@
-import { StudentDto } from '../../dtos';
-import { StudentEntity } from '../../entities';
-import { IStudentRepository } from '../../repositories';
+import { StudentDto } from '../../../dtos';
+import { StudentEntity } from '../../../entities';
+import { IStudentRepository } from '../../../repositories';
 
 
 interface IStudentUseCase {
