@@ -1,6 +1,6 @@
-import { OptionalStudentDto } from '../../dtos';
-import { StudentEntity } from '../../entities';
-import { IStudentRepository } from '../../repositories';
+import { OptionalStudentDto } from '../../../dtos';
+import { StudentEntity } from '../../../entities';
+import { IStudentRepository } from '../../../repositories';
 
 
 interface IUpdateStudentUseCase {

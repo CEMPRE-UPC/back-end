@@ -1,2 +1,2 @@
-export * from './optional-student.dto';
-export * from './student.dto';
+export * from './personal-data';
+export * from './practice';

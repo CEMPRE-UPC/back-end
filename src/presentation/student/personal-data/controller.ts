@@ -1,8 +1,7 @@
 import { Request, Response,  } from 'express'
 import { IStudentRepository, OptionalStudentDto, RegisterStudentUseCase, StudentDto } from '../../../domain'
 import { handleError } from '../../helpers';
-import { UpdateStudentUseCase } from '../../../domain/use-cases';
-import { GetStudentByIdUseCase } from '../../../domain/use-cases/student/get-student.usecase';
+import { UpdateStudentUseCase, GetStudentByIdUseCase } from '../../../domain/use-cases';
 
 export class StudentController {
 
@@ -17,9 +16,7 @@ export class StudentController {
         
         if (error) return res.status(400).json({ message: error });
 
-        console.log(studentDto);
-        
-
+   
         new RegisterStudentUseCase( this.studentRepository ).execute( studentDto! )
             .then( student => res.json( student ) )
             .catch( error => handleError( error, res ) );
