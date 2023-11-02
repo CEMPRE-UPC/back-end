@@ -5,3 +5,7 @@ export enum TypeFile {
     EPS = 'eps',
     GRADUATE_CERTIFICATE = 'graduate_certificate',
 }
+
+export enum TypeTable {
+    STUDENT= 'student',
+}

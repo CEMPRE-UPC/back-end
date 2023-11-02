@@ -31,7 +31,7 @@ export class UploadController {
 
         const [ error, showFileDto ] = ShowFileDto.create( req.params );
 
-        if(error) return handleError(error, res);
+        if(error) return res.status(400).json({ message: error });
 
         new GetFileUseCase( this.uploadRepository ).execute( showFileDto! )
             .then( file => res.sendFile( file ) )
