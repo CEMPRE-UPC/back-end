@@ -13,13 +13,7 @@ export class PracticeRouter {
 
         const repository = new PracticeRepository( new PracticeDataSource() );
 
-        // comprobar si repository es undefined
 
-        if (repository === undefined) {
-            throw new Error('repository must not be undefined');
-        }
-
-        
         const controller = new PracticeController( repository );
 
         router.post('/practice', controller.register);
