@@ -16,6 +16,8 @@ export class UploadDataSource implements IUploadDataSource {
         private readonly generateUUID: () => string = UUIDAdapter.generate,
     ) { }
 
+    private uploadFilePath = path.join(__dirname, '../../../../../uploads/');
+
   
     async uploadFile(uploadDto: UploadDto): Promise<boolean> {
 
@@ -79,7 +81,10 @@ export class UploadDataSource implements IUploadDataSource {
 
             const attached = UploadMapper.uploadEntityFromObject(attachedFile.toJSON());
 
-            const filePath = path.join(__dirname, '../../../../uploads/', table, attached.student!.cedula ,attachedFile.file);
+            const filePath = path.join(this.uploadFilePath, table, attached.student!.cedula ,attachedFile.file);
+
+            console.log(filePath);
+            
 
             return filePath;
             
@@ -107,7 +112,7 @@ export class UploadDataSource implements IUploadDataSource {
 
         // borramos el archivo anterior
 
-        const filePath = path.join(__dirname, '../../../../uploads/', table, cedula ,attached.file);
+        const filePath = path.join(this.uploadFilePath, table, cedula ,attached.file);
         if (fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
         }
@@ -143,7 +148,7 @@ export class UploadDataSource implements IUploadDataSource {
 
         const fileName = this.generateUUID() + '.' + extension;
 
-        const uploadPath = path.join(__dirname, '../../../../uploads/', table, cedula, fileName);
+        const uploadPath = path.join(this.uploadFilePath, table, cedula, fileName);
         return { uploadPath, fileName };
     }
 }

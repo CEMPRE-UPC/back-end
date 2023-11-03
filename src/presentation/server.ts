@@ -1,6 +1,9 @@
 import express, { Router } from 'express';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
+import swaggerUi from 'swagger-ui-express';
+
+import * as swaggerDocument from '../../src/swagger.json';
 
 interface Options {
     port: number;
@@ -27,6 +30,10 @@ export class Server {
         this.app.use( express.json() );
         this.app.use( express.urlencoded({ extended: true }) );
         this.app.use( cors() )
+
+        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 
           // Fileupload - Carga de archivos
           this.app.use( fileUpload({

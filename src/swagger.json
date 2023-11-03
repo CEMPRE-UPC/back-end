@@ -1,0 +1,364 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CEMPRE",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Autenticacion de la aplicacion"
+    },
+    {
+      "name": "students",
+      "description": "Estudiantes de la aplicacion"
+    },
+    {
+      "name": "upload",
+      "description": "Manejo de archivos en la aplicacion"
+    }
+  ],
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "description": "Inicia sesión en la aplicación",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/auth"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Inicio de sesión exitoso"
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "description": "Crea una cuenta en la aplicación",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/auth"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cuenta creada con exito"
+          }
+        }
+      }
+    },
+    "/api/auth/check-token": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "description": "Verifica si el token es valido",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token valido"
+          }
+        }
+      }
+    },
+    "/api/student/personal-data": {
+      "post": {
+        "tags": [
+          "students"
+        ],
+        "description": "Crea los datos personales del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/student"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Datos personales creados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/practice": {
+      "post": {
+        "tags": [
+          "students"
+        ],
+        "description": "Crea las practicas del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema":{
+                "$ref": "#/components/schemas/practice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Practicas creadas con exito"
+          }
+        }
+      }
+    },
+    "/api/student/practice/{studentId}": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Practicas consultadas con exito"
+          }
+        
+        }
+      }
+    },
+    "/api/upload": {
+      "post": {
+        "tags": [
+          "upload"
+        ],
+        "description": "Sube un archivo",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/upload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cuenta creada con exito"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "upload"
+        ],
+        "description": "Sube un archivo",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/upload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cuenta creada con exito"
+          }
+        }
+      }
+    },
+    "/api/upload/{studentId}": {
+      "get": {
+        "tags": [
+          "upload"
+        ],
+        "description": "Consulta los archivos de un estudiante",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "archivos consultados con exito"
+          }
+        }
+      }
+    },
+    "/api/upload/{table}/{id}": {
+      "get": {
+        "tags": [
+          "upload"
+        ],
+        "description": "Consulta un archivo de un estudiante",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "description": "Tabla de la base de datos",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del archivo",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "archivos consultados con exito"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "practice": {
+        "type": "object",
+        "required": [
+          "modality",
+          "studentId"
+        ],
+        "properties": {
+          "modality": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "upload": {
+        "type": "object",
+        "required": [
+          "file",
+          "studentId",
+          "cedula",
+          "table",
+          "typeFile"
+        ],
+        "properties": {
+          "file": { "type": "string", "format": "binary" },
+          "studentId": { "type": "string" },
+          "cedula": { "type": "string" },
+          "table": { "type": "string" },
+          "typeFile": { "type": "string" }
+        }
+      },
+      "auth": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": { "type": "string" },
+          "password": { "type": "string" }
+        }
+      },
+      "student": {
+        "type": "object",
+        "required": [
+          "cedula",
+          "firstName",
+          "lastName",
+          "middleName",
+          "birthDate",
+          "placeOfBirth",
+          "martialStatus",
+          "program",
+          "address",
+          "phone",
+          "eps",
+          "email",
+          "city",
+          "userId"
+        ],
+        "properties": {
+          "cedula": { "type": "string" },
+          "firstName": { "type": "string" }, 
+          "secondName": { "type": "string" },
+          "lastName": { "type": "string" },                
+          "middleName": { "type": "string" },
+          "birthDate": { "type": "string" },
+          "placeOfBirth": { "type": "string" },
+          "martialStatus": { "type": "string" },
+          "program": { "type": "string" },
+          "address": { "type": "string" },
+          "phone": { "type": "string" },
+          "eps": { "type": "string" },
+          "email": { "type": "string" },
+          "city": { "type": "string" },
+          "userId": { "type": "string" }
+        }
+      }
+    }
+    
+  }
+}
