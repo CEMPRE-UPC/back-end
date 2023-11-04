@@ -154,6 +154,86 @@
         }
       }
     },
+    "/api/student/work-experience": {
+      "post":{
+        "tags": [
+          "students"
+        ],
+        "description": "Crea la experiencia laboral del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/post-work-experience"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Experiencia laboral creada con exito"
+          }
+        }
+      }
+    },
+    "/api/student/work-experience/{id}": {
+      "patch": {
+        "tags": [
+          "students"
+        ],
+        "description": "Actualiza la experiencia laboral del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/update-work-experience"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la experiencia laboral",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Experiencia laboral actualizada con exito"
+          }
+        }
+      }
+      
+    },
+    "/api/student/work-experience/{studentId}": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "description": "Consulta la experiencia laboral del estudiante",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Experiencia laboral consultada con exito"
+          }
+        }
+      }
+    },
     "/api/upload": {
       "post": {
         "tags": [
@@ -291,6 +371,39 @@
         ],
         "properties": {
           "modality": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "post-work-experience":{ 
+        "type": "object",
+        "required": [
+          "company",
+          "position",
+          "functions",
+          "start_date",
+          "end_date",
+          "studentId"
+        ],
+        "properties": {
+          "company": { "type": "string" },
+          "position": { "type": "string" },
+          "functions": { "type": "string" },
+          "start_date": { "type": "string" },
+          "end_date": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "update-work-experience":{ 
+        "type": "object",
+        "required": [
+          "studentId"
+        ],
+        "properties": {
+          "company": { "type": "string" },
+          "position": { "type": "string" },
+          "functions": { "type": "string" },
+          "start_date": { "type": "string" },
+          "end_date": { "type": "string" },
           "studentId": { "type": "string" }
         }
       },
