@@ -11,7 +11,7 @@ export class PracticeController {
         private readonly practiceRepository: IPracticeRepository
     ) { }   
 
-    register = async(req: Request, res: Response) => {
+    register = (req: Request, res: Response) => {
 
         const [ error, studentDto] = PracticeDto.create(req.body);
         
@@ -23,7 +23,7 @@ export class PracticeController {
             .catch( error => handleError( error, res ) );
     }
 
-    update = async(req: Request, res: Response) => {
+    update = (req: Request, res: Response) => {
 
         const [ error, studentDto] = PracticeDto.create(req.body);
         console.log(error);
@@ -36,7 +36,7 @@ export class PracticeController {
             .catch( error => handleError( error, res ) );
     }
 
-    getByStudentId = async(req: Request, res: Response) => {
+    getByStudentId = (req: Request, res: Response) => {
 
         const { studentId } = req.params;
         console.log(studentId);
