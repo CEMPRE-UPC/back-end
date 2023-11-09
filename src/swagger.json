@@ -15,8 +15,20 @@
       "description": "Autenticacion de la aplicacion"
     },
     {
-      "name": "students",
-      "description": "Estudiantes de la aplicacion"
+      "name": "students (personal data)",
+      "description": "Datos personales del estudiante"
+    },
+    {
+      "name": "students (work experience)",
+      "description": "Experiencia laboral del estudiante"
+    },
+    {
+      "name": "students (practice modality)",
+      "description": "Modalidad de practica a registrar"
+    },
+    {
+      "name": "students (language)",
+      "description": "Idiomas del estudiante"
     },
     {
       "name": "upload",
@@ -89,7 +101,7 @@
     "/api/student/personal-data": {
       "post": {
         "tags": [
-          "students"
+          "students (personal data)"
         ],
         "description": "Crea los datos personales del estudiante",
         "requestBody": {
@@ -111,7 +123,7 @@
     "/api/student/practice": {
       "post": {
         "tags": [
-          "students"
+          "students (practice modality)"
         ],
         "description": "Crea las practicas del estudiante",
         "requestBody": {
@@ -133,7 +145,7 @@
     "/api/student/practice/{studentId}": {
       "get": {
         "tags": [
-          "students"
+          "students (practice modality)"
         ],
         "parameters": [
           {
@@ -157,7 +169,7 @@
     "/api/student/work-experience": {
       "post":{
         "tags": [
-          "students"
+          "students (work experience)"
         ],
         "description": "Crea la experiencia laboral del estudiante",
         "requestBody": {
@@ -179,7 +191,7 @@
     "/api/student/work-experience/{id}": {
       "patch": {
         "tags": [
-          "students"
+          "students (work experience)"
         ],
         "description": "Actualiza la experiencia laboral del estudiante",
         "requestBody": {
@@ -213,7 +225,7 @@
     "/api/student/work-experience/{studentId}": {
       "get": {
         "tags": [
-          "students"
+          "students (work experience)"
         ],
         "description": "Consulta la experiencia laboral del estudiante",
         "parameters": [
@@ -230,6 +242,85 @@
         "responses": {
           "200": {
             "description": "Experiencia laboral consultada con exito"
+          }
+        }
+      }
+    },
+    "/api/student/language":{
+      "post": {
+        "tags": [
+          "students (language)"
+        ],
+        "description": "Registra un idioma del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/post-language"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Idioma creado con exito"
+          }
+        }
+      }
+    },
+    "/api/student/language/{id}":{
+      "patch": {
+        "tags": [
+          "students (language)"
+        ],
+        "description": "Actualiza un idioma del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/update-language"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del idioma",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Idioma actualizado con exito"
+          }
+        }
+      }
+    },
+    "/api/student/language/{studentId}":{
+      "get": {
+        "tags": [
+          "students (language)"
+        ],
+        "description": "Consulta los idiomas del estudiante",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Idiomas consultados con exito"
           }
         }
       }
@@ -371,6 +462,39 @@
         ],
         "properties": {
           "modality": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "post-language":{
+        "type": "object",
+        "required": [
+          "name",
+          "readingLevel",
+          "listeningLevel",
+          "speakingLevel",
+          "writingLevel",
+          "studentId"
+        ],
+        "properties": {
+          "name": { "type": "string" },
+          "readingLevel": { "type": "string" },
+          "listeningLevel": { "type": "string" },
+          "speakingLevel": { "type": "string" },
+          "writingLevel": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "update-language": {
+        "type": "object",
+        "required": [
+          "studentId"
+        ],
+        "properties": {
+          "name": { "type": "string" },
+          "readingLevel": { "type": "string" },
+          "listeningLevel": { "type": "string" },
+          "speakingLevel": { "type": "string" },
+          "writingLevel": { "type": "string" },
           "studentId": { "type": "string" }
         }
       },
