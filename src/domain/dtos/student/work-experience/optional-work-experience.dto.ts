@@ -11,7 +11,7 @@ export class OptionalWorkExperienceDto {
         public end_date: string,
     ) {}
 
-    static create(body: {[key: string]: any }, id: string): [string?, Partial<OptionalWorkExperienceDto>?] {
+    static create(body: {[key: string]: any }, id: string): [string?, OptionalWorkExperienceDto?] {
 
         const { studentId, ...rest } = body;
 

@@ -40,7 +40,6 @@ export class WorkExperienceDataSource implements IWorkExperienceDataSource {
     async update(optWorkExperienceDto: OptionalWorkExperienceDto): Promise<boolean> {
         
         const { id, company, position, functions, start_date, end_date, studentId } = optWorkExperienceDto;
-        console.log({id, studentId});
         
 
         try {
@@ -62,7 +61,7 @@ export class WorkExperienceDataSource implements IWorkExperienceDataSource {
             console.log(workExperience.at(0));
             
 
-            return ( workExperience.at(0) === 1 ) ? true : false;
+            return workExperience.at(0) === 1;
 
         } catch (error) {
 
