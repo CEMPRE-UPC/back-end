@@ -11,6 +11,7 @@ const sequelize = MysqlDatabase.initialize({
 
 class LanguageModel extends Model {
     public id!: string;
+    public name!: string;
     public readingLevel!: string;
     public listeningLevel!: string;
     public speakingLevel!: string;
@@ -24,21 +25,21 @@ LanguageModel.init(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         readingLevel: {
             type: DataTypes.ENUM('excellent','average','good','none'),
-            allowNull: true,
         },
         listeningLevel: {
             type: DataTypes.ENUM('excellent','average','good','none'),
-            allowNull: true,
         },
         speakingLevel: {
             type: DataTypes.ENUM('excellent','average','good','none'),
-            allowNull: true,
         },
         writingLevel: {
             type: DataTypes.ENUM('excellent','average','good','none'),
-            allowNull: true,
         },
     },
     {
