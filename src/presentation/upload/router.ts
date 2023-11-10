@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { UploadController } from './controller';
 import { AuthDataSource, StudentDataSource, UploadDataSource } from '../../infrastructure/datasources';
 import { AuthRepository, StudentRepository, UploadRepository } from '../../infrastructure/repositories';
-import { AuthMiddleware, UploadMiddleware } from '../middlewares';
+import { AuthMiddleware, StudentMiddleware, UploadMiddleware } from '../middlewares';
 
 export class UploadRouter {
 
@@ -16,12 +16,14 @@ export class UploadRouter {
 
 
         const uploadController = new UploadController(uploadRepository);
-        const uploadMiddleware = new UploadMiddleware(studentRepository, uploadRepository);
+
+        const studentMiddleware = new StudentMiddleware(studentRepository);
+        const uploadMiddleware = new UploadMiddleware(uploadRepository);
         const authMiddleware = new AuthMiddleware( authRepository );
 
         router.post('/', 
             authMiddleware.validateJWT,
-            uploadMiddleware.validateStudent,
+            studentMiddleware.validateStudent,
             uploadMiddleware.validateFile,
         uploadController.saveFile);
 
@@ -35,7 +37,7 @@ export class UploadRouter {
 
         router.patch('/', 
             authMiddleware.validateJWT,
-            uploadMiddleware.validateStudent,
+            studentMiddleware.validateStudent,
         uploadController.updateFile);
 
         return router;

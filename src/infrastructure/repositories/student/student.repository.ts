@@ -11,7 +11,7 @@ export class StudentRepository implements IStudentRepository {
         return this.studentDataSource.register(stundetDto);
     }
     
-    update(optionalStudentDto: OptionalStudentDto): Promise<number[]> {
+    update(optionalStudentDto: OptionalStudentDto): Promise<boolean> {
         return this.studentDataSource.update(optionalStudentDto);
     }
 
