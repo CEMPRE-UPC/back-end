@@ -16,9 +16,8 @@ export class PracticeRouter {
 
         const controller = new PracticeController( repository );
 
-        router.post('/practice', controller.register);
-        router.patch('/practice', controller.update);
-        router.get('/practice/:studentId', controller.getByStudentId);
+        router.get('/practice/:id', controller.getPracticeById);
+        router.get('/practice', controller.getAllPractices);
 
         return router;
     }

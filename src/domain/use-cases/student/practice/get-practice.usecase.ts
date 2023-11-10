@@ -1,4 +1,5 @@
 import { PracticeEntity } from '../../../entities';
+import { CustomError } from '../../../errors';
 import { IPracticeRepository } from '../../../repositories';
 
 
@@ -13,11 +14,11 @@ export class GetPracticeByIdUseCase implements IGetPracticeByIdUseCase {
         private readonly practiceRepository: IPracticeRepository
     ) {}
 
-    async execute( studentId: string ): Promise<PracticeEntity | null> {
+    async execute( id: string ): Promise<PracticeEntity | null> {
 
-        if( !studentId ) throw new Error( 'Student id is required' );
+        if( !id ) throw CustomError.badRequest('Id is required');
 
-        return await this.practiceRepository.getByIdStudent( studentId );
+        return await this.practiceRepository.getPracticeById( id );
     }
 
 }

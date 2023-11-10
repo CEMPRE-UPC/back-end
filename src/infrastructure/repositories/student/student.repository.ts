@@ -15,8 +15,8 @@ export class StudentRepository implements IStudentRepository {
         return this.studentDataSource.update(optionalStudentDto);
     }
 
-    getStudentByIdAndCedula(id: string, cedula: string): Promise<StudentEntity | null> {
-        return this.studentDataSource.getStudentByIdAndCedula(id, cedula);
+    getStudentByCedula(cedula: string): Promise<StudentEntity | null> {
+        return this.studentDataSource.getStudentByCedula(cedula);
     }
     
     getStudentByIdUser(id: string): Promise<StudentEntity | null> {

@@ -7,7 +7,7 @@ export class Validators {
     static get onlyNumbersPattern() { return  /^[0-9]*$/; }
     static get onlyLettersPattern() { return  /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s()]+$/; }
     static get addressPattern() { return  /^[a-zA-Z0-9\s\,\.\-\#]+$/; }
-    static get placeOfBirthPattern() { return  /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+([ ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*[,][ ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/; }
+    static get placeOfBirthPattern() { return  /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+([ ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*[,][ ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; }
 
     // pattern fecha: yyyy-mm-dd
     static get datePattern() { return  /^\d{4}-\d{1,2}-\d{1,2}$/; }

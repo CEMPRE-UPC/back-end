@@ -120,39 +120,27 @@
         }
       }
     },
-    "/api/student/practice": {
-      "post": {
+    "/api/student/personal-data/{cedula}":{
+      "patch":{
         "tags": [
-          "students (practice modality)"
+          "students (personal data)"
         ],
-        "description": "Crea las practicas del estudiante",
+        "description": "Actualiza los datos personales del estudiante",
         "requestBody": {
           "content": {
             "multipart/form-data": {
-              "schema":{
-                "$ref": "#/components/schemas/practice"
+              "schema": {
+                "$ref": "#/components/schemas/update-student"
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "Practicas creadas con exito"
-          }
-        }
-      }
-    },
-    "/api/student/practice/{studentId}": {
-      "get": {
-        "tags": [
-          "students (practice modality)"
-        ],
         "parameters": [
           {
-            "name": "studentId",
+            "name": "cedula",
             "in": "path",
             "required": true,
-            "description": "Id del estudiante",
+            "description": "Cedula del estudiante",
             "schema": {
               "type": "string"
             }
@@ -160,7 +148,42 @@
         ],
         "responses": {
           "200": {
-            "description": "Practicas consultadas con exito"
+            "description": "Datos personales actualizados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/practice":{
+      "get":{
+        "tags": [
+          "students (practice modality)"
+        ],
+        "responses": {
+          "200": {
+            "description": "Modalidades de practica consultadas con exito"
+          }
+        }
+      }
+    },
+    "/api/student/practice/{id}": {
+      "get": {
+        "tags": [
+          "students (practice modality)"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del la modalidad de practica",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Practicas consultada con exito"
           }
         
         }
@@ -454,17 +477,6 @@
       }
     },
     "schemas": {
-      "practice": {
-        "type": "object",
-        "required": [
-          "modality",
-          "studentId"
-        ],
-        "properties": {
-          "modality": { "type": "string" },
-          "studentId": { "type": "string" }
-        }
-      },
       "post-language":{
         "type": "object",
         "required": [
@@ -559,7 +571,7 @@
           "password": { "type": "string" }
         }
       },
-      "student": {
+      "post-student": {
         "type": "object",
         "required": [
           "cedula",
@@ -593,6 +605,23 @@
           "email": { "type": "string" },
           "city": { "type": "string" },
           "userId": { "type": "string" }
+        }
+      },
+      "update-student":{
+        "type": "object",
+        "properties": {
+          "firstName": { "type": "string" }, 
+          "secondName": { "type": "string" },
+          "lastName": { "type": "string" },                
+          "middleName": { "type": "string" },
+          "birthDate": { "type": "string" },
+          "placeOfBirth": { "type": "string" },
+          "martialStatus": { "type": "string" },
+          "program": { "type": "string" },
+          "address": { "type": "string" },
+          "phone": { "type": "string" },
+          "eps": { "type": "string" },
+          "city": { "type": "string" }
         }
       }
     }

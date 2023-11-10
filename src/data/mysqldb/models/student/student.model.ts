@@ -3,6 +3,7 @@ import { DataTypes, Model } from 'sequelize';
 import { MysqlDatabase } from '../../mysql-database';
 import { envs } from '../../../../config';
 import { UserModel } from '../auth/user.model';
+import { PracticeModel } from './practice.model';
 
 const sequelize = MysqlDatabase.initialize({
   mysqlUrl: envs.MYSQL_URL,
@@ -26,6 +27,7 @@ class StudentModel extends Model {
     public email!: string;
     public city!: string;
     public userId!: number;
+    public practiceId!: string;
 }
 
 StudentModel.init({
@@ -48,11 +50,13 @@ StudentModel.init({
     eps: { type: DataTypes.STRING },
     email: { type: DataTypes.STRING, unique: true },
     city: { type: DataTypes.STRING },
-    userId: { type: DataTypes.INTEGER.UNSIGNED, unique: true },
 
 }, {sequelize, timestamps: false, tableName: 'students'})
 
 UserModel.hasOne(StudentModel, { as : 'user', foreignKey: { name: 'userId' }  });
-StudentModel.belongsTo(UserModel, { as : 'user', foreignKey: { name: 'userId' }  });
+PracticeModel.hasOne(StudentModel, { as : 'practice', foreignKey: { name: 'practiceId' }  });
+StudentModel.belongsTo(UserModel, { foreignKey: { name: 'userId' }  });
+StudentModel.belongsTo(PracticeModel, { foreignKey: { name: 'practiceId' }  });
+
 
 export { StudentModel };

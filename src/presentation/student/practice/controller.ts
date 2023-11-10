@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { IPracticeRepository, PracticeDto } from '../../../domain';
-import { GetPracticeByIdUseCase, RegisterUseCase, UpdateUseCase } from '../../../domain/use-cases/student/practice';
+import { IPracticeRepository } from '../../../domain';
+import { GetAllPracticesUseCase, GetPracticeByIdUseCase } from '../../../domain/use-cases/student/practice';
 import { handleError } from '../../helpers';
 
 
@@ -11,38 +11,18 @@ export class PracticeController {
         private readonly practiceRepository: IPracticeRepository
     ) { }   
 
-    register = (req: Request, res: Response) => {
+    getPracticeById = (req: Request, res: Response) => {
 
-        const [ error, studentDto] = PracticeDto.create(req.body);
-        
-        if (error) return res.status(400).json({ message: error });
-
+        const { id } = req.params;
    
-        new RegisterUseCase( this.practiceRepository ).execute( studentDto! )
+        new GetPracticeByIdUseCase( this.practiceRepository ).execute( id )
             .then( practice => res.json( practice ) )
             .catch( error => handleError( error, res ) );
     }
 
-    update = (req: Request, res: Response) => {
-
-        const [ error, studentDto] = PracticeDto.create(req.body);
-        console.log(error);
-        
-        if (error) return res.status(400).json({ message: error });
-
-   
-        new UpdateUseCase( this.practiceRepository ).execute( studentDto! )
-            .then( practice => res.json( practice ) )
-            .catch( error => handleError( error, res ) );
-    }
-
-    getByStudentId = (req: Request, res: Response) => {
-
-        const { studentId } = req.params;
-        console.log(studentId);
-        
-   
-        new GetPracticeByIdUseCase( this.practiceRepository ).execute( studentId )
+    getAllPractices = (req: Request, res: Response) => {
+            
+        new GetAllPracticesUseCase( this.practiceRepository ).execute()
             .then( practice => res.json( practice ) )
             .catch( error => handleError( error, res ) );
     }

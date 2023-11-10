@@ -2,7 +2,6 @@ import { DataTypes, ENUM, Model } from 'sequelize';
 
 import { MysqlDatabase } from '../../mysql-database';
 import { envs } from '../../../../config';
-import { StudentModel } from './student.model';
 
 const sequelize = MysqlDatabase.initialize({
   mysqlUrl: envs.MYSQL_URL,
@@ -12,9 +11,10 @@ const sequelize = MysqlDatabase.initialize({
 class PracticeModel extends Model {
     public id!: string;
     public modality!: string;
-    public createdAt!: Date;
-    public updatedAt!: Date;
+
 }
+
+const modalities = ['professional', 'curricular'];
 
 PracticeModel.init(
     {
@@ -24,18 +24,31 @@ PracticeModel.init(
             primaryKey: true,
         },
         modality: {
-                    
-            type: ENUM('professional', 'curricular'),
+            type: ENUM(...modalities),
+            unique: true,
         },
     },
     {
         sequelize, 
         tableName: 'practices', 
-        timestamps: true
+        timestamps: false
     }
 )
 
-StudentModel.hasOne(PracticeModel, { foreignKey: { name: 'studentId' }  });
-PracticeModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' }  });
+
+
+// insert if not exists
+
+modalities.forEach(modality => {
+  PracticeModel.findOrCreate({
+    where: { modality },
+    defaults: { modality }
+  }).then(([practice, created]) => {
+    console.log(practice.get({ plain: true }));
+    console.log(created);
+  });
+});
+
+
 
 export { PracticeModel };  

@@ -23,8 +23,11 @@ export class StudentController {
     }
 
     update = async(req: Request, res: Response) => {
+        
 
-        const [ error, optionalStudentDto] = OptionalStudentDto.create(req.body, req.params.cedula);
+        const { cedula } = req.params || req.body;
+
+        const [ error, optionalStudentDto] = OptionalStudentDto.create(req.body, cedula);
         if (error) return res.status(400).json({ message: error });
 
 
