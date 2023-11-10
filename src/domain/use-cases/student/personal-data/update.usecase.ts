@@ -1,10 +1,9 @@
 import { OptionalStudentDto } from '../../../dtos';
-import { StudentEntity } from '../../../entities';
 import { IStudentRepository } from '../../../repositories';
 
 
 interface IUpdateStudentUseCase {
-    execute(optionalStudentDto: OptionalStudentDto): Promise<number[]>;
+    execute(optionalStudentDto: OptionalStudentDto): Promise<boolean>;
 }
 
 export class UpdateStudentUseCase implements IUpdateStudentUseCase {
@@ -13,7 +12,7 @@ export class UpdateStudentUseCase implements IUpdateStudentUseCase {
         private readonly studentRepository: IStudentRepository
     ) { }
 
-    async execute(optionalStudentDto: OptionalStudentDto): Promise<number[]> {
+    async execute(optionalStudentDto: OptionalStudentDto): Promise<boolean> {
         return await this.studentRepository.update(optionalStudentDto);
     }
 }

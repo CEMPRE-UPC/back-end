@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { GetFileUseCase, GetFilesByIdUseCase, IUploadRepository, SaveFileUseCase, ShowFileDto, UpdateFileUseCase } from '../../domain/';
+import { FileUpload, GetFileUseCase, GetFilesByIdUseCase, IUploadRepository, SaveFileUseCase, ShowFileDto, UpdateFileUseCase, UploadDto } from '../../domain/';
 import { handleError } from '../helpers';
 
 export class UploadController {
@@ -10,9 +10,12 @@ export class UploadController {
 
     saveFile = (req: Request, res: Response, next: NextFunction) => {
 
-        const { uploadDto } =  req.body;
+        const { file } = req.files!;
+        const [ error, uploadDto ] = UploadDto.create(req.body, file as FileUpload);
+    
+        if (error ) return res.status(400).json({ message: error });
 
-        new SaveFileUseCase( this.uploadRepository ).execute(uploadDto)
+        new SaveFileUseCase( this.uploadRepository ).execute(uploadDto!)
             .then( result => res.status(200).json({ result }))
             .catch( error => handleError(error, res));
 
@@ -40,9 +43,12 @@ export class UploadController {
 
     updateFile = (req: Request, res: Response, next: NextFunction) => {
 
-        const { uploadDto } =  req.body;
+        const { file } = req.files!;
+        const [ error, uploadDto ] = UploadDto.create(req.body, file as FileUpload);
+    
+        if (error ) return res.status(400).json({ message: error });
 
-        new UpdateFileUseCase( this.uploadRepository ).execute(uploadDto)
+        new UpdateFileUseCase( this.uploadRepository ).execute(uploadDto!)
             .then( result => res.status(200).json({ result }))
             .catch( error => handleError(error, res));
     }
