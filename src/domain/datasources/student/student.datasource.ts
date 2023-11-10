@@ -6,9 +6,9 @@ export interface IStudentDataSource {
 
     register( stundetDto: StudentDto ): Promise<StudentEntity>;
 
-    update( optionalStudentDto: OptionalStudentDto ): Promise<number[]>;
+    update( optStudentDto: OptionalStudentDto ): Promise<boolean>;
 
-    getStudentByIdAndCedula(id: string, cedula: string): Promise<StudentEntity | null>;
+    getStudentByCedula(cedula: string): Promise<StudentEntity | null>;
 
     getStudentByIdUser( id: string ): Promise<StudentEntity | null>;
 

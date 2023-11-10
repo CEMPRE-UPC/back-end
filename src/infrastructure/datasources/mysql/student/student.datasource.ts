@@ -1,10 +1,11 @@
-import { CustomError, StudentDto, StudentEntity, IStudentDataSource } from '../../../../domain';
+import { CustomError, StudentDto, StudentEntity, IStudentDataSource, OptionalStudentDto } from '../../../../domain';
 import { StudentModel } from '../../../../data/mysqldb';
 import { SequelizeErrorMapper, StudentMapper } from '../../../mappers';
 import { ValidationError } from 'sequelize';
 
 
 export class StudentDataSource implements IStudentDataSource {
+
 
     async register(stundetDto: StudentDto): Promise<StudentEntity> {
         
@@ -36,16 +37,17 @@ export class StudentDataSource implements IStudentDataSource {
         }
     }
 
-    async update(stundetDto: StudentDto): Promise<number[]> {
+    async update( optStudentDto: OptionalStudentDto ): Promise<boolean> {
 
-        const { cedula, ...studentObject} = StudentDto.toJSON(stundetDto);
+        const { cedula, ...studentObject} = OptionalStudentDto.toJSON(optStudentDto);
+
+        console.log(studentObject);
+        
         try {
 
             const affectedCount = await StudentModel.update(studentObject, { where: { cedula } });
 
-            if(affectedCount.at(0) === 0) throw CustomError.notFound('No se actualizo ninguna informacion');
-
-            return affectedCount;
+            return affectedCount.at(0) === 1;
 
         } catch (error) {
 
@@ -89,10 +91,10 @@ export class StudentDataSource implements IStudentDataSource {
         }
     }
 
-    async getStudentByIdAndCedula(id: string, cedula: string): Promise<StudentEntity | null> {
+    async getStudentByCedula(cedula: string): Promise<StudentEntity | null> {
         try {
             
-            const student = await StudentModel.findOne({ where: { id, cedula} });
+            const student = await StudentModel.findOne({ where: { cedula} });
 
             if(!student) return student;
 

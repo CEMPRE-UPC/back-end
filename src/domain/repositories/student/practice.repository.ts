@@ -1,12 +1,11 @@
-import { PracticeDto } from '../../dtos';
 import { PracticeEntity } from '../../entities';
 
 
 export interface IPracticeRepository {
 
-    register( practiceDto: PracticeDto ): Promise<PracticeEntity>;
+    getPracticeById( id: string ): Promise<PracticeEntity | null>;
 
-    update( practiceDto: PracticeDto ): Promise<boolean>;
+    getAllPractices(): Promise<PracticeEntity[] | null>;
 
-    getByIdStudent( studentId: string ): Promise<PracticeEntity | null>;
+
 }

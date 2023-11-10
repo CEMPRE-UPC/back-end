@@ -1,4 +1,4 @@
-import { IPracticeDataSource, IPracticeRepository, PracticeDto, PracticeEntity } from '../../../domain';
+import { IPracticeDataSource, IPracticeRepository, PracticeEntity } from '../../../domain';
 
 
 export class PracticeRepository implements IPracticeRepository {
@@ -7,15 +7,13 @@ export class PracticeRepository implements IPracticeRepository {
     constructor(
         private readonly practiceDatasource: IPracticeDataSource
     ) { }
+    
+    getPracticeById( id: string ): Promise<PracticeEntity | null> {
+        return this.practiceDatasource.getPracticeById(id);
+    }
 
-    register(practiceDto: PracticeDto): Promise<PracticeEntity> {
-        return this.practiceDatasource.register(practiceDto);
-    }
-    update(practiceDto: PracticeDto): Promise<boolean> {
-        return this.practiceDatasource.update(practiceDto);
-    }
-    getByIdStudent(studentId: string): Promise<PracticeEntity | null> {
-        return this.practiceDatasource.getByIdStudent(studentId);
+    getAllPractices(): Promise<PracticeEntity[] | null> {
+        return this.practiceDatasource.getAllPractices();
     }
 
 }

@@ -17,7 +17,7 @@ export class StudentRouter {
         const repository = new StudentRepository( datasource );
         const controller = new StudentController( repository );
 
-        const middleware = new StudentMiddleware( new AuthRepository( new AuthDataSource()) );
+        const middleware = new StudentMiddleware( repository );
 
         router.post('/personal-data',middleware.validateStudent, controller.register);
         router.patch('/personal-data/:cedula',middleware.validateStudent, controller.update);
