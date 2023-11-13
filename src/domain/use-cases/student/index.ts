@@ -1,1 +1,1 @@
-export * from './personal-data';
+export * from './personal-data'

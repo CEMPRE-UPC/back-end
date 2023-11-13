@@ -11,7 +11,6 @@ export class StudentDto {
         public birthDate: Date,
         public placeOfBirth: string,
         public martialStatus: string,
-        public program: string,
         public address: string,
         public phone: string,
         public eps: string,
@@ -35,7 +34,6 @@ export class StudentDto {
             birthDate,
             placeOfBirth,
             martialStatus,
-            program,
             address,
             phone,
             eps,
@@ -72,9 +70,6 @@ export class StudentDto {
         if ( !martialStatus ) return ['El estado civil es requerido'];
         if (!Validators.onlyLettersPattern.test(martialStatus)) return ['El estado civil solo puede contener letras'];
 
-        if ( !program ) return ['El programa es requerido'];
-        if (!Validators.onlyLettersPattern.test(program)) return ['El programa solo puede contener letras'];
-
         if ( !address ) return ['La direccion es requerida'];
         if (!Validators.addressPattern.test(address)) return ['La direccion solo puede contener letras, numeros y los caracteres: ,.-#'];
 
@@ -104,7 +99,6 @@ export class StudentDto {
             birthDate,
             placeOfBirth,
             martialStatus,
-            program,
             address,
             phone,
             eps,
@@ -128,7 +122,6 @@ export class StudentDto {
             birthDate: studentDto.birthDate,
             placeOfBirth: studentDto.placeOfBirth,
             martialStatus: studentDto.martialStatus,
-            program: studentDto.program,
             address: studentDto.address,
             phone: studentDto.phone,
             eps: studentDto.eps,
