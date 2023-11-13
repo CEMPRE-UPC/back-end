@@ -12,7 +12,6 @@ export class OptionalStudentDto {
         public birthDate: Date,
         public placeOfBirth: string,
         public martialStatus: string,
-        public program: string,
         public address: string,
         public phone: string,
         public city: string,
@@ -32,7 +31,6 @@ export class OptionalStudentDto {
         const birthDate = body.birthDate || undefined;
         const placeOfBirth = body.placeOfBirth || undefined;
         const martialStatus = body.martialStatus || undefined;
-        const program = body.program || undefined;
         const address = body.address || undefined;
         const phone = body.phone || undefined;
         const city = body.city || undefined;
@@ -71,10 +69,6 @@ export class OptionalStudentDto {
             if (!Validators.onlyLettersPattern.test(martialStatus)) return ['El estado civil solo puede contener letras'];
         }
 
-        if(program) {
-            if (!Validators.onlyLettersPattern.test(program)) return ['El programa solo puede contener letras'];
-        }
-
         if(address) {
             if (!Validators.addressPattern.test(address)) return ['La direccion solo puede contener letras, numeros y los caracteres: ,.-#'];
         }
@@ -101,7 +95,6 @@ export class OptionalStudentDto {
             birthDate,
             placeOfBirth,
             martialStatus,
-            program,
             address,
             phone,
             city,
@@ -119,7 +112,6 @@ export class OptionalStudentDto {
             birthDate: optionalStudentDto.birthDate,
             placeOfBirth: optionalStudentDto.placeOfBirth,
             martialStatus: optionalStudentDto.martialStatus,
-            program: optionalStudentDto.program,
             address: optionalStudentDto.address,
             phone: optionalStudentDto.phone,
             eps: optionalStudentDto.eps,

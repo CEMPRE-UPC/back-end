@@ -16,7 +16,6 @@ export class StudentMapper {
         birthDate,
         placeOfBirth,
         martialStatus,
-        program,
         address,
         phone,
         eps,
@@ -34,7 +33,6 @@ export class StudentMapper {
     if (!birthDate) throw CustomError.badRequest('Missing birthDate');
     if (!placeOfBirth) throw CustomError.badRequest('Missing placeOfBirth');
     if (!martialStatus) throw CustomError.badRequest('Missing martialStatus');
-    if (!program) throw CustomError.badRequest('Missing program');
     if (!address) throw CustomError.badRequest('Missing address');
     if (!phone) throw CustomError.badRequest('Missing phone');
     if (!eps) throw CustomError.badRequest('Missing eps');
@@ -51,7 +49,6 @@ export class StudentMapper {
      (birthDate as Date).toISOString().split('T')[0],
      placeOfBirth,
      martialStatus,
-     program,
      address,
      phone,
      eps,

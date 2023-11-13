@@ -12,7 +12,6 @@ export class StudentEntity {
         public birthDate: Date | string,
         public placeOfBirth: string,
         public martialStatus: string,
-        public program: string,
         public address: string,
         public phone: string,
         public eps: string,
