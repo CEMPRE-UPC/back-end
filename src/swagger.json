@@ -23,6 +23,10 @@
       "description": "Experiencia laboral del estudiante"
     },
     {
+      "name": "students (university studies)",
+      "description": "Estudios universitarios del estudiante"
+    },
+    {
       "name": "students (practice modality)",
       "description": "Modalidad de practica a registrar"
     },
@@ -269,6 +273,85 @@
         }
       }
     },
+    "/api/student/university-studies":{
+      "post": {
+        "tags": [
+          "students (university studies)"
+        ],
+        "description": "Crea los estudios universitarios del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/post-university-studies"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Estudios universitarios creados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/university-studies/{id}":{
+      "patch": {
+        "tags": [
+          "students (university studies)"
+        ],
+        "description": "Actualiza los estudios universitarios del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/update-university-studies"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de los estudios universitarios",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estudios universitarios actualizados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/university-studies/{studentId}":{
+      "get": {
+        "tags": [
+          "students (university studies)"
+        ],
+        "description": "Consulta los estudios universitarios del estudiante",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estudios universitarios consultados con exito"
+          }
+        }
+      }
+    },
     "/api/student/language":{
       "post": {
         "tags": [
@@ -510,6 +593,33 @@
           "studentId": { "type": "string" }
         }
       },
+      "post-university-studies":{
+        "type": "object",
+        "required": [
+          "institution",
+          "program",
+          "semester",
+          "studentId"
+        ],
+        "properties": {
+          "institution": { "type": "string" },
+          "program": { "type": "string" },
+          "semester": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "update-university-studies":{
+        "type": "object",
+        "required": [
+          "studentId"
+        ],
+        "properties": {
+          "institution": { "type": "string" },
+          "program": { "type": "string" },
+          "semester": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
       "post-work-experience":{ 
         "type": "object",
         "required": [
@@ -581,7 +691,6 @@
           "birthDate",
           "placeOfBirth",
           "martialStatus",
-          "program",
           "address",
           "phone",
           "eps",
@@ -598,7 +707,6 @@
           "birthDate": { "type": "string" },
           "placeOfBirth": { "type": "string" },
           "martialStatus": { "type": "string" },
-          "program": { "type": "string" },
           "address": { "type": "string" },
           "phone": { "type": "string" },
           "eps": { "type": "string" },
@@ -617,7 +725,6 @@
           "birthDate": { "type": "string" },
           "placeOfBirth": { "type": "string" },
           "martialStatus": { "type": "string" },
-          "program": { "type": "string" },
           "address": { "type": "string" },
           "phone": { "type": "string" },
           "eps": { "type": "string" },
