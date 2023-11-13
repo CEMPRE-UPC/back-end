@@ -5,6 +5,7 @@ import { StudentRouter } from './student/personal-data';
 import { PracticeRouter } from './student/practice/routes';
 import { WorkExperienceRouter } from './student/work-experience';
 import { LanguageRouter } from './student/language';
+import { UniversityStudiesRouter } from './student/university-studies';
 
 export class AppRoutes {
 
@@ -18,7 +19,8 @@ export class AppRoutes {
             StudentRouter.routes, 
             PracticeRouter.routes, 
             WorkExperienceRouter.routes,
-            LanguageRouter.routes
+            LanguageRouter.routes, 
+            UniversityStudiesRouter.routes
         ]);
 
         return router;

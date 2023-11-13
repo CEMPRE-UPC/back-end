@@ -24,9 +24,6 @@ export class WorkExperienceDataSource implements IWorkExperienceDataSource {
 
             const savedWorkExperience = await workExperience.save();
 
-            console.log(savedWorkExperience);
-            
-
             return WorkExperienceMapper.workExperienceEntityFromObject(savedWorkExperience);
 
         } catch (error) {

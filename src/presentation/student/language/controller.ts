@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
 import { ILanguageRepository, LanguageDto, OptionalLanguageDto } from '../../../domain';
-import { RegisterUseCase, UpdateUseCase } from '../../../domain/use-cases/student/language';
+import { RegisterUseCase, UpdateUseCase, GetAllByStudentIdUseCase } from '../../../domain/use-cases/student/language';
 import { handleError } from '../../helpers';
-import { GetAllByStudentIdUseCase } from '../../../domain/use-cases/student/language/get-language.usecase';
 
 export class LanguageController {
 

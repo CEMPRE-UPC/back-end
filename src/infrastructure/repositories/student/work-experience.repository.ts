@@ -1,7 +1,6 @@
 import { IWorkExperienceDataSource, IWorkExperienceRepository, OptionalWorkExperienceDto, WorkExperienceDto, WorkExperienceEntity } from '../../../domain';
 
 
-
 export class WorkExperienceRepository implements IWorkExperienceRepository {
 
     constructor(
