@@ -27,6 +27,10 @@
       "description": "Estudios universitarios del estudiante"
     },
     {
+      "name": "students (applied studies)",
+      "description": "Estudios aplicados del estudiante"
+    },
+    {
       "name": "students (practice modality)",
       "description": "Modalidad de practica a registrar"
     },
@@ -431,6 +435,85 @@
         }
       }
     },
+    "/api/student/applied-studies":{
+      "post": {
+        "tags": [
+          "students (applied studies)"
+        ],
+        "description": "Registra los estudios aplicados del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/post-applied-studies"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Estudios aplicados creados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/applied-studies/{id}":{
+      "patch": {
+        "tags": [
+          "students (applied studies)"
+        ],
+        "description": "Actualiza los estudios aplicados del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/update-applied-studies"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de los estudios aplicados",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estudios aplicados actualizados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/applied-studies/{studentId}":{
+      "get": {
+        "tags": [
+          "students (applied studies)"
+        ],
+        "description": "Consulta los estudios aplicados del estudiante",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estudios aplicados consultados con exito"
+          }
+        }
+      }
+    },
     "/api/upload": {
       "post": {
         "tags": [
@@ -650,6 +733,36 @@
           "functions": { "type": "string" },
           "start_date": { "type": "string" },
           "end_date": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "post-applied-studies":{
+        "type": "object",
+        "required": [
+          "level",
+          "institution",
+          "college_degree",
+          "date",
+          "studentId"
+        ],
+        "properties": {
+          "level": { "type": "string" },
+          "institution": { "type": "string" },
+          "college_degree": { "type": "string" },
+          "date": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "update-applied-studies":{
+        "type": "object",
+        "required": [
+          "studentId"
+        ],
+        "properties": {
+          "level": { "type": "string" },
+          "institution": { "type": "string" },
+          "college_degree": { "type": "string" },
+          "date": { "type": "string" },
           "studentId": { "type": "string" }
         }
       },
