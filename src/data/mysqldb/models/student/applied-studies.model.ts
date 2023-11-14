@@ -24,7 +24,7 @@ AppliedStudiesModel.init(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        level: {
+        level: { // Nivel secundario u Otros estudios
             type: DataTypes.STRING,
         },
         institution: {
