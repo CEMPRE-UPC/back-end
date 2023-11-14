@@ -6,6 +6,7 @@ import { PracticeRouter } from './student/practice/routes';
 import { WorkExperienceRouter } from './student/work-experience';
 import { LanguageRouter } from './student/language';
 import { UniversityStudiesRouter } from './student/university-studies';
+import { AppliedStudiesRouter } from './student/applied-studies';
 
 export class AppRoutes {
 
@@ -20,7 +21,8 @@ export class AppRoutes {
             PracticeRouter.routes, 
             WorkExperienceRouter.routes,
             LanguageRouter.routes, 
-            UniversityStudiesRouter.routes
+            UniversityStudiesRouter.routes,
+            AppliedStudiesRouter.routes
         ]);
 
         return router;

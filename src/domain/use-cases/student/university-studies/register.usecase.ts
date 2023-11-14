@@ -1,7 +1,7 @@
 
 import { UniversityStudiesEntity } from '../../../entities';
 import { IUniversityStudiesRepository } from '../../../repositories';
-import { UniversityStudiesDto } from '../../../dtos/student/university-studies/university-studies.dto';
+import { UniversityStudiesDto } from '../../../dtos/student/university-studies';
 
 
 interface IUniversityStudies {

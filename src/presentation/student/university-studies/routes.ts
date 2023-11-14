@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { UniversityStudiesRepository } from '../../../infrastructure/repositories/student/university-studies.repository';
+import { UniversityStudiesRepository } from '../../../infrastructure/repositories';
 import { UniversityStudiesDataSource } from '../../../infrastructure/datasources';
 import { UniversityStudiesController } from './controller';
 
