@@ -3,3 +3,4 @@ export * from './work-experience';
 export * from './language';
 export * from './university-studies';
 export * from './applied-studies';
+export * from './projects';

@@ -26,13 +26,13 @@ ProjectsModel.init(
             type: DataTypes.STRING
         },
         date: {
-            type: DataTypes.STRING
+            type: DataTypes.DATE
         },
     },
     {
         sequelize, 
         tableName: 'projects', 
-        timestamps: true
+        timestamps: false
     }
 )
 
