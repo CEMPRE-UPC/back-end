@@ -31,6 +31,10 @@
       "description": "Estudios aplicados del estudiante"
     },
     {
+      "name": "students (projects)",
+      "description": "Proyectos del estudiante"
+    },
+    {
       "name": "students (practice modality)",
       "description": "Modalidad de practica a registrar"
     },
@@ -514,6 +518,85 @@
         }
       }
     },
+    "/api/student/projects":{
+      "post": {
+        "tags": [
+          "students (projects)"
+        ],
+        "description": "Registra los proyectos del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/post-projects"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Proyectos creados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/projects/{id}":{
+      "patch": {
+        "tags": [
+          "students (projects)"
+        ],
+        "description": "Actualiza los proyectos del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/update-projects"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del proyecto",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Proyectos actualizados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/projects/{studentId}":{
+      "get": {
+        "tags": [
+          "students (projects)"
+        ],
+        "description": "Consulta los proyectos del estudiante",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Proyectos consultados con exito"
+          }
+        }
+      }
+    },
     "/api/upload": {
       "post": {
         "tags": [
@@ -762,6 +845,30 @@
           "level": { "type": "string" },
           "institution": { "type": "string" },
           "college_degree": { "type": "string" },
+          "date": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "post-projects":{
+        "type": "object",
+        "required": [
+          "description",
+          "date",
+          "studentId"
+        ],
+        "properties": {
+          "description": { "type": "string" },
+          "date": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "update-projects":{
+        "type": "object",
+        "required": [
+          "studentId"
+        ],
+        "properties": {
+          "description": { "type": "string" },
           "date": { "type": "string" },
           "studentId": { "type": "string" }
         }
