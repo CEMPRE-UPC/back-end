@@ -4,3 +4,4 @@ export * from './language';
 export * from './university-studies';
 export * from './applied-studies';
 export * from './projects';
+export * from './knowledge';

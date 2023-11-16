@@ -1,7 +1,5 @@
 import { CustomError, ProjectsEntity } from '../../../domain';
 
-
-
 export class ProjectsMapper {
 
     static projectsEntityFromObject(object: {[key: string]: any}): ProjectsEntity {

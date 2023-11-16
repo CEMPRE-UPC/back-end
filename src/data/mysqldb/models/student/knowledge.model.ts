@@ -11,8 +11,7 @@ const sequelize = MysqlDatabase.initialize({
 
 class KnowledgeModel extends Model {
     public id!: string;
-    public description!: string;
-    public date!: Date;
+    public description!: string[];
 }
 
 KnowledgeModel.init(
@@ -23,16 +22,19 @@ KnowledgeModel.init(
             primaryKey: true,
         },
         description: {
-            type: DataTypes.STRING
-        },
-        date: {
-            type: DataTypes.STRING
-        },
+            type: DataTypes.STRING,
+            get: function() {
+                return this.getDataValue('description').split(',')
+            },
+            set: function(val: string[]) {
+                this.setDataValue('description', val.join(','))
+            }
+        }
     },
     {
         sequelize, 
         tableName: 'knowledge', 
-        timestamps: true
+        timestamps: false
     }
 )
 
