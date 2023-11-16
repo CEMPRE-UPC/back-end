@@ -35,6 +35,10 @@
       "description": "Proyectos del estudiante"
     },
     {
+      "name": "students (knowledge)",
+      "description": "Conocimientos del estudiante"
+    },
+    {
       "name": "students (practice modality)",
       "description": "Modalidad de practica a registrar"
     },
@@ -597,6 +601,85 @@
         }
       }
     },
+    "/api/student/knowledge":{
+      "post": {
+        "tags": [
+          "students (knowledge)"
+        ],
+        "description": "Registra los conocimientos del estudiante",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/post-knowledge"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Conocimientos creados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/knowledge/{id}":{
+      "patch": {
+        "tags": [
+          "students (knowledge)"
+        ],
+        "description": "Actualiza los conocimientos del estudiante",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/update-knowledge"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del conocimiento",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Conocimientos actualizados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/knowledge/{studentId}":{
+      "get": {
+        "tags": [
+          "students (knowledge)"
+        ],
+        "description": "Consulta los conocimientos del estudiante",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Conocimientos consultados con exito"
+          }
+        }
+      }
+    },
     "/api/upload": {
       "post": {
         "tags": [
@@ -870,6 +953,33 @@
         "properties": {
           "description": { "type": "string" },
           "date": { "type": "string" },
+          "studentId": { "type": "string" }
+        }
+      },
+      "post-knowledge":{
+        "type": "object",
+        "required": [
+          "description",
+          "studentId"
+        ],
+        "properties": {
+          "description": { 
+            "type": "array",
+            "items": { "type": "string" } 
+          },
+          "studentId": { "type": "string" }
+        }
+      },
+      "update-knowledge":{
+        "type": "object",
+        "required": [
+          "studentId"
+        ],
+        "properties": {
+          "description": { 
+            "type": "array",
+            "items": { "type": "string" } 
+          },
           "studentId": { "type": "string" }
         }
       },
