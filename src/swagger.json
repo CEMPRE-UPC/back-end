@@ -39,6 +39,10 @@
       "description": "Conocimientos del estudiante"
     },
     {
+      "name":  "students (area interest)",
+      "description": "Areas de interes del estudiante"
+    },
+    {
       "name": "students (practice modality)",
       "description": "Modalidad de practica a registrar"
     },
@@ -680,6 +684,85 @@
         }
       }
     },
+    "/api/student/area-interest":{
+      "post": {
+        "tags": [
+          "students (area interest)"
+        ],
+        "description": "Registra las areas de interes del estudiante",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/post-area-interest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Areas de interes creadas con exito"
+          }
+        }
+      }
+    },
+    "/api/student/area-interest/{id}":{
+      "patch": {
+        "tags": [
+          "students (area interest)"
+        ],
+        "description": "Actualiza las areas de interes del estudiante",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/update-area-interest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del area de interes",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Areas de interes actualizadas con exito"
+          }
+        }
+      }
+    },
+    "/api/student/area-interest/{studentId}":{
+      "get": {
+        "tags": [
+          "students (area interest)"
+        ],
+        "description": "Consulta las areas de interes del estudiante",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Areas de interes consultadas con exito"
+          }
+        }
+      }
+    },
     "/api/upload": {
       "post": {
         "tags": [
@@ -980,6 +1063,30 @@
             "type": "array",
             "items": { "type": "string" } 
           },
+          "studentId": { "type": "string" }
+        }
+      },
+      "post-area-interest":{
+        "type": "object",
+        "required": [
+          "description",
+          "studentId"
+        ],
+        "properties": {
+          "description": { 
+            "type": "array",
+            "items": { "type": "string" } 
+          },
+          "studentId": { "type": "string" }
+        }
+      },
+      "update-area-interest":{
+        "type": "object",
+        "required": [
+          "studentId"
+        ],
+        "properties": {
+          "description": { "type": "string" },
           "studentId": { "type": "string" }
         }
       },

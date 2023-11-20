@@ -6,3 +6,4 @@ export * from './university-studies.entity';
 export * from './applied-studies.entity';
 export * from './projects.entity';
 export * from './knowledge.entity';
+export * from './area-interest.entity';
