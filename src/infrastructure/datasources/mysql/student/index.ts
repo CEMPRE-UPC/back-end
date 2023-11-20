@@ -6,3 +6,4 @@ export * from './university-studies.datasource';
 export * from './applied-studies.datasource';
 export * from './projects.datasource';
 export * from './knowledge.datasource';
+export * from './area-interest.datasource';

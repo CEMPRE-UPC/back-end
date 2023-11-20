@@ -1,4 +1,4 @@
-import { DataTypes, ENUM, Model } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 
 import { MysqlDatabase } from '../../mysql-database';
 import { envs } from '../../../../config';
@@ -10,33 +10,30 @@ const sequelize = MysqlDatabase.initialize({
 })
 
 class AreaInterestModel extends Model {
-    public id!: string;
+    public id!: number;
     public description!: string;
-    public date!: Date;
 }
 
 AreaInterestModel.init(
     {
         id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+            type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
             primaryKey: true,
         },
         description: {
-            type: DataTypes.STRING
-        },
-        date: {
             type: DataTypes.STRING
         },
     },
     {
         sequelize, 
         tableName: 'area_interests', 
-        timestamps: true
+        timestamps: false
     }
 )
 
 StudentModel.hasOne(AreaInterestModel, { foreignKey: { name: 'studentId' }  });
 AreaInterestModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' }  });
+
 
 export { AreaInterestModel };  
