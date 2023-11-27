@@ -21,7 +21,8 @@ export class StudentMapper {
         eps,
         email,
         city,
-        userId
+        userId,
+        practiceId
 
     } = object;
 
@@ -39,6 +40,7 @@ export class StudentMapper {
     if (!email) throw CustomError.badRequest('Missing email');
     if (!city) throw CustomError.badRequest('Missing city');
 
+
     return new StudentEntity(
      _id || id,
      cedula,
@@ -54,7 +56,8 @@ export class StudentMapper {
      eps,
      email,
      city,
-     userId
+     userId,
+     practiceId
     )
    }
 
