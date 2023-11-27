@@ -35,12 +35,12 @@ RoleModel.init(
     }
 )
 
-RoleModel.findOrCreate({
+RoleModel.afterSync(async () => {
+  const [role, created] = await RoleModel.findOrCreate({
     where: { name: DEFAULT_ROLE },
     defaults: { name: DEFAULT_ROLE }
-}).then(([role, created]) => {
-    console.log(role.get({ plain: true }));
-    console.log(created);
+  });
+  console.log(role.get({ plain: true }));
+  console.log(created);
 });
-
 export { RoleModel };

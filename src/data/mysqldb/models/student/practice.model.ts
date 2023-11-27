@@ -39,16 +39,18 @@ PracticeModel.init(
 
 // insert if not exists
 
-modalities.forEach(modality => {
-  PracticeModel.findOrCreate({
-    where: { modality },
-    defaults: { modality }
-  }).then(([practice, created]) => {
-    console.log(practice.get({ plain: true }));
-    console.log(created);
-  });
-});
 
+PracticeModel.afterSync(async () =>{
+  modalities.forEach(modality => {
+    PracticeModel.findOrCreate({
+      where: { modality },
+      defaults: { modality }
+    }).then(([practice, created]) => {
+      console.log(practice.get({ plain: true }));
+      console.log(created);
+    });
+  });
+})
 
 
 export { PracticeModel };  
