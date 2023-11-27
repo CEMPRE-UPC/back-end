@@ -128,7 +128,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/student"
+                "$ref": "#/components/schemas/post-student"
               }
             }
           }
@@ -169,6 +169,30 @@
         "responses": {
           "200": {
             "description": "Datos personales actualizados con exito"
+          }
+        }
+      }
+    },
+    "/api/student/personal-data/{id}":{
+      "get":{
+        "tags": [
+          "students (personal data)"
+        ],
+        "description": "Consulta los datos personales del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Datos personales consultados con exito"
           }
         }
       }
@@ -1149,7 +1173,8 @@
           "eps": { "type": "string" },
           "email": { "type": "string" },
           "city": { "type": "string" },
-          "userId": { "type": "string" }
+          "userId": { "type": "string" },
+          "practiceId": { "type": "string" }
         }
       },
       "update-student":{
