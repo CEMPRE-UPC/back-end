@@ -17,7 +17,8 @@ export class StudentDto {
         public email: string,
         public city: string,
         public userId: string,
-        public secondName?: string
+        public secondName?: string,
+        public practiceId?: string
     ) {}
 
 
@@ -39,7 +40,8 @@ export class StudentDto {
             eps,
             email,
             city,
-            userId
+            userId,
+            practiceId
 
         } = body;
 
@@ -90,6 +92,7 @@ export class StudentDto {
         if (!Validators.onlyNumbersPattern.test(userId)) return ['El id del usuario solo puede contener numeros'];
 
 
+
         return [undefined, new StudentDto(
             _id || id,
             cedula,
@@ -105,7 +108,8 @@ export class StudentDto {
             email,
             city,
             userId,
-            secondName
+            secondName,
+            practiceId
         )]
 
     }
@@ -127,7 +131,8 @@ export class StudentDto {
             eps: studentDto.eps,
             email: studentDto.email,
             city: studentDto.city,
-            userId: studentDto.userId
+            userId: studentDto.userId,
+            practiceId: studentDto.practiceId
         }
     }
 }

@@ -1,4 +1,3 @@
-import { UserEntity } from '../auth/user.entity';
 
 export class StudentEntity {
    
@@ -17,6 +16,7 @@ export class StudentEntity {
         public eps: string,
         public email: string,
         public city: string,
-        public user?: UserEntity 
+        public userId?: number,
+        public practiceId?: string
     ) {}
 }

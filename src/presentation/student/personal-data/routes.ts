@@ -19,8 +19,8 @@ export class StudentRouter {
 
         const middleware = new StudentMiddleware( repository );
 
-        router.post('/personal-data',middleware.validateStudent, controller.register);
-        router.patch('/personal-data/:cedula',middleware.validateStudent, controller.update);
+        router.post('/personal-data',middleware.existStudent, controller.register);
+        router.patch('/personal-data/:cedula',middleware.notfoundStudent, controller.update);
         router.get('/personal-data/:id', controller.getStudentByIdUser);
 
         return router;
