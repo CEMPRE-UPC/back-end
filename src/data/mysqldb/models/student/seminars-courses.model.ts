@@ -30,17 +30,19 @@ SeminarsOrCoursesModel.init(
             type: DataTypes.STRING
         },
         date: {
-            type: DataTypes.STRING
+            type: DataTypes.DATE
         },
     },
     {
         sequelize, 
         tableName: 'seminars_or_courses', 
-        timestamps: true
+        timestamps: false
     }
 )
 
 StudentModel.hasMany(SeminarsOrCoursesModel, { foreignKey: { name: 'studentId' }  });
 SeminarsOrCoursesModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' }  });
+
+SeminarsOrCoursesModel.sync({ alter: true })
 
 export { SeminarsOrCoursesModel };  

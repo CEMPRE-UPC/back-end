@@ -6,3 +6,4 @@ export * from './applied-studies';
 export * from './projects';
 export * from './knowledge';
 export * from './area-interest';
+export * from './seminars-courses';

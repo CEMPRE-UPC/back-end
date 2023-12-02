@@ -1,23 +1,23 @@
-import { CustomError, IKnowledgeRepository, KnowledgeDto, KnowledgeEntity, OptionalKnowledgeDto } from '../../../domain';
+import { CustomError, IKnowledgeDataSource, IKnowledgeRepository, KnowledgeDto, KnowledgeEntity, OptionalKnowledgeDto } from '../../../domain';
 
 
 export class KnowledgeRepository implements IKnowledgeRepository {
 
     constructor(
-        private readonly knowledgeRepository: IKnowledgeRepository
+        private readonly knowledgeDatasource: IKnowledgeDataSource
     ) {}
 
 
     register(knowledgeDto: KnowledgeDto): Promise<KnowledgeEntity> {
-       return this.knowledgeRepository.register(knowledgeDto);
+       return this.knowledgeDatasource.register(knowledgeDto);
     }
     update(optKnowledgeDto: OptionalKnowledgeDto): Promise<boolean> {
-        return this.knowledgeRepository.update(optKnowledgeDto);
+        return this.knowledgeDatasource.update(optKnowledgeDto);
     }
     getByStudentId(studentId: string): Promise<KnowledgeEntity | null> {
 
         if(!studentId) throw CustomError.badRequest('Missing student id');
 
-        return this.knowledgeRepository.getByStudentId(studentId);
+        return this.knowledgeDatasource.getByStudentId(studentId);
     }
 }
