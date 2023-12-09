@@ -24,8 +24,8 @@ AppliedStudiesModel.init(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        level: { // Nivel secundario u Otros estudios
-            type: DataTypes.STRING,
+        level: {
+            type: DataTypes.ENUM('Nivel Secundario', 'Otros Estudios'),
         },
         institution: {
             type: DataTypes.STRING,
@@ -47,5 +47,6 @@ AppliedStudiesModel.init(
 StudentModel.hasOne(AppliedStudiesModel, { foreignKey: { name: 'studentId' }  });
 AppliedStudiesModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' }  });
 
+AppliedStudiesModel.sync({ force: true });
 
 export { AppliedStudiesModel };  
