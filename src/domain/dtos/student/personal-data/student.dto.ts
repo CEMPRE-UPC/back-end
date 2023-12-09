@@ -70,7 +70,7 @@ export class StudentDto {
         if (!Validators.placeOfBirthPattern.test(placeOfBirth)) return ['El campo debe tener el formato: "Ciudad, Departamento"'];
 
         if ( !martialStatus ) return ['El estado civil es requerido'];
-        if (!Validators.onlyLettersPattern.test(martialStatus)) return ['El estado civil solo puede contener letras'];
+        if (!Validators.martialStatusPattern.test(martialStatus)) return ['El estado civil solo puede contener letras y los caracteres: ()/']
 
         if ( !address ) return ['La direccion es requerida'];
         if (!Validators.addressPattern.test(address)) return ['La direccion solo puede contener letras, numeros y los caracteres: ,.-#'];

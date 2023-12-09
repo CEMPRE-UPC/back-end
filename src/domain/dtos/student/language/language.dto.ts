@@ -18,6 +18,7 @@ export class LanguageDto {
         const { name, readingLevel, listeningLevel, speakingLevel, writingLevel, studentId   } = body;
 
         if (!name) return ['name is required'];
+        if (!studentId) return ['studentId is required'];
         
         if (!readingLevel) return ['readingLevel is required'];
         if (!Object.values(LevelLanguage).includes(readingLevel)) return ['readingLevel is invalid'];

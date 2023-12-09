@@ -13,7 +13,7 @@ class AppliedStudiesModel extends Model {
     public id!: string;
     public level!: string;
     public institution!: string;
-    public college_degree!: string;
+    public collegeDegree!: string;
     public date!: Date;
 }
 
@@ -30,7 +30,7 @@ AppliedStudiesModel.init(
         institution: {
             type: DataTypes.STRING,
         },
-        college_degree: {
+        collegeDegree: {
             type: DataTypes.STRING,
         },
         date: {
@@ -46,5 +46,6 @@ AppliedStudiesModel.init(
 
 StudentModel.hasOne(AppliedStudiesModel, { foreignKey: { name: 'studentId' }  });
 AppliedStudiesModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' }  });
+
 
 export { AppliedStudiesModel };  

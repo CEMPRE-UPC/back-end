@@ -8,14 +8,14 @@ export class AppliedStudiesDataSource implements IAppliedStudiesDataSource {
 
     async register(appliedStudiesDto: AppliedStudiesDto): Promise<AppliedStudiesEntity> {
        
-        const { level, institution, college_degree, date, studentId  } = appliedStudiesDto;
+        const { level, institution, collegeDegree, date, studentId  } = appliedStudiesDto;
 
         try {
             
             const appliedStudies = AppliedStudiesModel.build({
                 level,
                 institution,
-                college_degree,
+                collegeDegree,
                 date,
                 studentId
             });
@@ -34,7 +34,7 @@ export class AppliedStudiesDataSource implements IAppliedStudiesDataSource {
         }
     }
     async update(optAppliedStudiesDto: OptionalAppliedStudiesDto): Promise<boolean> {
-        const { id, level, institution, college_degree, date, studentId  } = optAppliedStudiesDto;
+        const { id, level, institution, collegeDegree, date, studentId  } = optAppliedStudiesDto;
 
 
         try {
@@ -48,7 +48,7 @@ export class AppliedStudiesDataSource implements IAppliedStudiesDataSource {
             const appliedStudies = await AppliedStudiesModel.update({
                 level,
                 institution,
-                college_degree,
+                collegeDegree,
                 date,
             }, { where: { id, studentId } });
 

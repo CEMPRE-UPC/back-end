@@ -8,7 +8,7 @@ export class OptionalAppliedStudiesDto {
         public id: string,
         public level: string,
         public institution: string,
-        public college_degree: string,
+        public collegeDegree: string,
         public date: Date,
         public studentId: string
     ) {}
@@ -23,7 +23,7 @@ export class OptionalAppliedStudiesDto {
 
         const level = body.level || undefined;
         const institution = body.institution || undefined;
-        const college_degree = body.college_degree || undefined;
+        const collegeDegree = body.collegeDegree || undefined;
         const date = body.date || undefined;
 
         if(level) {
@@ -35,7 +35,7 @@ export class OptionalAppliedStudiesDto {
         }
 
         
-        return [undefined, new OptionalAppliedStudiesDto(id,level, institution, college_degree, date, studentId)];
+        return [undefined, new OptionalAppliedStudiesDto(id,level, institution, collegeDegree, date, studentId)];
 
     }
 }

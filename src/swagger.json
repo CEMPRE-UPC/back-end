@@ -182,13 +182,13 @@
         "tags": [
           "students (personal data)"
         ],
-        "description": "Consulta los datos personales del estudiante",
+        "description": "Consulta los datos personales del estudiante por el id del usuario",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "Id del estudiante",
+            "description": "Id del usuario",
             "schema": {
               "type": "string"
             }
@@ -1065,16 +1065,16 @@
           "company",
           "position",
           "functions",
-          "start_date",
-          "end_date",
+          "startDate",
+          "endDate",
           "studentId"
         ],
         "properties": {
           "company": { "type": "string" },
           "position": { "type": "string" },
           "functions": { "type": "string" },
-          "start_date": { "type": "string" },
-          "end_date": { "type": "string" },
+          "startDate": { "type": "string" },
+          "endDate": { "type": "string" },
           "studentId": { "type": "string" }
         }
       },
@@ -1087,8 +1087,8 @@
           "company": { "type": "string" },
           "position": { "type": "string" },
           "functions": { "type": "string" },
-          "start_date": { "type": "string" },
-          "end_date": { "type": "string" },
+          "startDate": { "type": "string" },
+          "endDate": { "type": "string" },
           "studentId": { "type": "string" }
         }
       },
@@ -1097,14 +1097,14 @@
         "required": [
           "level",
           "institution",
-          "college_degree",
+          "collegeDegree",
           "date",
           "studentId"
         ],
         "properties": {
           "level": { "type": "string" },
           "institution": { "type": "string" },
-          "college_degree": { "type": "string" },
+          "collegeDegree": { "type": "string" },
           "date": { "type": "string" },
           "studentId": { "type": "string" }
         }
@@ -1117,7 +1117,7 @@
         "properties": {
           "level": { "type": "string" },
           "institution": { "type": "string" },
-          "college_degree": { "type": "string" },
+          "collegeDegree": { "type": "string" },
           "date": { "type": "string" },
           "studentId": { "type": "string" }
         }

@@ -7,8 +7,8 @@ export class OptionalWorkExperienceDto {
         public company: string,
         public position: string,
         public functions: string,
-        public start_date: string,
-        public end_date: string,
+        public startDate: string,
+        public endDate: string,
     ) {}
 
     static create(body: {[key: string]: any }, id: string): [string?, OptionalWorkExperienceDto?] {
@@ -21,16 +21,16 @@ export class OptionalWorkExperienceDto {
         const company = body.company || undefined;
         const position = body.position || undefined;
         const functions = body.functions || undefined;
-        const start_date = body.start_date || undefined;
-        const end_date = body.end_date || undefined;
+        const startDate = body.startDate || undefined;
+        const endDate = body.endDate || undefined;
 
-        if (start_date) {
-            if(!Validators.datePattern.test(start_date)) return ['start_date is invalid'];
+        if (startDate) {
+            if(!Validators.datePattern.test(startDate)) return ['startDate is invalid'];
         }
-        if (end_date) {
-            if(!Validators.datePattern.test(end_date)) return ['end_date is invalid'];
+        if (endDate) {
+            if(!Validators.datePattern.test(endDate)) return ['endDate is invalid'];
         }
 
-        return [undefined, new OptionalWorkExperienceDto(studentId, id, company, position, functions, start_date, end_date,)];
+        return [undefined, new OptionalWorkExperienceDto(studentId, id, company, position, functions, startDate, endDate,)];
     }
 }

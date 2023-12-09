@@ -16,11 +16,11 @@ export class OptionalStudentDto {
         public phone: string,
         public city: string,
         public eps: string,
-    ) {}
+    ) { }
 
-    static create(body: {[key: string]: any}, cedula: string): [string?, OptionalStudentDto?] {
+    static create(body: { [key: string]: any }, cedula: string): [string?, OptionalStudentDto?] {
 
- 
+
 
         if (!cedula) return ['Cedula is required'];
 
@@ -41,50 +41,39 @@ export class OptionalStudentDto {
         if (!Validators.onlyNumbersPattern.test(cedula)) return ['La cedula solo puede contener numeros'];
 
 
-        if (firstName) {
-            if (!Validators.onlyLettersPattern.test(firstName)) return ['El primer nombre solo puede contener letras'];
-        }
 
-        if (secondName) {
-            if (!Validators.onlyLettersPattern.test(secondName)) return ['El segundo nombre solo puede contener letras'];
-        }
+        if (!Validators.onlyLettersPattern.test(firstName)) return ['El primer nombre solo puede contener letras'];
 
-        if(lastName) {
-            if (!Validators.onlyLettersPattern.test(lastName)) return ['El primer apellido solo puede contener letras'];
-        }
 
-        if(middleName) {
-            if (!Validators.onlyLettersPattern.test(middleName)) return ['El segundo apellido solo puede contener letras'];
-        }
+        if (!Validators.onlyLettersPattern.test(secondName)) return ['El segundo nombre solo puede contener letras'];
 
-        if(birthDate) {
-            if ( !Validators.datePattern.test(birthDate) ) return ['La fecha debe tener el formato yyyy-mm-dd'];
-        }
 
-        if(placeOfBirth) {
-            if (!Validators.placeOfBirthPattern.test(placeOfBirth)) return ['El campo debe tener el formato: "Ciudad, Departamento"'];
-        }
+        if (!Validators.onlyLettersPattern.test(lastName)) return ['El primer apellido solo puede contener letras'];
 
-        if(martialStatus) {
-            if (!Validators.onlyLettersPattern.test(martialStatus)) return ['El estado civil solo puede contener letras'];
-        }
 
-        if(address) {
-            if (!Validators.addressPattern.test(address)) return ['La direccion solo puede contener letras, numeros y los caracteres: ,.-#'];
-        }
+        if (!Validators.onlyLettersPattern.test(middleName)) return ['El segundo apellido solo puede contener letras'];
 
-        if(phone) {
-            if (!Validators.tenCharactersPattern.test(phone)) return ['El telefono debe tener 10 caracteres'];
-            if (!Validators.onlyNumbersPattern.test(phone)) return ['El telefono solo puede contener numeros'];
-        }
 
-        if(eps) {
-            if (!Validators.onlyLettersPattern.test(eps)) return ['La eps solo puede contener letras'];
-        }
+        if (!Validators.datePattern.test(birthDate)) return ['La fecha debe tener el formato yyyy-mm-dd'];
 
-        if(city) {
-            if (!Validators.onlyLettersPattern.test(city)) return ['La ciudad solo puede contener letras'];
-        }
+
+        if (!Validators.placeOfBirthPattern.test(placeOfBirth)) return ['El campo debe tener el formato: "Ciudad, Departamento"'];
+
+
+        if (!Validators.onlyLettersPattern.test(martialStatus)) return ['El estado civil solo puede contener letras'];
+
+
+        if (!Validators.addressPattern.test(address)) return ['La direccion solo puede contener letras, numeros y los caracteres: ,.-#'];
+
+
+        if (!Validators.tenCharactersPattern.test(phone)) return ['El telefono debe tener 10 caracteres'];
+        if (!Validators.onlyNumbersPattern.test(phone)) return ['El telefono solo puede contener numeros'];
+
+
+        if (!Validators.onlyLettersPattern.test(eps)) return ['La eps solo puede contener letras'];
+
+
+        if (!Validators.onlyLettersPattern.test(city)) return ['La ciudad solo puede contener letras'];
 
         return [undefined, new OptionalStudentDto(
             cedula,
