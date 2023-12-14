@@ -8,3 +8,4 @@ export * from './projects.datasource';
 export * from './knowledge.datasource';
 export * from './area-interest.datasource';
 export * from './seminars-courses.repository';
+export * from './guiaded-registration.datasource';

@@ -8,5 +8,5 @@ export interface IUniversityStudiesRepository {
 
     update(optUniversityStudiesDto: OptionalUniversityStudiesDto): Promise<boolean>
 
-    getByIdStudent(studentId: string): Promise<UniversityStudiesEntity[] | null>
+    getByIdStudent(studentId: string): Promise<UniversityStudiesEntity | null>
 }

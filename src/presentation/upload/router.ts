@@ -23,7 +23,7 @@ export class UploadRouter {
 
         router.post('/', 
             authMiddleware.validateJWT,
-            studentMiddleware.existStudent,
+            studentMiddleware.notfoundStudent,
             uploadMiddleware.validateFile,
         uploadController.saveFile);
 

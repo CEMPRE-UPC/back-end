@@ -1,9 +1,9 @@
 export enum TypeFile {
-    IDENTIFICATION = 'identification',
-    PHOTO = 'photo',
-    CLASS_SCHEDULE = 'class_schedule',
-    EPS = 'eps',
-    GRADUATE_CERTIFICATE = 'graduate_certificate',
+    IDENTIFICATION = 'Identificacion',
+    PHOTO = 'Foto',
+    CLASS_SCHEDULE = 'Horario de clases',
+    EPS = 'EPS',
+    GRADUATE_CERTIFICATE = 'Certificado de egresado',
 }
 
 export enum TypeTable {

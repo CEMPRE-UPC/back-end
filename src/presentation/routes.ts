@@ -11,6 +11,7 @@ import { ProjectsRouter } from './student/projects';
 import { KnowledgeRouter } from './student/knowledge';
 import { AreaInterestRouter } from './student/area-interest';
 import { SeminarsOrCoursesRouter } from './student/seminars-courses';
+import { GuiadedRegistrationRouter } from './student/guiaded-registration';
 
 export class AppRoutes {
 
@@ -30,7 +31,8 @@ export class AppRoutes {
             ProjectsRouter.routes,
             KnowledgeRouter.routes,
             AreaInterestRouter.routes,
-            SeminarsOrCoursesRouter.routes
+            SeminarsOrCoursesRouter.routes,
+            GuiadedRegistrationRouter.routes
         ]);
 
         return router;

@@ -57,6 +57,10 @@
     {
       "name": "upload",
       "description": "Manejo de archivos en la aplicacion"
+    },
+    {
+      "name": "guiaded-registration",
+      "description": "Formulario de registro guiado"
     }
   ],
   "paths": {
@@ -988,8 +992,77 @@
           }
         }
       }
+    },
+    "/api/student/guiaded-registration": {
+      "post": {
+        "tags": [
+          "guiaded-registration"
+        ],
+        "description": "Dar como finalizado el registro guiado del estudiante",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/guiaded-registration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "El registro guiado del estudiante fue finalizado con exito"
+          }
+        }
+      }
+    },
+    "/api/student/guiaded-registration/{studentId}": {
+      "get": {
+        "tags": [
+          "guiaded-registration"
+        ],
+        "description": "Consulta si el estudiante finalizo el registro guiado",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro guiado consultado con exito"
+          }
+        }
+      },
+      "delete":{
+        "tags": [
+          "guiaded-registration"
+        ],
+        "description": "Marca como no finalizado el registro guiado del estudiante",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "El registro guiado del estudiante fue marcado como no finalizado"
+          }
+        }
+      }
     }
   },
+ 
   "components": {
     "securitySchemes": {
       "bearerAuth": {
@@ -1301,6 +1374,17 @@
           "phone": { "type": "string" },
           "eps": { "type": "string" },
           "city": { "type": "string" }
+        }
+      },
+      "guiaded-registration":{
+        "type": "object",
+        "required": [
+          "cedula",
+          "studentId"
+        ],
+        "properties": {
+          "cedula": { "type": "string" },
+          "studentId": { "type": "number" }
         }
       }
     }

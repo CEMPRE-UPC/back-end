@@ -8,3 +8,4 @@ export * from './projects.entity';
 export * from './knowledge.entity';
 export * from './area-interest.entity';
 export * from './seminars-courses.entity';
+export * from './guiaded-registration.entity';
