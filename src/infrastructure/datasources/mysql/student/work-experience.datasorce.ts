@@ -9,7 +9,7 @@ export class WorkExperienceDataSource implements IWorkExperienceDataSource {
     async register(workExperienceDto: WorkExperienceDto): Promise<WorkExperienceEntity> {
         
 
-        const { company, position, functions, start_date, end_date, studentId} = workExperienceDto;
+        const { company, position, functions, startDate, endDate, studentId} = workExperienceDto;
 
         try {
 
@@ -17,8 +17,8 @@ export class WorkExperienceDataSource implements IWorkExperienceDataSource {
                 company,
                 position,
                 functions,
-                start_date,
-                end_date,
+                startDate,
+                endDate,
                 studentId
             });
 
@@ -36,7 +36,7 @@ export class WorkExperienceDataSource implements IWorkExperienceDataSource {
     }
     async update(optWorkExperienceDto: OptionalWorkExperienceDto): Promise<boolean> {
         
-        const { id, company, position, functions, start_date, end_date, studentId } = optWorkExperienceDto;
+        const { id, company, position, functions, startDate, endDate, studentId } = optWorkExperienceDto;
         
 
         try {
@@ -51,8 +51,8 @@ export class WorkExperienceDataSource implements IWorkExperienceDataSource {
                 company,
                 position,
                 functions,
-                start_date,
-                end_date
+                startDate,
+                endDate
             }, { where: { id, studentId } });
 
             console.log(workExperience.at(0));

@@ -20,7 +20,7 @@ export class UniversityStudiesRepository implements IUniversityStudiesRepository
     update(optUniversityStudiesDto: OptionalUniversityStudiesDto): Promise<boolean> {
         return this.universityStudiesDataSource.update(optUniversityStudiesDto);
     }
-    getByIdStudent(studentId: string): Promise<UniversityStudiesEntity[] | null> {
+    getByIdStudent(studentId: string): Promise<UniversityStudiesEntity | null> {
         return this.universityStudiesDataSource.getByIdStudent(studentId);
     }
 

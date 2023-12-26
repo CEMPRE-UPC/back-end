@@ -14,8 +14,8 @@ class WorkExperienceModel extends Model {
     public company!: string;
     public position!: string;
     public functions!: string;
-    public start_date!: Date;
-    public end_date!: Date;
+    public startDate!: Date;
+    public endDate!: Date;
 }
 
 WorkExperienceModel.init(
@@ -34,10 +34,10 @@ WorkExperienceModel.init(
         functions: {
             type: DataTypes.STRING,
         },
-        start_date: {
+        startDate: {
             type: DataTypes.DATE,
         },
-        end_date: {
+        endDate: {
             type: DataTypes.DATE,
         },
     },

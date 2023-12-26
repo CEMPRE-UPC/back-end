@@ -5,7 +5,7 @@ export class WorkExperienceMapper {
 
     static workExperienceEntityFromObject(object: { [key: string]:any }): WorkExperienceEntity {
 
-        const { id, _id, company, position, functions, start_date, end_date, } = object;
+        const { id, _id, company, position, functions, startDate, endDate, } = object;
 
         if(!id && !_id) {
             throw CustomError.badRequest('Invalid object');
@@ -14,16 +14,16 @@ export class WorkExperienceMapper {
         if(!company) throw CustomError.badRequest('Missing company');
         if(!position) throw CustomError.badRequest('Missing position');
         if(!functions) throw CustomError.badRequest('Missing functions');
-        if(!start_date) throw CustomError.badRequest('Missing start_date');
-        if(!end_date) throw CustomError.badRequest('Missing end_date');
+        if(!startDate) throw CustomError.badRequest('Missing startDate');
+        if(!endDate) throw CustomError.badRequest('Missing endDate');
 
         return new WorkExperienceEntity(
             _id || id,
             company,
             position,
             functions,
-            (start_date as Date).toISOString().split('T')[0],
-            (end_date as Date).toISOString().split('T')[0]
+            (startDate as Date).toISOString().split('T')[0],
+            (endDate as Date).toISOString().split('T')[0]
         );
     }
 }

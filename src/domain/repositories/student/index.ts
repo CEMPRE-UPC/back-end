@@ -8,3 +8,4 @@ export * from './projects.repository';
 export * from './knowledge.repository';
 export * from './area-interest.repository';
 export * from './seminars-courses.repository';
+export * from './guiaded-registration.repository';

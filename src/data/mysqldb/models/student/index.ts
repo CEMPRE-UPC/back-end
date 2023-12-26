@@ -8,3 +8,4 @@ export * from './area-interest.model';
 export * from './knowledge.model'; 
 export * from './seminars-courses.model'; 
 export * from './projects.model'; 
+export * from './guiaded-registration.model'; 

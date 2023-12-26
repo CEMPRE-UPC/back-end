@@ -6,7 +6,7 @@ export class AppliedStudiesEntity {
         public id: string,
         public level: string,
         public institution: string,
-        public college_degree: string,
+        public collegeDegree: string,
         public date: Date | string,
     ) {}
 }

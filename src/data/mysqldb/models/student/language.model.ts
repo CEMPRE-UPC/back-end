@@ -18,6 +18,8 @@ class LanguageModel extends Model {
     public writingLevel!: string;
 }
 
+const LEVEL_LANGUAGE: string[] = ['Excelente','Bueno','Regular','Ninguno'];
+
 LanguageModel.init(
     {
         id: {
@@ -30,16 +32,16 @@ LanguageModel.init(
             allowNull: false,
         },
         readingLevel: {
-            type: DataTypes.ENUM('excellent','average','good','none'),
+            type: DataTypes.ENUM({ values: LEVEL_LANGUAGE }),
         },
         listeningLevel: {
-            type: DataTypes.ENUM('excellent','average','good','none'),
+            type: DataTypes.ENUM({ values: LEVEL_LANGUAGE }),
         },
         speakingLevel: {
-            type: DataTypes.ENUM('excellent','average','good','none'),
+            type: DataTypes.ENUM({ values: LEVEL_LANGUAGE }),
         },
         writingLevel: {
-            type: DataTypes.ENUM('excellent','average','good','none'),
+            type: DataTypes.ENUM({ values: LEVEL_LANGUAGE }),
         },
     },
     {

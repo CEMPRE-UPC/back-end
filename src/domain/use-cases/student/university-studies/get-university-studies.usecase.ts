@@ -6,7 +6,7 @@ import { IUniversityStudiesRepository } from '../../../repositories';
 
 
 interface IUniversityStudies {
-    execute(studentId: string): Promise<UniversityStudiesEntity[] | null>
+    execute(studentId: string): Promise<UniversityStudiesEntity | null>
 }
 
 export class GetByStudentIdUseCase implements IUniversityStudies {
@@ -17,7 +17,7 @@ export class GetByStudentIdUseCase implements IUniversityStudies {
     ) { }
 
 
-    async execute(studentid: string): Promise<UniversityStudiesEntity[] | null> {
+    async execute(studentid: string): Promise<UniversityStudiesEntity | null> {
 
         if (!studentid) throw CustomError.badRequest('Student id is required');
        

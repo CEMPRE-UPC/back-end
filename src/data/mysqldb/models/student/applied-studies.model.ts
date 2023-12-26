@@ -13,7 +13,7 @@ class AppliedStudiesModel extends Model {
     public id!: string;
     public level!: string;
     public institution!: string;
-    public college_degree!: string;
+    public collegeDegree!: string;
     public date!: Date;
 }
 
@@ -24,13 +24,13 @@ AppliedStudiesModel.init(
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        level: { // Nivel secundario u Otros estudios
-            type: DataTypes.STRING,
+        level: {
+            type: DataTypes.ENUM('Nivel secundario', 'Otros estudios'),
         },
         institution: {
             type: DataTypes.STRING,
         },
-        college_degree: {
+        collegeDegree: {
             type: DataTypes.STRING,
         },
         date: {

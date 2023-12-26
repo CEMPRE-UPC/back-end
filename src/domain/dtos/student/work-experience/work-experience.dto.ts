@@ -7,25 +7,25 @@ export class WorkExperienceDto {
         public company: string,
         public position: string,
         public functions: string,
-        public start_date: string,
-        public end_date: string,
+        public startDate: string,
+        public endDate: string,
     ) {}
 
 
     static create(body: {[key: string]: any }): [string?, WorkExperienceDto?] {
 
-        const { company, position, functions, start_date, end_date, studentId } = body;
+        const { company, position, functions, startDate, endDate, studentId } = body;
 
         if (!studentId)  return ['studentId is required'];
         if (!company)  return ['company is required']; 
         if (!position)  return ['position is required']; 
         if (!functions)  return ['functions is required']; 
-        if (!start_date)  return ['start_date is required']; 
-        if(!Validators.datePattern.test(start_date)) return ['start_date is invalid'];
-        if (!end_date)  return ['end_date is required']; 
-        if(!Validators.datePattern.test(end_date)) return ['end_date is invalid'];
+        if (!startDate)  return ['startDate is required']; 
+        if(!Validators.datePattern.test(startDate)) return ['startDate is invalid'];
+        if (!endDate)  return ['endDate is required']; 
+        if(!Validators.datePattern.test(endDate)) return ['endDate is invalid'];
 
 
-        return [undefined, new WorkExperienceDto(studentId, company, position, functions, start_date, end_date)];
+        return [undefined, new WorkExperienceDto(studentId, company, position, functions, startDate, endDate)];
     }
 }

@@ -1,5 +1,5 @@
 
 export enum LevelStudies {
-    SECONDARY = 'secondary',
-    OTHER = 'other'
+    SECONDARY = 'Nivel secundario',
+    OTHER = 'Otros estudios'
 }

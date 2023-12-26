@@ -43,6 +43,4 @@ SeminarsOrCoursesModel.init(
 StudentModel.hasMany(SeminarsOrCoursesModel, { foreignKey: { name: 'studentId' }  });
 SeminarsOrCoursesModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' }  });
 
-SeminarsOrCoursesModel.sync({ alter: true })
-
 export { SeminarsOrCoursesModel };  

@@ -59,16 +59,14 @@ export class UniversityStudiesDataSource implements IUniversityStudiesDataSource
             throw CustomError.internalServer();
         }
     }
-    async getByIdStudent(studentId: string): Promise<UniversityStudiesEntity[] | null> {
+    async getByIdStudent(studentId: string): Promise<UniversityStudiesEntity | null> {
         try {
             
-            const universityStudies = await UniversityStudiesModel.findAll({ where: { studentId } });
+            const universityStudies = await UniversityStudiesModel.findOne({ where: { studentId } });
 
-            if(!universityStudies) {
-                return null;
-            }
+            if(!universityStudies) return null;
 
-            return universityStudies.map(UniversityStudiesMapper.universityStudiesEntityFromObject);
+            return UniversityStudiesMapper.universityStudiesEntityFromObject(universityStudies);
 
         } catch (error) {
             if(error instanceof CustomError) {
