@@ -203,6 +203,28 @@
             "description": "Datos personales consultados con exito"
           }
         }
+      },
+      "delete":{
+        "tags": [
+          "students (personal data)"
+        ],
+        "description": "Elimina los datos personales del estudiante por el id del usuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Datos personales eliminados con exito"
+          }
+        }
       }
     },
     "/api/student/practice":{
@@ -238,6 +260,28 @@
             "description": "Practicas consultada con exito"
           }
         
+        }
+      },
+      "delete":{
+        "tags": [
+          "students (practice modality)"
+        ],
+        "description": "Elimina la modalidad de practica del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la modalidad de practica",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Modalidad de practica eliminada con exito"
+          }
         }
       }
     },
@@ -292,6 +336,28 @@
         "responses": {
           "200": {
             "description": "Experiencia laboral actualizada con exito"
+          }
+        }
+      },
+      "delete":{
+        "tags": [
+          "students (work experience)"
+        ],
+        "description": "Elimina la experiencia laboral del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la experiencia laboral",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Experiencia laboral eliminada con exito"
           }
         }
       }
@@ -374,6 +440,28 @@
             "description": "Estudios universitarios actualizados con exito"
           }
         }
+      },
+      "delete":{
+        "tags": [
+          "students (university studies)"
+        ],
+        "description": "Elimina los estudios universitarios del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de los estudios universitarios",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estudios universitarios eliminados con exito"
+          }
+        }
       }
     },
     "/api/student/university-studies/{studentId}":{
@@ -451,6 +539,28 @@
         "responses": {
           "200": {
             "description": "Idioma actualizado con exito"
+          }
+        }
+      },
+      "delete":{
+        "tags": [
+          "students (language)"
+        ],
+        "description": "Elimina un idioma del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del idioma",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Idioma eliminado con exito"
           }
         }
       }
@@ -532,6 +642,28 @@
             "description": "Estudios aplicados actualizados con exito"
           }
         }
+      },
+      "delete":{
+        "tags": [
+          "students (applied studies)"
+        ],
+        "description": "Elimina los estudios aplicados del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de los estudios aplicados",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estudios aplicados eliminados con exito"
+          }
+        }
       }
     },
     "/api/student/applied-studies/{studentId}":{
@@ -609,6 +741,28 @@
         "responses": {
           "200": {
             "description": "Proyectos actualizados con exito"
+          }
+        }
+      },
+      "delete":{
+        "tags": [
+          "students (projects)"
+        ],
+        "description": "Elimina los proyectos del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del proyecto",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Proyectos eliminados con exito"
           }
         }
       }
@@ -690,6 +844,28 @@
             "description": "Seminarios o cursos actualizados con exito"
           }
         }
+      },
+      "delete":{
+        "tags": [
+          "students (seminars or courses)"
+        ],
+        "description": "Elimina los seminarios o cursos del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del seminario o curso",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seminarios o cursos eliminados con exito"
+          }
+        }
       }
     },
     "/api/student/seminars-courses/{studentId}":{
@@ -769,6 +945,28 @@
             "description": "Conocimientos actualizados con exito"
           }
         }
+      },
+      "delete":{
+        "tags": [
+          "students (knowledge)"
+        ],
+        "description": "Elimina los conocimientos del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del conocimiento",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Conocimientos eliminados con exito"
+          }
+        }
       }
     },
     "/api/student/knowledge/{studentId}":{
@@ -846,6 +1044,28 @@
         "responses": {
           "200": {
             "description": "Areas de interes actualizadas con exito"
+          }
+        }
+      },
+      "delete":{
+        "tags": [
+          "students (area interest)"
+        ],
+        "description": "Elimina las areas de interes del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del area de interes",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Areas de interes eliminadas con exito"
           }
         }
       }
