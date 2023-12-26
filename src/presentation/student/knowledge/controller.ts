@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IKnowledgeRepository } from '../../../domain';
 import { KnowledgeDto, OptionalKnowledgeDto } from '../../../domain/dtos/student';
-import { GetKnowledgeUseCase, RegisterUseCase, UpdateUseCase, } from '../../../domain/use-cases/student/knowledge';
+import { GetKnowledgeUseCase, RegisterUseCase, UpdateUseCase, DeleteUseCase } from '../../../domain/use-cases/student/knowledge';
 import { handleError } from '../../helpers';
 
 
@@ -43,6 +43,15 @@ export class KnowledgeController {
 
         new GetKnowledgeUseCase(this.knowledgeReposotory).execute(studentId)
             .then( projects => res.status(200).json(projects) )
+            .catch( error => handleError(error, res) );
+    }
+
+    delete = (req: Request, res: Response) => {
+
+        const { id } = req.params;
+
+        new DeleteUseCase(this.knowledgeReposotory).execute(id)
+            .then( deleted => res.status(200).json(deleted) )
             .catch( error => handleError(error, res) );
     }
 }

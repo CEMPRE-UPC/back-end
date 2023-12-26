@@ -9,4 +9,7 @@ export interface ILanguageDataSource {
     update(optLanguageDto: OptionalLanguageDto): Promise<boolean>
 
     getByIdStudent(studentId: string): Promise<LanguageEntity[] | null>
+
+    delete(id: string): Promise<boolean>
+
 }

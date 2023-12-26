@@ -86,6 +86,23 @@ export class AreaInterestDataSource implements IAreaInterestDataSource {
             throw CustomError.internalServer();
         }
     }
+
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const deleted = await AreaInterestModel.destroy({ where: { id } });
+
+            return deleted === 1;
+            
+        } catch (error) {
+            
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
         
 
 

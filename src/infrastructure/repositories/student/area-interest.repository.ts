@@ -22,5 +22,8 @@ export class AreaInterestRepository implements IAreaInterestRepository {
 
         return this.areaInterest.getByStudentId(studentId);
     }
+    delete(id: string): Promise<boolean> {
+        return this.areaInterest.delete(id);
+    }
 
 }

@@ -16,6 +16,7 @@ export class ProjectsRouter {
         router.post('/projects', controller.register);
         router.patch('/projects/:id', controller.update);
         router.get('/projects/:studentId', controller.getByStudentId);
+        router.get('/projects/:id', controller.delete);
 
         return router;
     }

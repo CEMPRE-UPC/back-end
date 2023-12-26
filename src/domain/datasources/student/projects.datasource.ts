@@ -9,4 +9,7 @@ export interface IProjectsDataSource {
     update(optProjectsDto: OptionalProjectsDto): Promise<boolean>
 
     getByStudentId(studentId: string): Promise<ProjectsEntity[] | null>
+
+    delete(id: string): Promise<boolean>
+
 }

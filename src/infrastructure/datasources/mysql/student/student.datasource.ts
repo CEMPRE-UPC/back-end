@@ -114,6 +114,23 @@ export class StudentDataSource implements IStudentDataSource {
             throw CustomError.internalServer();
         }
     }
+
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const student = await StudentModel.destroy({ where: { id } });
+
+            return student === 1;
+
+        } catch (error) {
+
+            if (error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
     
  
 

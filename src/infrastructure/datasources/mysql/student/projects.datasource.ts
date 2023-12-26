@@ -82,6 +82,24 @@ export class ProjectsDataSource implements IProjectsDataSource {
         }
     }
 
+    async delete(id: string): Promise<boolean> {
+        
+        try {
+
+            const project = await ProjectsModel.destroy({ where: { id } });
+
+            return project === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
 
 
 

@@ -87,4 +87,21 @@ export class SeminarsOrCoursesDataSource implements ISeminarsOrCoursesDataSource
 
     }
 
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const seminarOrCourse = await SeminarsOrCoursesModel.destroy({ where: { id } });
+
+            return seminarOrCourse === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
 }

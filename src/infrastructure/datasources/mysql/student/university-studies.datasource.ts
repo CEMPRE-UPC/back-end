@@ -77,5 +77,22 @@ export class UniversityStudiesDataSource implements IUniversityStudiesDataSource
         }
     }
 
+    async delete( id: string ): Promise<boolean> {
+        try {
+
+            const universityStudies = await UniversityStudiesModel.destroy({ where: { id } });
+
+            return universityStudies === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
 
 }

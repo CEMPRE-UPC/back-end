@@ -9,4 +9,7 @@ export interface IAreaInterestDataSource {
     update(optAreaInterestDto: OptionalAreaInterestDto): Promise<boolean>
 
     getByStudentId(studentId: string): Promise<AreaInterestEntity[] | null>
+
+    delete(id: string): Promise<boolean>
+
 }

@@ -87,5 +87,22 @@ export class LanguageDataSource implements ILanguageDataSource {
             throw CustomError.internalServer();
         }
     }
+
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const language = await LanguageModel.destroy({ where: { id } });
+
+            return language === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
     
 }

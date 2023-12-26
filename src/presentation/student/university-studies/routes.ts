@@ -19,6 +19,7 @@ export class UniversityStudiesRouter {
         router.post('/university-studies', controller.register);
         router.patch('/university-studies/:id', controller.update);
         router.get('/university-studies/:studentId', controller.getByStudentId);
+        router.get('/university-studies/:id', controller.delete);
 
         return router;
     }

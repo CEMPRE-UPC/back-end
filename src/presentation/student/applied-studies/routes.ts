@@ -19,6 +19,7 @@ export class AppliedStudiesRouter {
         router.post('/applied-studies', controller.register);
         router.patch('/applied-studies/:id', controller.update);
         router.get('/applied-studies/:studentId', controller.getByIdStudent);
+        router.delete('/applied-studies/:id', controller.delete);
 
         return router;
     }

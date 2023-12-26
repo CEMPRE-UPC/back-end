@@ -93,4 +93,22 @@ export class WorkExperienceDataSource implements IWorkExperienceDataSource {
         }
     }
 
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const workExperience = await WorkExperienceModel.destroy({ where: { id } });
+
+            return workExperience === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+            
+        }
+    }
+
 }

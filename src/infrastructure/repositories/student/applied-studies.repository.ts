@@ -8,14 +8,17 @@ export class AppliedStudiesRepository implements IAppliedStudiesRepository {
     
     ) {}
     
-    async register(appliedStudiesDto: AppliedStudiesDto): Promise<AppliedStudiesEntity> {
-        return await this.dataSource.register(appliedStudiesDto);
+    register(appliedStudiesDto: AppliedStudiesDto): Promise<AppliedStudiesEntity> {
+        return this.dataSource.register(appliedStudiesDto);
     }
-    async update(optAppliedStudiesDto: OptionalAppliedStudiesDto): Promise<boolean> {
-        return await this.dataSource.update(optAppliedStudiesDto);
+    update(optAppliedStudiesDto: OptionalAppliedStudiesDto): Promise<boolean> {
+        return this.dataSource.update(optAppliedStudiesDto);
     }
-    async getByIdStudent(studentId: string): Promise<AppliedStudiesEntity[] | null> {
-        return await this.dataSource.getByIdStudent(studentId);
+    getByIdStudent(studentId: string): Promise<AppliedStudiesEntity[] | null> {
+        return this.dataSource.getByIdStudent(studentId);
+    }
+    delete(id: string): Promise<boolean> {
+        return this.dataSource.delete(id);
     }
 
 }

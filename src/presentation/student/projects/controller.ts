@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IProjectsRepository } from '../../../domain';
 import { OptionalProjectsDto, ProjectsDto } from '../../../domain/dtos/student';
-import { GetProjectsUseCase, RegisterUseCase, UpdateUseCase, } from '../../../domain/use-cases/student/projects';
+import { GetProjectsUseCase, RegisterUseCase, UpdateUseCase, DeleteUseCase } from '../../../domain/use-cases/student/projects';
 import { handleError } from '../../helpers';
 
 
@@ -40,6 +40,15 @@ export class ProjectsController {
 
         new GetProjectsUseCase(this.projectsRepository).execute(studentId)
             .then( projects => res.status(200).json(projects) )
+            .catch( error => handleError(error, res) );
+    }
+
+    delete = (req: Request, res: Response) => {
+
+        const { id } = req.params;
+
+        new DeleteUseCase(this.projectsRepository).execute(id)
+            .then( deleted => res.status(200).json(deleted) )
             .catch( error => handleError(error, res) );
     }
 }

@@ -23,5 +23,8 @@ export class UniversityStudiesRepository implements IUniversityStudiesRepository
     getByIdStudent(studentId: string): Promise<UniversityStudiesEntity | null> {
         return this.universityStudiesDataSource.getByIdStudent(studentId);
     }
+    delete(id: string): Promise<boolean> {
+        return this.universityStudiesDataSource.delete(id);
+    }
 
 }

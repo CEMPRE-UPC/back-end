@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IAppliedStudiesRepository, OptionalAppliedStudiesDto } from '../../../domain';
 import { AppliedStudiesDto } from '../../../domain/dtos/student/applied-studies/applied-studies.dto';
-import { RegisterUseCase, UpdateUseCase, GetByStudentIdUseCase } from '../../../domain/use-cases/student/applied-studies';
+import { RegisterUseCase, UpdateUseCase, GetByStudentIdUseCase, DeleteUseCase } from '../../../domain/use-cases/student/applied-studies';
 import { handleError } from '../../helpers';
 
 
@@ -41,4 +41,15 @@ export class AppliedStudiesController {
             .then( appliedStudies => res.status(200).json(appliedStudies) )
             .catch( error => handleError(error, res));
     }
+
+    delete = (req: Request, res: Response) => {
+
+        const { id } = req.params;
+
+        new DeleteUseCase( this.appliedStudiesRepository ).execute(id)
+            .then( appliedStudies => res.status(200).json(appliedStudies) )
+            .catch( error => handleError(error, res));
+    }
+
+
 }

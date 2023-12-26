@@ -18,6 +18,7 @@ export class PracticeRouter {
 
         router.get('/practice/:id', controller.getPracticeById);
         router.get('/practice', controller.getAllPractices);
+        router.get('/practice/:id', controller.delete);
 
         return router;
     }
