@@ -88,6 +88,25 @@ export class LanguageDataSource implements ILanguageDataSource {
         }
     }
 
+    async getById(id: string): Promise<LanguageEntity | null> {
+        try {
+            
+            const language = await LanguageModel.findByPk(id);
+
+            if (!language) return null;
+
+            return LanguageMapper.languageEntityFromObject(language);
+
+        } catch (error) {
+            
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
     async delete(id: string): Promise<boolean> {
         try {
 

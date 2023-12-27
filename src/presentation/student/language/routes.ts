@@ -15,8 +15,9 @@ export class LanguageRouter {
 
         router.post('/language', controller.register);
         router.patch('/language/:id', controller.update);
-        router.get('/language/:studentId', controller.getLanguagesByStudentId);
-        router.get('/language/:id', controller.delete);
+        router.get('/language/all/:studentId', controller.getLanguagesByStudentId);
+        router.get('/language/:id', controller.getLanguageById);
+        router.delete('/language/:id', controller.delete);
 
         return router;
     }

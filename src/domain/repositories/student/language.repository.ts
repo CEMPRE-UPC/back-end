@@ -10,6 +10,8 @@ export interface ILanguageRepository {
 
     getByIdStudent(studentId: string): Promise<LanguageEntity[] | null>
 
+    getById(id: string): Promise<LanguageEntity | null>
+
     delete(id: string): Promise<boolean>
 
 }

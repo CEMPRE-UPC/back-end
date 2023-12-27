@@ -16,6 +16,9 @@ export class LanguageRepository implements ILanguageRepository {
     getByIdStudent(studentId: string): Promise<LanguageEntity[] | null> {
         return this.languageDataSource.getByIdStudent(studentId);
     }
+    getById(id: string): Promise<LanguageEntity | null> {
+        return this.languageDataSource.getById(id);
+    }
     delete(id: string): Promise<boolean> {
         return this.languageDataSource.delete(id);
     }
