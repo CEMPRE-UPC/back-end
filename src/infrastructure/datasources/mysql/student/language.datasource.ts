@@ -88,6 +88,25 @@ export class LanguageDataSource implements ILanguageDataSource {
         }
     }
 
+    async getLanguageByName(studentId: string, name: string): Promise<LanguageEntity | null> {
+        try {
+            
+            const language = await LanguageModel.findOne({ where: { studentId, name } });
+
+            if (!language) return null;
+
+            return LanguageMapper.languageEntityFromObject(language);
+
+        } catch (error) {
+            
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
     async getById(id: string): Promise<LanguageEntity | null> {
         try {
             

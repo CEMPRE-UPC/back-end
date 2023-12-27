@@ -10,6 +10,8 @@ export interface ILanguageDataSource {
 
     getByIdStudent(studentId: string): Promise<LanguageEntity[] | null>
 
+    getLanguageByName(studentId: string, name: string): Promise<LanguageEntity | null>
+
     getById(id: string): Promise<LanguageEntity | null>
 
     delete(id: string): Promise<boolean>
