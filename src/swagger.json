@@ -542,6 +542,28 @@
           }
         }
       },
+      "get":{
+        "tags": [
+          "students (language)"
+        ],
+        "description": "Consulta un idioma del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del idioma",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Idioma consultado con exito"
+          }
+        }
+      },
       "delete":{
         "tags": [
           "students (language)"
@@ -565,7 +587,7 @@
         }
       }
     },
-    "/api/student/language/{studentId}":{
+    "/api/student/language/all/{studentId}":{
       "get": {
         "tags": [
           "students (language)"
