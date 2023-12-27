@@ -20,8 +20,8 @@ export class LanguageMapper {
         return new LanguageEntity(
             _id || id,
             name,
-            listeningLevel,
             readingLevel,
+            listeningLevel,
             speakingLevel,
             writingLevel
         );
