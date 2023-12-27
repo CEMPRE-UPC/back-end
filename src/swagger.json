@@ -643,6 +643,28 @@
           }
         }
       },
+      "get":{
+        "tags": [
+          "students (applied studies)"
+        ],
+        "description": "Consulta los estudios aplicados del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de los estudios aplicados",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estudios aplicados consultados con exito"
+          }
+        }
+      },
       "delete":{
         "tags": [
           "students (applied studies)"
@@ -666,7 +688,7 @@
         }
       }
     },
-    "/api/student/applied-studies/{studentId}":{
+    "/api/student/applied-studies/all/{studentId}":{
       "get": {
         "tags": [
           "students (applied studies)"

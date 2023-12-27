@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IAppliedStudiesRepository, OptionalAppliedStudiesDto } from '../../../domain';
 import { AppliedStudiesDto } from '../../../domain/dtos/student/applied-studies/applied-studies.dto';
-import { RegisterUseCase, UpdateUseCase, GetByStudentIdUseCase, DeleteUseCase } from '../../../domain/use-cases/student/applied-studies';
+import { RegisterUseCase, UpdateUseCase, GetByStudentIdUseCase, DeleteUseCase, GetByIdUseCase } from '../../../domain/use-cases/student/applied-studies';
 import { handleError } from '../../helpers';
 
 
@@ -38,6 +38,15 @@ export class AppliedStudiesController {
         const { studentId } = req.params;
 
         new GetByStudentIdUseCase( this.appliedStudiesRepository ).execute(studentId)
+            .then( appliedStudies => res.status(200).json(appliedStudies) )
+            .catch( error => handleError(error, res));
+    }
+
+    getById = (req: Request, res: Response) => {
+
+        const { id } = req.params;
+
+        new GetByIdUseCase( this.appliedStudiesRepository ).execute(id)
             .then( appliedStudies => res.status(200).json(appliedStudies) )
             .catch( error => handleError(error, res));
     }

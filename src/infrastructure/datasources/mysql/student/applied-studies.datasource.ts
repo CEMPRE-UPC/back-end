@@ -81,6 +81,29 @@ export class AppliedStudiesDataSource implements IAppliedStudiesDataSource {
         }
     }
 
+    async getById( id: string ): Promise<AppliedStudiesEntity | null> {
+
+        console.log(id);
+        
+        try {
+            
+            const appliedStudies = await AppliedStudiesModel.findByPk(id);
+
+            if(!appliedStudies) {
+                return null;
+            }
+
+            return AppliedStudiesMapper.appliedStudiesEntityFromObject(appliedStudies);
+
+        } catch (error) {
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
     async delete( id: string ): Promise<boolean> {
         try {
             
@@ -96,6 +119,7 @@ export class AppliedStudiesDataSource implements IAppliedStudiesDataSource {
             throw CustomError.internalServer();
         }
     }
+    
 
 
 }

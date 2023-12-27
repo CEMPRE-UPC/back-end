@@ -17,6 +17,9 @@ export class AppliedStudiesRepository implements IAppliedStudiesRepository {
     getByIdStudent(studentId: string): Promise<AppliedStudiesEntity[] | null> {
         return this.dataSource.getByIdStudent(studentId);
     }
+    getById(id: string): Promise<AppliedStudiesEntity | null> {
+        return this.dataSource.getById(id);
+    }
     delete(id: string): Promise<boolean> {
         return this.dataSource.delete(id);
     }
