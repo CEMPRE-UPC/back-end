@@ -10,6 +10,8 @@ export interface IProjectsRepository {
 
     getByStudentId(studentId: string): Promise<ProjectsEntity[] | null>
 
+    getById(id: string): Promise<ProjectsEntity | null>
+
     delete(id: string): Promise<boolean>
 
 }

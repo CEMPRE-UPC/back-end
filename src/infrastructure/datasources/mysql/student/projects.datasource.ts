@@ -82,6 +82,29 @@ export class ProjectsDataSource implements IProjectsDataSource {
         }
     }
 
+    async getById(id: string): Promise<ProjectsEntity | null> {
+        
+        try {
+
+            const project = await ProjectsModel.findByPk(id);
+
+            if(!project) {
+                return null;
+            }
+
+            return ProjectsMapper.projectsEntityFromObject(project);
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+
+    }
+
     async delete(id: string): Promise<boolean> {
         
         try {
