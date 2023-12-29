@@ -911,6 +911,28 @@
           }
         }
       },
+      "get":{
+        "tags": [
+          "students (seminars or courses)"
+        ],
+        "description": "Consulta los seminarios o cursos del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del seminario o curso",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seminarios o cursos consultados con exito"
+          }
+        }
+      },
       "delete":{
         "tags": [
           "students (seminars or courses)"
@@ -934,7 +956,7 @@
         }
       }
     },
-    "/api/student/seminars-courses/{studentId}":{
+    "/api/student/seminars-courses/all/{studentId}":{
       "get": {
         "tags": [
           "students (seminars or courses)"
