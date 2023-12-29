@@ -24,6 +24,9 @@ export class SeminarsOrCoursesRepository implements ISeminarsOrCoursesRepository
     getByIdStudent(studentId: string): Promise<SeminarsOrCoursesEntity[] | null> {
         return this.seminarsOrCoursesDataSource.getByIdStudent(studentId);
     }
+    getById(id: string): Promise<SeminarsOrCoursesEntity | null> {
+        return this.seminarsOrCoursesDataSource.getById(id);
+    }
     delete(id: string): Promise<boolean> {
         return this.seminarsOrCoursesDataSource.delete(id);
     }

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ISeminarsOrCoursesRepository, OptionalSeminarsOrCoursesDto, SeminarsOrCoursesDto } from '../../../domain';
-import { RegisterUseCase, UpdateUseCase, GetByStudentIdUseCase, DeleteUseCase } from '../../../domain/use-cases/student/seminars-courses';
+import { RegisterUseCase, UpdateUseCase, GetByStudentIdUseCase, DeleteUseCase, GetByIdUseCase } from '../../../domain/use-cases/student/seminars-courses';
 import { handleError } from '../../helpers';
 
 
@@ -45,6 +45,14 @@ export class SeminarsOrCoursesController {
             .then(seminarsOrCourses => res.status(200).json(seminarsOrCourses))
             .catch(err => handleError( err, res ));
        
+    }
+    getById = (req: Request, res: Response) => {
+        
+        const { id } = req.params;
+
+        new GetByIdUseCase( this.seminarsOrCoursesRepository ).execute(id)
+            .then(seminarsOrCourses => res.status(200).json(seminarsOrCourses))
+            .catch(err => handleError( err, res ));
     }
 
     delete = (req: Request, res: Response) => {

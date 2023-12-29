@@ -11,6 +11,8 @@ export interface ISeminarsOrCoursesRepository {
 
     getByIdStudent(idStudent: string): Promise<SeminarsOrCoursesEntity[] | null>;
 
+    getById(id: string): Promise<SeminarsOrCoursesEntity | null>;
+
     delete(id: string): Promise<boolean>
 
 }
