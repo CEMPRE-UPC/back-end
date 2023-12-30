@@ -339,6 +339,28 @@
           }
         }
       },
+      "get":{
+        "tags": [
+          "students (work experience)"
+        ],
+        "description": "Consulta la experiencia laboral del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la experiencia laboral",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Experiencia laboral consultada con exito"
+          }
+        }
+      },
       "delete":{
         "tags": [
           "students (work experience)"
@@ -363,7 +385,7 @@
       }
       
     },
-    "/api/student/work-experience/{studentId}": {
+    "/api/student/work-experience/all/{studentId}": {
       "get": {
         "tags": [
           "students (work experience)"
