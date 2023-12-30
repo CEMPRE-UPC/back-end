@@ -16,6 +16,9 @@ export class WorkExperienceRepository implements IWorkExperienceRepository {
     getByIdStudent(studentId: string): Promise<WorkExperienceEntity[] | null> {
         return this.workExperienceDataSource.getByIdStudent(studentId);
     }
+    getById(id: string): Promise<WorkExperienceEntity | null> {
+        return this.workExperienceDataSource.getById(id);
+    }
     delete(id: string): Promise<boolean> {
         return this.workExperienceDataSource.delete(id);
     }

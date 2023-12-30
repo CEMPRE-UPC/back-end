@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IWorkExperienceRepository, OptionalWorkExperienceDto, WorkExperienceDto } from '../../../domain';
-import { GetWorkExperiencesUseCase, RegisterUseCase, UpdateWorkExperienceUseCase, DeleteUseCase } from '../../../domain/use-cases/student/work-experience';
+import { GetWorkExperiencesUseCase, RegisterUseCase, UpdateWorkExperienceUseCase, DeleteUseCase, GetExperienceById } from '../../../domain/use-cases/student/work-experience';
 import { handleError } from '../../helpers';
 
 
@@ -34,9 +34,16 @@ export class WorkExperienceController {
                 .catch( error => handleError(error, res) );
     }
 
+    getById = ( req: Request, res: Response ) => {
+            
+        const { id } = req.params;
 
+        new GetExperienceById( this.workExperienceRepository ).execute(id)
+            .then( workExperience => res.status(200).json(workExperience) )
+            .catch( error => handleError(error, res) );
+    }
 
-    getWorkExperiencesByStudentId = ( req: Request, res: Response ) => {
+    getByStudentId = ( req: Request, res: Response ) => {
             
         const { studentId } = req.params;
 
