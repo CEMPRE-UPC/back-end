@@ -1473,7 +1473,9 @@
           "studentId"
         ],
         "properties": {
-          "company": { "type": "string" },
+          "company": {
+            "type": "string"
+          },
           "position": { "type": "string" },
           "functions": { "type": "string" },
           "startDate": { "type": "string" },
@@ -1623,7 +1625,10 @@
           "studentId"
         ],
         "properties": {
-          "description": { "type": "string" },
+          "description": { 
+            "type": "array",
+            "items": { "type": "string" } 
+          },
           "studentId": { "type": "string" }
         }
       },

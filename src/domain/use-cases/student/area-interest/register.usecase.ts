@@ -4,7 +4,7 @@ import { IAreaInterestRepository } from '../../../repositories';
 
 
 interface IAreaInterest {
-    execute(areaInterestDto: AreaInterestDto): Promise<AreaInterestEntity[]>
+    execute(areaInterestDto: AreaInterestDto): Promise<AreaInterestEntity>
 }
 
 export class RegisterUseCase implements IAreaInterest {
@@ -15,7 +15,7 @@ export class RegisterUseCase implements IAreaInterest {
     ) { }
 
 
-    async execute(areaInterestDto: AreaInterestDto): Promise<AreaInterestEntity[]> {
+    async execute(areaInterestDto: AreaInterestDto): Promise<AreaInterestEntity> {
        
         return await this.areaInterest.register(areaInterestDto);
     }

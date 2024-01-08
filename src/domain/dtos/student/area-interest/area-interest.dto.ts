@@ -2,7 +2,7 @@
 export class AreaInterestDto {
 
     constructor(
-        public descriptions: string[],
+        public description: string[],
         public studentId: number 
     ) {}
 
