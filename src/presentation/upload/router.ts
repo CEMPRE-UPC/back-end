@@ -37,7 +37,7 @@ export class UploadRouter {
 
         router.patch('/', 
             authMiddleware.validateJWT,
-            studentMiddleware.existStudent,
+            studentMiddleware.notfoundStudent,
         uploadController.updateFile);
 
         return router;
