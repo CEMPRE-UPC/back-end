@@ -8,4 +8,7 @@ export const envs = {
   MYSQL_DB_NAME: get('MYSQL_DB_NAME').required().asString(),
 
   JWT_SEED: get('JWT_SEED').required().asString(),
+
+  EMAIL_USER: get('EMAIL_USER').required().asString(),
+  EMAIL_PASSWORD: get('EMAIL_PASSWORD').required().asString(),
 }

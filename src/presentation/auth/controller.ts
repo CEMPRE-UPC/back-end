@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { IAuthRepository } from '../../domain/repositories';
-import { LoginUseCase, RegisterUserUseCase, CheckTokenUseCase } from '../../domain/use-cases';
+import { LoginUseCase, RegisterUserUseCase, CheckTokenUseCase, ActivateAccountUseCase } from '../../domain/use-cases';
 import { LoginUserDto, RegisterUserDto, CheckTokenDto } from '../../domain/dtos';
 import { handleError } from '../helpers';
 
@@ -30,6 +30,16 @@ export class AuthController {
         
        new RegisterUserUseCase( this.authRepositoy ).execute( registerUserDto! )
             .then( userToken => res.json( userToken ) )
+            .catch( error => handleError( error, res ) );
+    }
+
+    activateAccount = (req: Request, res: Response) => {
+            
+        const [ error, token ] = CheckTokenDto.create(req.header('Authorization'));
+        if (error) return res.status(401).json(error);
+
+        new ActivateAccountUseCase( this.authRepositoy ).execute( token! )
+            .then( isActive => res.json( isActive ) )
             .catch( error => handleError( error, res ) );
     }
 

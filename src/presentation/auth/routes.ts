@@ -24,6 +24,8 @@ export class AuthRoutes {
 
         router.post('/register',roleMiddleware.validateRole, controller.register)
 
+        router.get('/activate-account', controller.activateAccount)
+
         router.get('/check-token', controller.checkToken)
 
         return router;

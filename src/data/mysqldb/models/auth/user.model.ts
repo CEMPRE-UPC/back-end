@@ -34,7 +34,7 @@ UserModel.init({
   isActive: {
     type: new DataTypes.BOOLEAN,
     allowNull: false,
-    defaultValue: true,
+    defaultValue: false,
   }
 }, {
   tableName: 'users',
