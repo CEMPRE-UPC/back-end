@@ -16,6 +16,7 @@ export class KnowledgeRouter {
         router.post('/knowledge', controller.register);
         router.patch('/knowledge/:id', controller.update);
         router.get('/knowledge/:studentId', controller.getByStudentId);
+        router.get('/knowledge/:id', controller.delete);
 
         return router;
     }

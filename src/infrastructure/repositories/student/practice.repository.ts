@@ -16,4 +16,8 @@ export class PracticeRepository implements IPracticeRepository {
         return this.practiceDatasource.getAllPractices();
     }
 
+    delete(id: string): Promise<boolean> {
+        return this.practiceDatasource.delete(id);
+    }
+
 }

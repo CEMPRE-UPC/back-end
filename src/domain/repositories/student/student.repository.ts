@@ -12,5 +12,6 @@ export interface IStudentRepository {
 
     getStudentByIdUser( id: string ): Promise<StudentEntity | null>;
 
+    delete(id: string): Promise<boolean>
 
 }

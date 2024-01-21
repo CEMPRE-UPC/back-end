@@ -6,30 +6,20 @@ import { AreaInterestMapper } from '../../../mappers';
 
 
 export class AreaInterestDataSource implements IAreaInterestDataSource {
-    async register(areaInterestDto: AreaInterestDto): Promise<AreaInterestEntity[]> {
+    async register(areaInterestDto: AreaInterestDto): Promise<AreaInterestEntity> {
 
-        const { descriptions, studentId } = areaInterestDto;
-
-        // map dto to json
-        const areaInterestJson = descriptions.map(description => {
-            return {
-                description,
-                studentId
-            }
-        });
-
-        console.log(areaInterestJson);
-        
+        const { description, studentId } = areaInterestDto;
 
         try {
 
-            const savedAreaInterest = await AreaInterestModel
-            .bulkCreate(areaInterestJson);
+            const areaInterest = AreaInterestModel.build({
+                description,
+                studentId
+            });
 
-            console.log(savedAreaInterest);
-            
+            const savedAreaInterest = await areaInterest.save();
 
-            return  savedAreaInterest.map(AreaInterestMapper.areaInterestEntityFromObject);
+            return AreaInterestMapper.areaInterestEntityFromObject(savedAreaInterest.toJSON());
             
         } catch (error) {
 
@@ -68,17 +58,34 @@ export class AreaInterestDataSource implements IAreaInterestDataSource {
             throw CustomError.internalServer();
         }
     }
-    async getByStudentId(studentId: string): Promise<AreaInterestEntity[] | null> {
+    async getByStudentId(studentId: string): Promise<AreaInterestEntity | null> {
         try {
 
-            const areaInterest = await AreaInterestModel.findAll({ where: { studentId } });
+            const areaInterest = await AreaInterestModel.findOne({ where: { studentId } });
 
             if (!areaInterest)  return null;
 
-            return areaInterest.map(AreaInterestMapper.areaInterestEntityFromObject);
+            return AreaInterestMapper.areaInterestEntityFromObject(areaInterest.toJSON());
             
         } catch (error) {
          
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const deleted = await AreaInterestModel.destroy({ where: { id } });
+
+            return deleted === 1;
+            
+        } catch (error) {
+            
             if(error instanceof CustomError) {
                 throw error;
             }

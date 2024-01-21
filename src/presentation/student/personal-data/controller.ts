@@ -1,7 +1,7 @@
 import { Request, Response,  } from 'express'
 import { IStudentRepository, OptionalStudentDto, RegisterStudentUseCase, StudentDto } from '../../../domain'
 import { handleError } from '../../helpers';
-import { UpdateStudentUseCase, GetStudentByIdUseCase } from '../../../domain/use-cases';
+import { UpdateStudentUseCase, GetStudentByIdUseCase, DeleteUseCase } from '../../../domain/use-cases';
 
 export class StudentController {
 
@@ -41,5 +41,14 @@ export class StudentController {
         new GetStudentByIdUseCase( this.studentRepository ).execute( id )
             .then( student => res.json( student ) )
             .catch( error => handleError( error, res ) );
+    }
+
+    delete = async(req: Request, res: Response) => {
+        
+        const { id } = req.params;
+
+        new DeleteUseCase( this.studentRepository ).execute(id)
+        .then( student => res.json( student ) )
+        .catch( error => handleError( error, res ) );
     }
 }

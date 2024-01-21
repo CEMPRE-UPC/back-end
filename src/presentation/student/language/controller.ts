@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ILanguageRepository, LanguageDto, OptionalLanguageDto } from '../../../domain';
-import { RegisterUseCase, UpdateUseCase, GetAllByStudentIdUseCase } from '../../../domain/use-cases/student/language';
+import { RegisterUseCase, UpdateUseCase, GetAllByStudentIdUseCase, DeleteUseCase, GetLanguageByIdUseCase } from '../../../domain/use-cases/student/language';
 import { handleError } from '../../helpers';
 
 export class LanguageController {
@@ -39,6 +39,24 @@ export class LanguageController {
     
         new GetAllByStudentIdUseCase( this.languageRepository ).execute(studentId)
         .then( languages => res.json( languages ) )
+        .catch( error => handleError( error, res ) );
+    }
+
+    getLanguageById = async(req: Request, res: Response) => {
+        
+        const { id } = req.params;
+
+        new GetLanguageByIdUseCase( this.languageRepository ).execute(id)
+        .then( language => res.json( language ) )
+        .catch( error => handleError( error, res ) );
+    }
+
+    delete = async(req: Request, res: Response) => {
+        
+        const { id } = req.params;
+
+        new DeleteUseCase( this.languageRepository ).execute(id)
+        .then( language => res.json( language ) )
         .catch( error => handleError( error, res ) );
     }
 }

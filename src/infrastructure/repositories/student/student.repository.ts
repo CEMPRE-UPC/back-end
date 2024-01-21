@@ -22,5 +22,9 @@ export class StudentRepository implements IStudentRepository {
     getStudentByIdUser(id: string): Promise<StudentEntity | null> {
         return this.studentDataSource.getStudentByIdUser(id);
     }
+
+    delete(id: string): Promise<boolean> {
+        return this.studentDataSource.delete(id);
+    }
     
 }

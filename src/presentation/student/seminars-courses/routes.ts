@@ -18,7 +18,9 @@ export class SeminarsOrCoursesRouter {
 
         router.post('/seminars-courses/', controller.register);
         router.patch('/seminars-courses/:id', controller.update);
-        router.get('/seminars-courses/:studentId', controller.getByStudentId);
+        router.get('/seminars-courses/all/:studentId', controller.getByStudentId);
+        router.get('/seminars-courses/:id', controller.getById);
+        router.delete('/seminars-courses/:id', controller.delete);
 
         return router;
     }

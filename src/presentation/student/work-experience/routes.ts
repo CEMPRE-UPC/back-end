@@ -18,7 +18,9 @@ export class WorkExperienceRouter {
 
         router.post('/work-experience', controller.register);
         router.patch('/work-experience/:id', controller.update);
-        router.get('/work-experience/:studentId', controller.getWorkExperiencesByStudentId);
+        router.get('/work-experience/all/:studentId', controller.getByStudentId);
+        router.get('/work-experience/:id', controller.getById);
+        router.delete('/work-experience/:id', controller.delete);
 
 
         return  router;

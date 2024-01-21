@@ -11,4 +11,6 @@ export interface IAuthDataSource {
 
     getUserByEmail( email: string ): Promise<UserEntity|null>
 
+    activateAccount( id: number ): Promise<UserEntity|null>
+
 }

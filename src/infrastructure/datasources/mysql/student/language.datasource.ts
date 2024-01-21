@@ -87,5 +87,60 @@ export class LanguageDataSource implements ILanguageDataSource {
             throw CustomError.internalServer();
         }
     }
+
+    async getLanguageByName(studentId: string, name: string): Promise<LanguageEntity | null> {
+        try {
+            
+            const language = await LanguageModel.findOne({ where: { studentId, name } });
+
+            if (!language) return null;
+
+            return LanguageMapper.languageEntityFromObject(language);
+
+        } catch (error) {
+            
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
+    async getById(id: string): Promise<LanguageEntity | null> {
+        try {
+            
+            const language = await LanguageModel.findByPk(id);
+
+            if (!language) return null;
+
+            return LanguageMapper.languageEntityFromObject(language);
+
+        } catch (error) {
+            
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const language = await LanguageModel.destroy({ where: { id } });
+
+            return language === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
     
 }

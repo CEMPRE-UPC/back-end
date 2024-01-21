@@ -16,6 +16,7 @@ export class AreaInterestRouter {
         router.post('/area-interest', controller.register);
         router.patch('/area-interest/:id', controller.update);
         router.get('/area-interest/:studentId', controller.getByStudentId);
+        router.get('/area-interest/:id', controller.delete);
 
         return router;
     }

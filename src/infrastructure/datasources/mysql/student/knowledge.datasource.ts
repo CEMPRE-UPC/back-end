@@ -80,6 +80,23 @@ export class KnowledgeDataSource implements IKnowledgeDataSource {
         }
     }
 
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const knowledge = await KnowledgeModel.destroy({ where: { id } });
+
+            return knowledge === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
 
 
 

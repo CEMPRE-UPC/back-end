@@ -9,4 +9,9 @@ export interface IProjectsRepository {
     update(optProjectsDto: OptionalProjectsDto): Promise<boolean>
 
     getByStudentId(studentId: string): Promise<ProjectsEntity[] | null>
+
+    getById(id: string): Promise<ProjectsEntity | null>
+
+    delete(id: string): Promise<boolean>
+
 }

@@ -17,13 +17,19 @@ class AreaInterestModel extends Model {
 AreaInterestModel.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            autoIncrement: true,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
         description: {
-            type: DataTypes.STRING
-        },
+            type: DataTypes.STRING,
+            get: function() {
+                return this.getDataValue('description').split(',')
+            },
+            set: function(val: string[]) {
+                this.setDataValue('description', val.join(','))
+            }
+        }
     },
     {
         sequelize, 
@@ -34,6 +40,5 @@ AreaInterestModel.init(
 
 StudentModel.hasOne(AreaInterestModel, { foreignKey: { name: 'studentId' }  });
 AreaInterestModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' }  });
-
 
 export { AreaInterestModel };  

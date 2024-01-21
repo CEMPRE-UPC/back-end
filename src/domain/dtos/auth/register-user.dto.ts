@@ -11,7 +11,7 @@ export class RegisterUserDto {
     ){}
 
     static create(body: {[key: string]: any }): [string?, RegisterUserDto?] {
-        const { email, password, isActive = true, role } = body;
+        const { email, password, isActive = false, role } = body;
 
         if (!email) return ['El correo es requerido'];
         if (!Validators.emailPattern.test(email)) return ['El correo no es valido'];
@@ -21,6 +21,9 @@ export class RegisterUserDto {
         if (password.length < 6) return ['La contraseña debe tener al menos 6 caracteres'];
         if (!role) return ['El rol es requerido'];
         if (isActive === undefined) return ['El estado es requerido'];
+
+        console.log(isActive);
+        
 
 
         return [undefined, new RegisterUserDto(email, password, isActive, role)];

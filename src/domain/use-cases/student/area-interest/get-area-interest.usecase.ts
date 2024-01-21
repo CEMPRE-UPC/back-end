@@ -3,7 +3,7 @@ import { IAreaInterestRepository } from '../../../repositories';
 
 
 interface IAreaInterest {
-    execute( studentId: string): Promise<AreaInterestEntity[] | null>
+    execute( studentId: string): Promise<AreaInterestEntity | null>
 }
 
 export class GetAreaInterestUseCase implements IAreaInterest {
@@ -12,7 +12,7 @@ export class GetAreaInterestUseCase implements IAreaInterest {
         private readonly areaInterest: IAreaInterestRepository
     ) {}
 
-    async execute(studentId: string): Promise<AreaInterestEntity[] | null> {
+    async execute(studentId: string): Promise<AreaInterestEntity | null> {
 
         if(!studentId) {
             throw new Error('Student id must be provided');

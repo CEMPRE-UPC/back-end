@@ -9,4 +9,11 @@ export interface ILanguageRepository {
     update(optLanguageDto: OptionalLanguageDto): Promise<boolean>
 
     getByIdStudent(studentId: string): Promise<LanguageEntity[] | null>
+
+    getLanguageByName(studentId: string, name: string): Promise<LanguageEntity | null>
+
+    getById(id: string): Promise<LanguageEntity | null>
+
+    delete(id: string): Promise<boolean>
+
 }

@@ -87,4 +87,41 @@ export class SeminarsOrCoursesDataSource implements ISeminarsOrCoursesDataSource
 
     }
 
+    async getById(id: string): Promise<SeminarsOrCoursesEntity | null> {
+            
+            try {
+    
+                const seminarOrCourse = await SeminarsOrCoursesModel.findByPk( id );
+    
+                if(!seminarOrCourse) return null;
+    
+                return SeminarsOrCoursesMapper.seminarsOrCoursesEntityFromObject(seminarOrCourse.toJSON());
+    
+            } catch (error) {
+    
+                if(error instanceof CustomError) {
+                    throw error;
+                }
+                console.log(error);
+                throw CustomError.internalServer();
+            }
+    }
+
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const seminarOrCourse = await SeminarsOrCoursesModel.destroy({ where: { id } });
+
+            return seminarOrCourse === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
 }

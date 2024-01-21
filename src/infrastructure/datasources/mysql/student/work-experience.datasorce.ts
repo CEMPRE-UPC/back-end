@@ -93,4 +93,45 @@ export class WorkExperienceDataSource implements IWorkExperienceDataSource {
         }
     }
 
+    async getById(id: string): Promise<WorkExperienceEntity | null> {
+            
+            try {
+                
+                const workExperience = await WorkExperienceModel.findByPk( id );
+    
+                if(!workExperience) {
+                    return null;
+                }
+    
+                return WorkExperienceMapper.workExperienceEntityFromObject(workExperience);
+    
+            } catch (error) {
+    
+                if(error instanceof CustomError) {
+                    throw error;
+                }
+                console.log(error);
+                throw CustomError.internalServer();
+                
+            }
+    }
+
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const workExperience = await WorkExperienceModel.destroy({ where: { id } });
+
+            return workExperience === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+            
+        }
+    }
+
 }

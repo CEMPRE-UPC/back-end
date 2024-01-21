@@ -21,4 +21,10 @@ export class ProjectsRepository implements IProjectsRepository {
 
         return this.projectsDatasource.getByStudentId(studentId);
     }
+    getById(id: string): Promise<ProjectsEntity | null> {
+        return this.projectsDatasource.getById(id);
+    }
+    delete(id: string): Promise<boolean> {
+        return this.projectsDatasource.delete(id);
+    }
 }

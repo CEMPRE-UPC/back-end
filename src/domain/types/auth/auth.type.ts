@@ -12,3 +12,4 @@ export type UserToken = {
 
 export type SignToken = (payload: Object, duration?: string) => Promise<string | null>;
 export type VerifyToken = <T>(token: string) => Promise<T | null>;
+export type SendVerificationEmail = (email: string, token: string) => Promise<void>

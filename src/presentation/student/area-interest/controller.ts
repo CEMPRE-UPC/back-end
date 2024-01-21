@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { AreaInterestDto, IAreaInterestRepository, OptionalAreaInterestDto } from '../../../domain';
-import { RegisterUseCase, UpdateUseCase, GetAreaInterestUseCase } from '../../../domain/use-cases/student/area-interest';
+import { RegisterUseCase, UpdateUseCase, GetAreaInterestUseCase, DeleteUseCase } from '../../../domain/use-cases/student/area-interest';
 import { handleError } from '../../helpers';
 
 
@@ -40,6 +40,15 @@ export class AreaInterestController {
 
         new GetAreaInterestUseCase(this.areaInterestRepository).execute(studentId)
             .then( areaInterest => res.status(200).json(areaInterest) )
+            .catch( error => handleError(error, res) );
+    }
+
+    delete = (req: Request, res: Response) => {
+
+        const { id } = req.params;
+
+        new DeleteUseCase(this.areaInterestRepository).execute(id)
+            .then( deleted => res.status(200).json(deleted) )
             .catch( error => handleError(error, res) );
     }
 }

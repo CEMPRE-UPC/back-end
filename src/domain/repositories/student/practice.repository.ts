@@ -7,5 +7,6 @@ export interface IPracticeRepository {
 
     getAllPractices(): Promise<PracticeEntity[] | null>;
 
+    delete(id: string): Promise<boolean>
 
 }

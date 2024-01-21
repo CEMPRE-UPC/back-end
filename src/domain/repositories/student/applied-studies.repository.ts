@@ -9,4 +9,8 @@ export interface IAppliedStudiesRepository {
 
     getByIdStudent(studentId: string): Promise<AppliedStudiesEntity[] | null>
 
+    getById(id: string): Promise<AppliedStudiesEntity | null>
+
+    delete(id: string): Promise<boolean>
+
 }

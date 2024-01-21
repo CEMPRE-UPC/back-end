@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IUniversityStudiesRepository, OptionalUniversityStudiesDto, UniversityStudiesDto } from '../../../domain';
-import { RegisterUseCase, UpdateUseCase, GetByStudentIdUseCase } from '../../../domain/use-cases/student/university-studies';
+import { RegisterUseCase, UpdateUseCase, GetByStudentIdUseCase, DeleteUseCase } from '../../../domain/use-cases/student/university-studies';
 import { handleError } from '../../helpers';
 
 
@@ -39,6 +39,15 @@ export class UniversityStudiesController {
 
         new GetByStudentIdUseCase( this.universityStudiesRepository ).execute( studentId )
         .then( universityStudies => res.status( 200 ).json( universityStudies ) )
+        .catch( error => handleError( error, res ) );
+    }
+
+    delete = (req: Request, res: Response) => {
+
+        const { id } = req.params;
+
+        new DeleteUseCase( this.universityStudiesRepository ).execute( id )
+        .then( deleted => res.status( 200 ).json( deleted ) )
         .catch( error => handleError( error, res ) );
     }
 }

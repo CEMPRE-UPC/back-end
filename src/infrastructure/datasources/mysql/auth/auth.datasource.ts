@@ -77,6 +77,31 @@ export class AuthDataSource implements IAuthDataSource {
         }
     }
 
+    async activateAccount(id: number): Promise<UserEntity> {
+            
+            try {
+    
+                const user = await UserModel.findByPk(id);
+                console.log(user);
+                
+                if(!user) throw CustomError.notFound('User not found');
+    
+                user.isActive = true;
+                await user.save();
+    
+                return UserMapper.userEntityFromObject(user.toJSON());
+                
+            } catch (error) {
+                
+                if(error instanceof CustomError) {
+                    throw error;
+                }
+                console.log(error);
+                throw CustomError.internalServer();
+                
+            }
+    }
+
     getUserById(id: number): Promise<UserEntity|null> {
        
         return new Promise( async (resolve) => {

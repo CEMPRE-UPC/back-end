@@ -11,4 +11,8 @@ export interface IWorkExperienceDataSource {
 
     getByIdStudent(studentId: string): Promise<WorkExperienceEntity[] | null>
 
+    getById(id: string): Promise<WorkExperienceEntity | null>
+
+    delete(id: string): Promise<boolean>
+
 }

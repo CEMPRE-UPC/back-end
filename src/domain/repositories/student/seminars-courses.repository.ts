@@ -10,4 +10,9 @@ export interface ISeminarsOrCoursesRepository {
     update(optSeminarOrCourses: OptionalSeminarsOrCoursesDto): Promise<boolean>;
 
     getByIdStudent(idStudent: string): Promise<SeminarsOrCoursesEntity[] | null>;
+
+    getById(id: string): Promise<SeminarsOrCoursesEntity | null>;
+
+    delete(id: string): Promise<boolean>
+
 }

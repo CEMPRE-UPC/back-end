@@ -45,4 +45,21 @@ export class PracticeDataSource implements IPracticeDataSource {
         }
     }
 
+    async delete(id: string): Promise<boolean> {
+        try {
+
+            const practice = await PracticeModel.destroy({ where: { id } });
+
+            return practice === 1;
+
+        } catch (error) {
+
+            if(error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+        }
+    }
+
 }

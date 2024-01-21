@@ -10,4 +10,7 @@ export interface IUniversityStudiesDataSource {
 
     getByIdStudent(studentId: string): Promise<UniversityStudiesEntity | null>
 
+    delete(id: string): Promise<boolean>
+
+
 }

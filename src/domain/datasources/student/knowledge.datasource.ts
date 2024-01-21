@@ -9,4 +9,7 @@ export interface IKnowledgeDataSource {
     update(optKnowledgeDto: OptionalKnowledgeDto): Promise<boolean>
 
     getByStudentId(studentId: string): Promise<KnowledgeEntity | null>
+
+    delete(id: string): Promise<boolean>
+
 }

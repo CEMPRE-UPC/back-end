@@ -20,4 +20,7 @@ export class KnowledgeRepository implements IKnowledgeRepository {
 
         return this.knowledgeDatasource.getByStudentId(studentId);
     }
+    delete(id: string): Promise<boolean> {
+        return this.knowledgeDatasource.delete(id);
+    }
 }

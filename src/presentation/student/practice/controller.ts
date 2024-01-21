@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IPracticeRepository } from '../../../domain';
-import { GetAllPracticesUseCase, GetPracticeByIdUseCase } from '../../../domain/use-cases/student/practice';
+import { GetAllPracticesUseCase, GetPracticeByIdUseCase, DeleteUseCase } from '../../../domain/use-cases/student/practice';
 import { handleError } from '../../helpers';
 
 
@@ -25,5 +25,14 @@ export class PracticeController {
         new GetAllPracticesUseCase( this.practiceRepository ).execute()
             .then( practice => res.json( practice ) )
             .catch( error => handleError( error, res ) );
+    }
+
+    delete = (req: Request, res: Response) => {
+        
+        const { id } = req.params;
+
+        new DeleteUseCase( this.practiceRepository ).execute(id)
+        .then( practice => res.json( practice ) )
+        .catch( error => handleError( error, res ) );
     }
 }

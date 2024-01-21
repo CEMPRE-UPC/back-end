@@ -11,4 +11,6 @@ export interface IAuthRepository {
 
     getUserByEmail( email: string ): Promise<UserEntity|null>
 
+    activateAccount( id: number ): Promise<UserEntity|null>
+
 }
