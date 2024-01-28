@@ -1,10 +1,10 @@
-import nodemailer from 'nodemailer';
+import nodemailer, { SentMessageInfo } from 'nodemailer';
 import { envs } from '../envs';
 
 const { EMAIL_USER, EMAIL_PASSWORD } = envs;
 
 export class MailAdapter {
-    static async sendVerificationEmail(email: string, token: string): Promise<void> {
+    static async sendVerificationEmail(email: string, token: string): Promise<SentMessageInfo> {
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 587,
@@ -31,12 +31,6 @@ export class MailAdapter {
             `
         };
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error({ error });
-            } else {
-                console.log('Correo enviado: ' + info.response);
-            }
-        });
+        return transporter.sendMail(mailOptions);
     }
 }

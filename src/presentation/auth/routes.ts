@@ -4,6 +4,7 @@ import { AuthRepository, RoleRepository } from '../../infrastructure/repositorie
 import { AuthDataSource } from '../../infrastructure/datasources/mysql/auth/auth.datasource';
 import { RoleMiddleware } from '../middlewares/role.middleware';
 import { RoleDataSouce } from '../../infrastructure/datasources/mysql/auth/role.datasource';
+import { AuthMiddleware } from '../middlewares';
 
 
 export class AuthRoutes {
@@ -19,10 +20,11 @@ export class AuthRoutes {
 
         // Middlewares
         const roleMiddleware = new RoleMiddleware(new RoleRepository( new RoleDataSouce()));
+        const authMiddleware = new AuthMiddleware( repository );
 
         router.post('/login', controller.login);
 
-        router.post('/register',roleMiddleware.validateRole, controller.register)
+        router.post('/register',roleMiddleware.validateRole, authMiddleware.existUser, controller.register)
 
         router.get('/activate-account', controller.activateAccount)
 

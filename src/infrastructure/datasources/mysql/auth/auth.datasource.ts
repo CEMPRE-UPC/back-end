@@ -1,11 +1,20 @@
 import { BcryptAdapter } from '../../../../config/adapters/bcrypt';
-import { UserModel } from '../../../../data/mysqldb';
+import { MysqlDatabase, UserModel } from '../../../../data/mysqldb';
 import { IAuthDataSource, CustomError, RegisterUserDto, UserEntity, LoginUserDto } from '../../../../domain';
 import { UserMapper } from '../../../mappers';
+import { JwtAdapter, MailAdapter, envs } from '../../../../config';
+import { env } from 'process';
+import { Transaction } from 'sequelize';
 
 
 type HashFunction = (password: string) => string;
 type CompareFunction = (password: string, hash: string) => boolean;
+
+const sequelize = MysqlDatabase.initialize({
+    mysqlUrl: envs.MYSQL_URL,
+    database: envs.MYSQL_DB_NAME
+})
+
 
 export class AuthDataSource implements IAuthDataSource {
     
@@ -43,37 +52,47 @@ export class AuthDataSource implements IAuthDataSource {
     }
     
     async register(registerUserDto: RegisterUserDto): Promise<UserEntity> {
-
         const { email, password, isActive, role } = registerUserDto;
+    
+        const t = await sequelize.transaction();
         
         try {
-            
-            const exist = await UserModel.findOne({ where: { email } })
-
+            const exist = await UserModel.findOne({ where: { email }, transaction: t });
+    
             if( exist ) throw CustomError.badRequest('Email already exists');
-
+    
             const user = UserModel.build({
                 email,
                 password: this.hashFunction(password),
                 isActive,
                 roleId: role.id
             });
-
-            await user.save();
-            
-            return UserMapper.userEntityFromObject({
-                ...user.toJSON(),
-                role
-            });
-
+    
+            await user.save({ transaction: t });
+            await this.sendEmailVerification(user, t);
+            await t.commit();
+    
+            return UserMapper.userEntityFromObject(user.toJSON());
         } catch (error) {
-            
+            await t.rollback();
             if(error instanceof CustomError) {
                 throw error;
             }
             console.log(error);
             throw CustomError.internalServer();
-            
+        }
+    }
+    
+    private async sendEmailVerification(user: UserModel, t: Transaction): Promise<void> {
+        const token = await JwtAdapter.generateToken({ id: user.id }, '12h');
+        if (!token) throw CustomError.internalServer('Error generating token activation');
+    
+        try {
+            await MailAdapter.sendVerificationEmail(user.email, token);
+        } catch (error) {
+            console.log(error);
+            await t.rollback();
+            throw CustomError.badRequest('Error sending email verification');
         }
     }
 

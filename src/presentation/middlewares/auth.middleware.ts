@@ -49,4 +49,13 @@ export class AuthMiddleware {
     next();
   }
 
+  existUser = async (req: Request, res: Response, next: NextFunction) => {
+    const { email } = req.body;
+
+    const user = await this.authRepository.getUserByEmail(email);
+    if (user) return res.status(404).json({ error: 'User already exist', exist: true});
+
+    next();
+  }
+
 }
