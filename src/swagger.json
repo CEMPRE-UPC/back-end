@@ -43,7 +43,7 @@
       "description": "Conocimientos del estudiante"
     },
     {
-      "name":  "students (area interest)",
+      "name": "students (area interest)",
       "description": "Areas de interes del estudiante"
     },
     {
@@ -57,6 +57,10 @@
     {
       "name": "upload",
       "description": "Manejo de archivos en la aplicacion"
+    },
+    {
+      "name": "company",
+      "description": "Empresas registradas en la aplicacion"
     },
     {
       "name": "guiaded-registration",
@@ -148,8 +152,8 @@
         }
       }
     },
-    "/api/student/personal-data/{cedula}":{
-      "patch":{
+    "/api/student/personal-data/{cedula}": {
+      "patch": {
         "tags": [
           "students (personal data)"
         ],
@@ -181,8 +185,8 @@
         }
       }
     },
-    "/api/student/personal-data/{id}":{
-      "get":{
+    "/api/student/personal-data/{id}": {
+      "get": {
         "tags": [
           "students (personal data)"
         ],
@@ -204,7 +208,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (personal data)"
         ],
@@ -227,8 +231,8 @@
         }
       }
     },
-    "/api/student/practice":{
-      "get":{
+    "/api/student/practice": {
+      "get": {
         "tags": [
           "students (practice modality)"
         ],
@@ -259,10 +263,9 @@
           "200": {
             "description": "Practicas consultada con exito"
           }
-        
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (practice modality)"
         ],
@@ -286,7 +289,7 @@
       }
     },
     "/api/student/work-experience": {
-      "post":{
+      "post": {
         "tags": [
           "students (work experience)"
         ],
@@ -339,7 +342,7 @@
           }
         }
       },
-      "get":{
+      "get": {
         "tags": [
           "students (work experience)"
         ],
@@ -361,7 +364,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (work experience)"
         ],
@@ -383,7 +386,6 @@
           }
         }
       }
-      
     },
     "/api/student/work-experience/all/{studentId}": {
       "get": {
@@ -409,7 +411,7 @@
         }
       }
     },
-    "/api/student/university-studies":{
+    "/api/student/university-studies": {
       "post": {
         "tags": [
           "students (university studies)"
@@ -431,7 +433,7 @@
         }
       }
     },
-    "/api/student/university-studies/{id}":{
+    "/api/student/university-studies/{id}": {
       "patch": {
         "tags": [
           "students (university studies)"
@@ -463,7 +465,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (university studies)"
         ],
@@ -486,7 +488,7 @@
         }
       }
     },
-    "/api/student/university-studies/{studentId}":{
+    "/api/student/university-studies/{studentId}": {
       "get": {
         "tags": [
           "students (university studies)"
@@ -510,7 +512,7 @@
         }
       }
     },
-    "/api/student/language":{
+    "/api/student/language": {
       "post": {
         "tags": [
           "students (language)"
@@ -532,7 +534,7 @@
         }
       }
     },
-    "/api/student/language/{id}":{
+    "/api/student/language/{id}": {
       "patch": {
         "tags": [
           "students (language)"
@@ -564,7 +566,7 @@
           }
         }
       },
-      "get":{
+      "get": {
         "tags": [
           "students (language)"
         ],
@@ -586,7 +588,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (language)"
         ],
@@ -609,7 +611,7 @@
         }
       }
     },
-    "/api/student/language/all/{studentId}":{
+    "/api/student/language/all/{studentId}": {
       "get": {
         "tags": [
           "students (language)"
@@ -633,7 +635,7 @@
         }
       }
     },
-    "/api/student/applied-studies":{
+    "/api/student/applied-studies": {
       "post": {
         "tags": [
           "students (applied studies)"
@@ -655,7 +657,7 @@
         }
       }
     },
-    "/api/student/applied-studies/{id}":{
+    "/api/student/applied-studies/{id}": {
       "patch": {
         "tags": [
           "students (applied studies)"
@@ -687,7 +689,7 @@
           }
         }
       },
-      "get":{
+      "get": {
         "tags": [
           "students (applied studies)"
         ],
@@ -709,7 +711,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (applied studies)"
         ],
@@ -732,7 +734,7 @@
         }
       }
     },
-    "/api/student/applied-studies/all/{studentId}":{
+    "/api/student/applied-studies/all/{studentId}": {
       "get": {
         "tags": [
           "students (applied studies)"
@@ -756,7 +758,7 @@
         }
       }
     },
-    "/api/student/projects":{
+    "/api/student/projects": {
       "post": {
         "tags": [
           "students (projects)"
@@ -778,7 +780,7 @@
         }
       }
     },
-    "/api/student/projects/{id}":{
+    "/api/student/projects/{id}": {
       "patch": {
         "tags": [
           "students (projects)"
@@ -810,7 +812,7 @@
           }
         }
       },
-      "get":{
+      "get": {
         "tags": [
           "students (projects)"
         ],
@@ -832,7 +834,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (projects)"
         ],
@@ -855,7 +857,7 @@
         }
       }
     },
-    "/api/student/projects/all/{studentId}":{
+    "/api/student/projects/all/{studentId}": {
       "get": {
         "tags": [
           "students (projects)"
@@ -879,7 +881,7 @@
         }
       }
     },
-    "/api/student/seminars-courses":{
+    "/api/student/seminars-courses": {
       "post": {
         "tags": [
           "students (seminars or courses)"
@@ -901,7 +903,7 @@
         }
       }
     },
-    "/api/student/seminars-courses/{id}":{
+    "/api/student/seminars-courses/{id}": {
       "patch": {
         "tags": [
           "students (seminars or courses)"
@@ -933,7 +935,7 @@
           }
         }
       },
-      "get":{
+      "get": {
         "tags": [
           "students (seminars or courses)"
         ],
@@ -955,7 +957,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (seminars or courses)"
         ],
@@ -978,7 +980,7 @@
         }
       }
     },
-    "/api/student/seminars-courses/all/{studentId}":{
+    "/api/student/seminars-courses/all/{studentId}": {
       "get": {
         "tags": [
           "students (seminars or courses)"
@@ -1002,7 +1004,7 @@
         }
       }
     },
-    "/api/student/knowledge":{
+    "/api/student/knowledge": {
       "post": {
         "tags": [
           "students (knowledge)"
@@ -1024,7 +1026,7 @@
         }
       }
     },
-    "/api/student/knowledge/{id}":{
+    "/api/student/knowledge/{id}": {
       "patch": {
         "tags": [
           "students (knowledge)"
@@ -1056,7 +1058,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (knowledge)"
         ],
@@ -1079,7 +1081,7 @@
         }
       }
     },
-    "/api/student/knowledge/{studentId}":{
+    "/api/student/knowledge/{studentId}": {
       "get": {
         "tags": [
           "students (knowledge)"
@@ -1103,7 +1105,7 @@
         }
       }
     },
-    "/api/student/area-interest":{
+    "/api/student/area-interest": {
       "post": {
         "tags": [
           "students (area interest)"
@@ -1125,7 +1127,7 @@
         }
       }
     },
-    "/api/student/area-interest/{id}":{
+    "/api/student/area-interest/{id}": {
       "patch": {
         "tags": [
           "students (area interest)"
@@ -1157,7 +1159,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "students (area interest)"
         ],
@@ -1180,7 +1182,7 @@
         }
       }
     },
-    "/api/student/area-interest/{studentId}":{
+    "/api/student/area-interest/{studentId}": {
       "get": {
         "tags": [
           "students (area interest)"
@@ -1323,6 +1325,116 @@
         }
       }
     },
+    "/api/company": {
+      "post": {
+        "tags": [
+          "company"
+        ],
+        "description": "Crea una empresa",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/post-company"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Empresa creada con exito"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "company"
+        ],
+        "description": "Consulta todas las empresas",
+        "responses": {
+          "200": {
+            "description": "Empresas consultadas con exito"
+          }
+        }
+      }
+    },
+    "/api/company/{id}": {
+      "get": {
+        "tags": [
+          "company"
+        ],
+        "description": "Consulta una empresa",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la empresa",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empresa consultada con exito"
+          }
+        }
+      },
+      "delete":{
+        "tags": [
+          "company"
+        ],
+        "description": "Elimina una empresa",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la empresa",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empresa eliminada con exito"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "company"
+        ],
+        "description": "Actualiza una empresa",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la empresa",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/update-company"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Empresa actualizada con exito"
+          }
+        }
+      }
+    },
     "/api/student/guiaded-registration": {
       "post": {
         "tags": [
@@ -1368,7 +1480,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "guiaded-registration"
         ],
@@ -1392,7 +1504,6 @@
       }
     }
   },
- 
   "components": {
     "securitySchemes": {
       "bearerAuth": {
@@ -1402,7 +1513,7 @@
       }
     },
     "schemas": {
-      "post-language":{
+      "post-language": {
         "type": "object",
         "required": [
           "name",
@@ -1413,12 +1524,24 @@
           "studentId"
         ],
         "properties": {
-          "name": { "type": "string" },
-          "readingLevel": { "type": "string" },
-          "listeningLevel": { "type": "string" },
-          "speakingLevel": { "type": "string" },
-          "writingLevel": { "type": "string" },
-          "studentId": { "type": "string" }
+          "name": {
+            "type": "string"
+          },
+          "readingLevel": {
+            "type": "string"
+          },
+          "listeningLevel": {
+            "type": "string"
+          },
+          "speakingLevel": {
+            "type": "string"
+          },
+          "writingLevel": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
       "update-language": {
@@ -1427,15 +1550,27 @@
           "studentId"
         ],
         "properties": {
-          "name": { "type": "string" },
-          "readingLevel": { "type": "string" },
-          "listeningLevel": { "type": "string" },
-          "speakingLevel": { "type": "string" },
-          "writingLevel": { "type": "string" },
-          "studentId": { "type": "string" }
+          "name": {
+            "type": "string"
+          },
+          "readingLevel": {
+            "type": "string"
+          },
+          "listeningLevel": {
+            "type": "string"
+          },
+          "speakingLevel": {
+            "type": "string"
+          },
+          "writingLevel": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "post-university-studies":{
+      "post-university-studies": {
         "type": "object",
         "required": [
           "institution",
@@ -1444,25 +1579,41 @@
           "studentId"
         ],
         "properties": {
-          "institution": { "type": "string" },
-          "program": { "type": "string" },
-          "semester": { "type": "string" },
-          "studentId": { "type": "string" }
+          "institution": {
+            "type": "string"
+          },
+          "program": {
+            "type": "string"
+          },
+          "semester": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "update-university-studies":{
+      "update-university-studies": {
         "type": "object",
         "required": [
           "studentId"
         ],
         "properties": {
-          "institution": { "type": "string" },
-          "program": { "type": "string" },
-          "semester": { "type": "string" },
-          "studentId": { "type": "string" }
+          "institution": {
+            "type": "string"
+          },
+          "program": {
+            "type": "string"
+          },
+          "semester": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "post-work-experience":{ 
+      "post-work-experience": {
         "type": "object",
         "required": [
           "company",
@@ -1476,28 +1627,50 @@
           "company": {
             "type": "string"
           },
-          "position": { "type": "string" },
-          "functions": { "type": "string" },
-          "startDate": { "type": "string" },
-          "endDate": { "type": "string" },
-          "studentId": { "type": "string" }
+          "position": {
+            "type": "string"
+          },
+          "functions": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "update-work-experience":{ 
+      "update-work-experience": {
         "type": "object",
         "required": [
           "studentId"
         ],
         "properties": {
-          "company": { "type": "string" },
-          "position": { "type": "string" },
-          "functions": { "type": "string" },
-          "startDate": { "type": "string" },
-          "endDate": { "type": "string" },
-          "studentId": { "type": "string" }
+          "company": {
+            "type": "string"
+          },
+          "position": {
+            "type": "string"
+          },
+          "functions": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "post-applied-studies":{
+      "post-applied-studies": {
         "type": "object",
         "required": [
           "level",
@@ -1507,27 +1680,47 @@
           "studentId"
         ],
         "properties": {
-          "level": { "type": "string" },
-          "institution": { "type": "string" },
-          "collegeDegree": { "type": "string" },
-          "date": { "type": "string" },
-          "studentId": { "type": "string" }
+          "level": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "collegeDegree": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "update-applied-studies":{
+      "update-applied-studies": {
         "type": "object",
         "required": [
           "studentId"
         ],
         "properties": {
-          "level": { "type": "string" },
-          "institution": { "type": "string" },
-          "collegeDegree": { "type": "string" },
-          "date": { "type": "string" },
-          "studentId": { "type": "string" }
+          "level": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "collegeDegree": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "post-projects":{
+      "post-projects": {
         "type": "object",
         "required": [
           "description",
@@ -1535,23 +1728,35 @@
           "studentId"
         ],
         "properties": {
-          "description": { "type": "string" },
-          "date": { "type": "string" },
-          "studentId": { "type": "string" }
+          "description": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "update-projects":{
+      "update-projects": {
         "type": "object",
         "required": [
           "studentId"
         ],
         "properties": {
-          "description": { "type": "string" },
-          "date": { "type": "string" },
-          "studentId": { "type": "string" }
+          "description": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "post-seminars-courses":{
+      "post- -courses": {
         "type": "object",
         "required": [
           "topic",
@@ -1560,76 +1765,108 @@
           "studentId"
         ],
         "properties": {
-          "topic": { "type": "string" },
-          "institution": { "type": "string" },
-          "date": { "type": "string" },
-          "studentId": { "type": "string" }
+          "topic": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "update-seminars-courses":{
+      "update-seminars-courses": {
         "type": "object",
         "required": [
           "studentId"
         ],
         "properties": {
-          "topic": { "type": "string" },
-          "institution": { "type": "string" },
-          "date": { "type": "string" },
-          "studentId": { "type": "string" }
+          "topic": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "post-knowledge":{
+      "post-knowledge": {
         "type": "object",
         "required": [
           "description",
           "studentId"
         ],
         "properties": {
-          "description": { 
+          "description": {
             "type": "array",
-            "items": { "type": "string" } 
+            "items": {
+              "type": "string"
+            }
           },
-          "studentId": { "type": "string" }
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "update-knowledge":{
+      "update-knowledge": {
         "type": "object",
         "required": [
           "studentId"
         ],
         "properties": {
-          "description": { 
+          "description": {
             "type": "array",
-            "items": { "type": "string" } 
+            "items": {
+              "type": "string"
+            }
           },
-          "studentId": { "type": "string" }
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "post-area-interest":{
+      "post-area-interest": {
         "type": "object",
         "required": [
           "description",
           "studentId"
         ],
         "properties": {
-          "description": { 
+          "description": {
             "type": "array",
-            "items": { "type": "string" } 
+            "items": {
+              "type": "string"
+            }
           },
-          "studentId": { "type": "string" }
+          "studentId": {
+            "type": "string"
+          }
         }
       },
-      "update-area-interest":{
+      "update-area-interest": {
         "type": "object",
         "required": [
           "studentId"
         ],
         "properties": {
-          "description": { 
+          "description": {
             "type": "array",
-            "items": { "type": "string" } 
+            "items": {
+              "type": "string"
+            }
           },
-          "studentId": { "type": "string" }
+          "studentId": {
+            "type": "string"
+          }
         }
       },
       "upload": {
@@ -1642,11 +1879,22 @@
           "typeFile"
         ],
         "properties": {
-          "file": { "type": "string", "format": "binary" },
-          "studentId": { "type": "string" },
-          "cedula": { "type": "string" },
-          "table": { "type": "string" },
-          "typeFile": { "type": "string" }
+          "file": {
+            "type": "string",
+            "format": "binary"
+          },
+          "studentId": {
+            "type": "string"
+          },
+          "cedula": {
+            "type": "string"
+          },
+          "table": {
+            "type": "string"
+          },
+          "typeFile": {
+            "type": "string"
+          }
         }
       },
       "auth": {
@@ -1656,8 +1904,12 @@
           "password"
         ],
         "properties": {
-          "email": { "type": "string" },
-          "password": { "type": "string" }
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
         }
       },
       "post-student": {
@@ -1678,51 +1930,139 @@
           "userId"
         ],
         "properties": {
-          "cedula": { "type": "string" },
-          "firstName": { "type": "string" }, 
-          "secondName": { "type": "string" },
-          "lastName": { "type": "string" },                
-          "middleName": { "type": "string" },
-          "birthDate": { "type": "string" },
-          "placeOfBirth": { "type": "string" },
-          "martialStatus": { "type": "string" },
-          "address": { "type": "string" },
-          "phone": { "type": "string" },
-          "eps": { "type": "string" },
-          "email": { "type": "string" },
-          "city": { "type": "string" },
-          "userId": { "type": "string" },
-          "practiceId": { "type": "string" }
+          "cedula": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "secondName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string"
+          },
+          "placeOfBirth": {
+            "type": "string"
+          },
+          "martialStatus": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "eps": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "practiceId": {
+            "type": "string"
+          }
         }
       },
-      "update-student":{
+      "update-student": {
         "type": "object",
         "properties": {
-          "firstName": { "type": "string" }, 
-          "secondName": { "type": "string" },
-          "lastName": { "type": "string" },                
-          "middleName": { "type": "string" },
-          "birthDate": { "type": "string" },
-          "placeOfBirth": { "type": "string" },
-          "martialStatus": { "type": "string" },
-          "address": { "type": "string" },
-          "phone": { "type": "string" },
-          "eps": { "type": "string" },
-          "city": { "type": "string" }
+          "firstName": {
+            "type": "string"
+          },
+          "secondName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string"
+          },
+          "placeOfBirth": {
+            "type": "string"
+          },
+          "martialStatus": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "eps": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          }
         }
       },
-      "guiaded-registration":{
+      "post-company": {
+        "type": "object",
+        "required": [
+          "name",
+          "startDate",
+          "endDate"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        }
+      },
+      "update-company": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        }
+      },
+      "guiaded-registration": {
         "type": "object",
         "required": [
           "cedula",
           "studentId"
         ],
         "properties": {
-          "cedula": { "type": "string" },
-          "studentId": { "type": "number" }
+          "cedula": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "number"
+          }
         }
       }
     }
-    
   }
 }
