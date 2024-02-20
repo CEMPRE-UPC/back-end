@@ -12,6 +12,7 @@ import { KnowledgeRouter } from './student/knowledge';
 import { AreaInterestRouter } from './student/area-interest';
 import { SeminarsOrCoursesRouter } from './student/seminars-courses';
 import { GuiadedRegistrationRouter } from './student/guiaded-registration';
+import { CompanyRouter } from './cempre-admin';
 
 export class AppRoutes {
 
@@ -34,6 +35,7 @@ export class AppRoutes {
             SeminarsOrCoursesRouter.routes,
             GuiadedRegistrationRouter.routes
         ]);
+        router.use('/api/company', CompanyRouter.router);
 
         return router;
     } 
