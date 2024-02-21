@@ -13,7 +13,7 @@ class RoleModel extends Model {
     public name!: string;
 }
 
-const DEFAULT_ROLE = 'STUDENT_ROLE';
+const roles = ['STUDENT_ROLE', 'CEMPRE_ADMIN_ROLE'];
 
 RoleModel.init(
     {
@@ -24,7 +24,7 @@ RoleModel.init(
         },
         name: {
             type: DataTypes.STRING,
-            defaultValue: DEFAULT_ROLE,
+            defaultValue: roles[0],
             unique: true,
         },
     },
@@ -36,11 +36,14 @@ RoleModel.init(
 )
 
 RoleModel.afterSync(async () => {
-  const [role, created] = await RoleModel.findOrCreate({
-    where: { name: DEFAULT_ROLE },
-    defaults: { name: DEFAULT_ROLE }
+  roles.forEach(role => {
+    RoleModel.findOrCreate({
+      where: { name: role },
+      defaults: { name: role }
+    }).then(([role, created]) => {
+      console.log(role.get({ plain: true }));
+      console.log(created);
+    });
   });
-  console.log(role.get({ plain: true }));
-  console.log(created);
 });
 export { RoleModel };
