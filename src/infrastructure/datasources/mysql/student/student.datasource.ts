@@ -1,24 +1,24 @@
 import { CustomError, StudentDto, StudentEntity, IStudentDataSource, OptionalStudentDto } from '../../../../domain';
-import { StudentModel } from '../../../../data/mysqldb';
+import { StudentModel, UniversityStudiesModel } from '../../../../data/mysqldb';
 import { SequelizeErrorMapper, StudentMapper } from '../../../mappers';
 import { ValidationError } from 'sequelize';
 
 
 export class StudentDataSource implements IStudentDataSource {
-
-
+    
+    
     async register(stundetDto: StudentDto): Promise<StudentEntity> {
         
         try {
 
             const exist = await StudentModel.findOne({ where: { cedula: stundetDto.cedula } });
-
+            
             if (exist) throw CustomError.badRequest('Cedula already exists');
             
             const student = StudentModel.build(StudentDto.toJSON(stundetDto));
-
+            
             await student.save();
-
+            
             return StudentMapper.studentEntityFromObject(student.toJSON());
 
         } catch (error) {
@@ -36,15 +36,15 @@ export class StudentDataSource implements IStudentDataSource {
             
         }
     }
-
+    
     async update( optStudentDto: OptionalStudentDto ): Promise<boolean> {
-
+        
         const { cedula, ...studentObject} = OptionalStudentDto.toJSON(optStudentDto);
-
+        
         console.log(studentObject);
         
         try {
-
+            
             const affectedCount = await StudentModel.update(studentObject, { where: { cedula } });
 
             return affectedCount.at(0) === 1;
@@ -71,9 +71,9 @@ export class StudentDataSource implements IStudentDataSource {
         try {
             
             const student = await StudentModel.findOne({ where: { userId: id } });
-
+            
             if(!student) return student;
-
+            
             return StudentMapper.studentEntityFromObject(student.toJSON());
 
         } catch (error) {
@@ -97,9 +97,9 @@ export class StudentDataSource implements IStudentDataSource {
             const student = await StudentModel.findOne({ where: { cedula} });
 
             if(!student) return student;
-
+            
             return StudentMapper.studentEntityFromObject(student.toJSON());
-
+            
         } catch (error) {
             
             if (error instanceof CustomError) {
@@ -115,6 +115,29 @@ export class StudentDataSource implements IStudentDataSource {
         }
     }
 
+    async getAllStudents(): Promise<StudentEntity[] | null> {
+        try {
+            const students = await UniversityStudiesModel.findAll({include: 'students'});
+
+            
+            students.forEach(student => {
+                console.log(student.toJSON());
+            });
+
+            if (!students) return students;
+
+            return students.map(student => StudentMapper.studentEntityFromObject(student.toJSON()));
+        } catch (error) {
+
+            if (error instanceof CustomError) {
+                throw error;
+            }
+            console.log(error);
+            throw CustomError.internalServer();
+            
+        }
+    }
+    
     async delete(id: string): Promise<boolean> {
         try {
 
@@ -123,7 +146,7 @@ export class StudentDataSource implements IStudentDataSource {
             return student === 1;
 
         } catch (error) {
-
+            
             if (error instanceof CustomError) {
                 throw error;
             }

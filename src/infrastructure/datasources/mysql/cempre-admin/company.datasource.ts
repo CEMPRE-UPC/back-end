@@ -94,9 +94,6 @@ export class CompanyDataSource implements ICompanyDataSource {
     }
     async getAllCompanies(): Promise<CompanyEntity[] | null> {
 
-        console.log('Getting all companies');
-        
-        
         try {
             
             const companies = await CompanyModel.findAll();

@@ -23,6 +23,10 @@ export class StudentRepository implements IStudentRepository {
         return this.studentDataSource.getStudentByIdUser(id);
     }
 
+    getAllStudents(): Promise<StudentEntity[] | null> {
+        return this.studentDataSource.getAllStudents();
+    }
+
     delete(id: string): Promise<boolean> {
         return this.studentDataSource.delete(id);
     }

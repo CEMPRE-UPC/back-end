@@ -17,6 +17,7 @@ export class StudentEntity {
         public email: string,
         public city: string,
         public userId?: number,
-        public practiceId?: string
+        public practiceId?: string,
+        public program?: string,
     ) {}
 }

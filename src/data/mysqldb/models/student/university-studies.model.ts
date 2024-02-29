@@ -40,7 +40,7 @@ UniversityStudiesModel.init(
     }
 )
 
-StudentModel.hasOne(UniversityStudiesModel, { foreignKey: { name: 'studentId' }  });
-UniversityStudiesModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' }  });
+StudentModel.hasOne(UniversityStudiesModel, { as: 'students', foreignKey: { name: 'studentId' }  });
+UniversityStudiesModel.belongsTo(StudentModel, { as: 'students', foreignKey: { name: 'studentId' }  });
 
 export { UniversityStudiesModel };  
