@@ -19,5 +19,6 @@ export class StudentEntity {
         public userId?: number,
         public practiceId?: string,
         public program?: string,
+        public modality?: string
     ) {}
 }

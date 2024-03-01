@@ -4,12 +4,9 @@ export class StudentMapper {
 
     static studentEntityFromObject(object: { [key: string]: any }) {
 
-        const {
-            program,
-            students
-
-        } = object;
-
+        const { modality } = object?.PracticeModel
+        const program  = object?.UniversityStudiesModel?.program
+        
         const {
             _id,
             id,
@@ -27,8 +24,9 @@ export class StudentMapper {
             email,
             city,
             userId,
-            practiceId
-        } = students;
+            practiceId,
+        } = object;
+
 
         if (!_id && !id) throw CustomError.badRequest('Missing id');
         if (!cedula) throw CustomError.badRequest('Missing cedula');
@@ -43,7 +41,7 @@ export class StudentMapper {
         if (!eps) throw CustomError.badRequest('Missing eps');
         if (!email) throw CustomError.badRequest('Missing email');
         if (!city) throw CustomError.badRequest('Missing city');
-        if (!program) throw CustomError.badRequest('Missing program');
+        if (!modality) throw CustomError.badRequest('Missing modality');
 
 
         return new StudentEntity(
@@ -63,7 +61,8 @@ export class StudentMapper {
             city,
             userId,
             practiceId,
-            program
+            program,
+            modality
         )
     }
 
