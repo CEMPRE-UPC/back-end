@@ -150,12 +150,25 @@
             "description": "Datos personales creados con exito"
           }
         }
-      },
-      "get":{
+      }
+    },
+    "/api/student/personal-data/all/{modality}":{
+      "get": {
         "tags": [
           "students (personal data)"
         ],
-        "description": "Consulta los datos personales del estudiante",
+        "description": "Consulta estudiantes por modalidad de practica",
+        "parameters": [
+          {
+            "name": "modality",
+            "in": "path",
+            "required": true,
+            "description": "Modalidad de practica",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Datos personales consultados con exito"

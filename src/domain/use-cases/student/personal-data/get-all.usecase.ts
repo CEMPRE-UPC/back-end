@@ -1,9 +1,10 @@
 import { StudentEntity } from '../../../entities';
+import { CustomError } from '../../../errors';
 import { IStudentRepository } from '../../../repositories';
 
 
 interface IGetAllStudentsUseCase {
-    execute(): Promise<StudentEntity[] | null>;
+    execute(modality: string): Promise<StudentEntity[] | null>;
 }
 
 export class GetAllStudentsUseCase implements IGetAllStudentsUseCase {
@@ -12,9 +13,11 @@ export class GetAllStudentsUseCase implements IGetAllStudentsUseCase {
         private readonly studentRepository: IStudentRepository
     ) {}
 
-    async execute(): Promise<StudentEntity[] | null> {
+    async execute(modality: string): Promise<StudentEntity[] | null> {
 
-        return await this.studentRepository.getAllStudents();
+        if (!modality) throw CustomError.badRequest('Missing modality');
+        
+        return await this.studentRepository.getAllStudents(modality);
     }
 
 }

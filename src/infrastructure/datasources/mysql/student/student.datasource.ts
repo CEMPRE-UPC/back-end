@@ -115,22 +115,29 @@ export class StudentDataSource implements IStudentDataSource {
         }
     }
 
-    async getAllStudents(): Promise<StudentEntity[] | null> {
+    async getAllStudents(modality: string): Promise<StudentEntity[] | null> {
         try {
+
+            
             const students = await StudentModel.findAll({
-                include: [
-                    {
-                        model: UniversityStudiesModel,
-                        attributes: ['program'],
-                    },
-                    {
-                        model: PracticeModel,
-                        attributes: ['modality'],
-                    },
-                ],
+              include: [
+                {
+                  model: UniversityStudiesModel,
+                  attributes: ['program'],
+                },
+                {
+                    model: PracticeModel,
+                    attributes: ['modality'],
+                    where: { modality }
+                }
+              ],
             });
+            
 
-
+            students.forEach(s => {
+                console.log(s.toJSON());
+                
+            });
             if (!students) return students;
 
             return students.map(student => StudentMapper.studentEntityFromObject(student.toJSON()));

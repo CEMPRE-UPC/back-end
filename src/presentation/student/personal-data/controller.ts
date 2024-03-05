@@ -46,9 +46,10 @@ export class StudentController {
     }
 
     getAllStudents = async(req: Request, res: Response) => {
-        console.log('Siuuu');
         
-        new GetAllStudentsUseCase( this.studentRepository ).execute()
+        const { modality } = req.params;
+        
+        new GetAllStudentsUseCase( this.studentRepository ).execute(modality)
             .then( students => res.json( students ) )
             .catch( error => handleError( error, res ) );
     }
