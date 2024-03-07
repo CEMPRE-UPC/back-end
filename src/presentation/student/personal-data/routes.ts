@@ -21,7 +21,8 @@ export class StudentRouter {
 
         router.post('/personal-data',middleware.existStudent, controller.register);
         router.patch('/personal-data/:cedula',middleware.notfoundStudent, controller.update);
-        router.get('/personal-data/:id', controller.getStudentByIdUser);
+        router.get('/personal-data/:cedula',middleware.notfoundStudent, controller.getStudentByCedula);
+        router.get('/personal-data/user/:id', controller.getStudentByIdUser);
         router.get('/personal-data/all/:modality', controller.getAllStudents);
         // router.get('/personal-data/:id', controller.delete);
 

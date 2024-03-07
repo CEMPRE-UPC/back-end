@@ -3,7 +3,7 @@ import { IStudentRepository } from '../../../repositories';
 
 
 interface IStudentUseCase {
-    execute(id: string): Promise<StudentEntity | null>;
+    execute(term: string): Promise<StudentEntity | null>;
 }
 
 export class GetStudentByIdUseCase implements IStudentUseCase {
@@ -19,4 +19,18 @@ export class GetStudentByIdUseCase implements IStudentUseCase {
         return  await this.studentRepository.getStudentByIdUser(id);
     }
 
+}
+
+export class GetStudentByCedulaUseCase implements IStudentUseCase {
+        
+        constructor(
+            private readonly studentRepository: IStudentRepository
+        ) {}
+        
+        async execute(cedula: string): Promise<StudentEntity | null> {
+    
+            if (!cedula) throw new Error("Cedula is required");
+            
+            return  await this.studentRepository.getStudentByCedula(cedula);
+        }
 }

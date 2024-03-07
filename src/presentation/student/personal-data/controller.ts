@@ -1,7 +1,7 @@
 import { Request, Response,  } from 'express'
 import { IStudentRepository, OptionalStudentDto, RegisterStudentUseCase, StudentDto } from '../../../domain'
 import { handleError } from '../../helpers';
-import { UpdateStudentUseCase, GetStudentByIdUseCase, DeleteUseCase, GetAllStudentsUseCase } from '../../../domain/use-cases';
+import { UpdateStudentUseCase, GetStudentByIdUseCase, GetStudentByCedulaUseCase, DeleteUseCase, GetAllStudentsUseCase } from '../../../domain/use-cases';
 
 export class StudentController {
 
@@ -41,6 +41,14 @@ export class StudentController {
         
         const { id } = req.params;
         new GetStudentByIdUseCase( this.studentRepository ).execute( id )
+            .then( student => res.json( student ) )
+            .catch( error => handleError( error, res ) );
+    }
+
+    getStudentByCedula = async(req: Request, res: Response) => {
+        
+        const { cedula } = req.params;
+        new GetStudentByCedulaUseCase( this.studentRepository ).execute( cedula )
             .then( student => res.json( student ) )
             .catch( error => handleError( error, res ) );
     }
