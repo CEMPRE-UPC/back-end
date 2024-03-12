@@ -13,8 +13,8 @@ export class PracticeApplicationRepository implements IPracticeApplicationReposi
     update(optPracticeApplicationDto: OptionalPracticeApplicationDto): Promise<boolean> {
         throw new Error('Method not implemented.');
     }
-    getByIdStudent(studentId: number): Promise<PracticeApplicationEntity[] | null> {
-        throw new Error('Method not implemented.');
+    getByIdStudent(studentId: number): Promise<PracticeApplicationEntity | null> {
+        return this.practiceApplication.getByIdStudent(studentId);
     }
     getById(id: string): Promise<PracticeApplicationEntity | null> {
         throw new Error('Method not implemented.');

@@ -25,6 +25,10 @@ export class GuiadedRegistrationDataSource implements IGuiadedRegistrationDataSo
         }
     }
     async getByStudentId(studentId: number): Promise<GuiadedRegistrationEntity | null> {
+
+        console.log('siuuuuuu :v', studentId);
+
+        
         
         try {
 

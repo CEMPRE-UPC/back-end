@@ -65,6 +65,10 @@
     {
       "name": "guiaded-registration",
       "description": "Formulario de registro guiado"
+    },
+    {
+      "name": "practice-application",
+      "description": "Solicitud de aplicacion a la practica"
     }
   ],
   "paths": {
@@ -1548,6 +1552,53 @@
           }
         }
       }
+    },
+    "/api/practice-application": {
+      "post": {
+        "tags": [
+          "practice-application"
+        ],
+        "description": "Registra una solicitud de practica",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/post-practice-application"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Solicitud de practica creada con exito"
+          }
+        }
+      }
+    },
+    "/api/practice-application/{studentId}":{
+      "get":{
+        "tags": [
+          "practice-application"
+        ],
+        "description": "Consulta la solicitud de practica del estudiante",
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "required": true,
+            "description": "Id del estudiante",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Solicitud de practica consultadas con exito"
+          }
+        }
+      
+      }
     }
   },
   "components": {
@@ -2095,6 +2146,21 @@
         }
       },
       "guiaded-registration": {
+        "type": "object",
+        "required": [
+          "cedula",
+          "studentId"
+        ],
+        "properties": {
+          "cedula": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "number"
+          }
+        }
+      },
+      "post-practice-application": {
         "type": "object",
         "required": [
           "cedula",

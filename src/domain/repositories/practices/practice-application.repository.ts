@@ -9,7 +9,7 @@ export interface IPracticeApplicationRepository {
 
     update(optPracticeApplicationDto: OptionalPracticeApplicationDto): Promise<boolean>
 
-    getByIdStudent(studentId: number): Promise<PracticeApplicationEntity[] | null>
+    getByIdStudent(studentId: number): Promise<PracticeApplicationEntity | null>
 
     getById(id: string): Promise<PracticeApplicationEntity | null>
 }
