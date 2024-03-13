@@ -1599,6 +1599,39 @@
         }
       
       }
+    },
+    "/api/practice-application/{id}":{
+      "patch":{
+        "tags": [
+          "practice-application"
+        ],
+        "description": "Actualiza la solicitud de practica del estudiante",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la solicitud de practica",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/update-practice-application"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Solicitud de practica actualizada con exito"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2174,6 +2207,42 @@
             "type": "number"
           }
         }
+      },
+      "update-practice-application":{
+        "type": "object",
+        "required": [
+          "studentId"
+        ],
+        "properties": {
+          "studentId": {
+            "type": "number"
+          },
+          "identificationFile": {
+            "type": "boolean"
+          },
+          "photoFile": {
+            "type": "boolean"
+          },
+          "classScheduleFile": {
+            "type": "boolean"
+          },
+          "epsFile": {
+            "type": "boolean"
+          },
+          "graduationCertificateFile": {
+            "type": "boolean"
+          },
+          "companyRequestLetterFile": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "observation": {
+            "type": "string"
+          }
+        }
+
       }
     }
   }

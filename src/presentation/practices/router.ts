@@ -20,6 +20,7 @@ export class PracticeAppicationRouter {
 
         router.post('/', studentMiddleware.notfoundStudent, controller.register);
         router.get('/:studentId', controller.getByStudentId);
+        router.patch('/:id', controller.update);
 
         return router;
     }

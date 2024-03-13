@@ -78,7 +78,7 @@ PracticeApplicationModel.init(
     {
         sequelize,
         tableName: 'practice_applications',
-        timestamps: false
+        timestamps: true
     }
 );
 

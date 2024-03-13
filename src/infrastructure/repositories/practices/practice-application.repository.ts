@@ -11,7 +11,7 @@ export class PracticeApplicationRepository implements IPracticeApplicationReposi
         return this.practiceApplication.register(studentId);
     }
     update(optPracticeApplicationDto: OptionalPracticeApplicationDto): Promise<boolean> {
-        throw new Error('Method not implemented.');
+        return this.practiceApplication.update(optPracticeApplicationDto);
     }
     getByIdStudent(studentId: number): Promise<PracticeApplicationEntity | null> {
         return this.practiceApplication.getByIdStudent(studentId);

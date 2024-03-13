@@ -16,7 +16,7 @@ export class PracticeApplicationController {
         const { studentId } = req.body;
 
         new PracticeAppRegisterUseCase(this.practiceApplicationRepository).execute(Number(studentId))
-        .then(result => res.status(201).json({ result }))
+        .then(result => res.status(201).json(result))
         .catch(error => handleError(error, res));
 
     }
