@@ -29,7 +29,7 @@ export class PracticeApplicationController {
         if (error) return res.status(400).json({ message: error });
 
         new PracticeAppUpdateUseCase(this.practiceApplicationRepository).execute(optionalPracticeApplicationDto!)
-            .then(result => res.json({ result }))
+            .then(result => res.json(result))
             .catch(error => handleError(error, res));
     }
 
@@ -38,7 +38,7 @@ export class PracticeApplicationController {
         const { studentId } = req.params;
 
         new PracticeAppGetByStudentIdUseCase(this.practiceApplicationRepository).execute(Number(studentId))
-            .then(result => res.json({ result }))
+            .then(result => res.json(result))
             .catch(error => handleError(error, res));
     }
 
@@ -47,7 +47,7 @@ export class PracticeApplicationController {
         const { id } = req.params;
 
         new PracticeAppGetByIdUseCase(this.practiceApplicationRepository).execute(id)
-            .then(result => res.json({ result }))
+            .then(result => res.json(result))
             .catch(error => handleError(error, res));
     }
 }

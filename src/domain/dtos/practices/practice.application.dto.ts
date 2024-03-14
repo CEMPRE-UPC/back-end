@@ -25,12 +25,12 @@ export class OptionalPracticeApplicationDto {
         if(!studentId) return ['studentId is required'];
         if(!id) return ['id is required'];
 
-        const identificationFile = body.identificationFile || undefined;
-        const photoFile = body.photoFile || undefined;
-        const classScheduleFile = body.classScheduleFile || undefined;
-        const epsFile = body.epsFile || undefined;
-        const graduationCertificateFile = body.graduationCertificateFile || undefined;
-        const companyRequestLetterFile = body.companyRequestLetterFile || undefined;
+        const identificationFile = body.identificationFile || false;
+        const photoFile = body.photoFile || false;
+        const classScheduleFile = body.classScheduleFile || false;
+        const epsFile = body.epsFile || false;
+        const graduationCertificateFile = body.graduationCertificateFile || false;
+        const companyRequestLetterFile = body.companyRequestLetterFile || false;
         const status = body.status || undefined;
         const observation = body.observation || undefined;
 
