@@ -13,7 +13,7 @@ class RoleModel extends Model {
     public name!: string;
 }
 
-const roles = ['STUDENT_ROLE', 'CEMPRE_ADMIN_ROLE'];
+const roles = ['STUDENT_ROLE', 'CEMPRE_ADMIN_ROLE', 'CEMPRE_CURR_ROLE', 'CEMPRE_PROF_ROLE'];
 
 RoleModel.init(
     {
@@ -46,4 +46,5 @@ RoleModel.afterSync(async () => {
     });
   });
 });
+
 export { RoleModel };
