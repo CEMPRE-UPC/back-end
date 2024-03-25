@@ -38,19 +38,23 @@ PracticeModel.init(
 
 
 // insert if not exists
-
-
-PracticeModel.afterSync(async () =>{
-  modalities.forEach(modality => {
-    PracticeModel.findOrCreate({
-      where: { modality },
-      defaults: { modality }
-    }).then(([practice, created]) => {
-      console.log(practice.get({ plain: true }));
-      console.log(created);
+PracticeModel.afterSync(async () => {
+  try {
+    await sequelize.transaction(async (t) => {
+      for (const modality of modalities) {
+        const [existingPractice, created] = await PracticeModel.findOrCreate({
+          where: { modality },
+          defaults: { modality },
+          transaction: t
+        });
+        console.log(existingPractice.get({ plain: true }));
+        console.log(created);
+      }
     });
-  });
-})
+  } catch (error) {
+    console.error('Error during transaction:', error);
+  }
+});
 
 
 export { PracticeModel };  

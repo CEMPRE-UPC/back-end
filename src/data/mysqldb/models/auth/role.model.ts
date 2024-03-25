@@ -36,15 +36,21 @@ RoleModel.init(
 )
 
 RoleModel.afterSync(async () => {
-  roles.forEach(role => {
-    RoleModel.findOrCreate({
-      where: { name: role },
-      defaults: { name: role }
-    }).then(([role, created]) => {
-      console.log(role.get({ plain: true }));
-      console.log(created);
+  try {
+    await sequelize.transaction(async (t) => {
+      for (const role of roles) {
+        const [existingRole, created] = await RoleModel.findOrCreate({
+          where: { name: role },
+          defaults: { name: role },
+          transaction: t
+        });
+        console.log(existingRole.get({ plain: true }));
+        console.log(created);
+      }
     });
-  });
+  } catch (error) {
+    console.error('Error during transaction:', error);
+  }
 });
 
 export { RoleModel };
