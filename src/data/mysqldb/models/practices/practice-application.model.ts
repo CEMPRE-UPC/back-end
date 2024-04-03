@@ -10,6 +10,7 @@ const sequelize = MysqlDatabase.initialize({
     database: envs.MYSQL_DB_NAME
 });
 
+const STATUS = ['Enviado para revisar por CEMPRE', 'Revisado por CEMPRE', 'Revisado por el programa', 'Revisado por la facultad', 'Practicas avaladas', 'Practicas rechazadas'];
 
 class PracticeApplicationModel extends Model {
     public id!: string;
@@ -59,8 +60,8 @@ PracticeApplicationModel.init(
             defaultValue: false
         },
         status: {
-            type: DataTypes.ENUM('En espera', 'Aceptada', 'Rechazada'),
-            defaultValue: 'En espera'
+            type: DataTypes.ENUM(...STATUS),
+            defaultValue: STATUS.at(0)
         },
         observation: {
             type: DataTypes.STRING,
@@ -84,6 +85,5 @@ PracticeApplicationModel.init(
 
 StudentModel.hasOne(PracticeApplicationModel, { foreignKey: { name: 'studentId' } });
 PracticeApplicationModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' } });
-
 
 export { PracticeApplicationModel };
