@@ -1,5 +1,5 @@
 import { CustomError, StudentDto, StudentEntity, IStudentDataSource, OptionalStudentDto } from '../../../../domain';
-import { PracticeModel, StudentModel, UniversityStudiesModel } from '../../../../data/mysqldb';
+import { PracticeApplicationModel, PracticeModel, StudentModel, UniversityStudiesModel } from '../../../../data/mysqldb';
 import { SequelizeErrorMapper, StudentMapper } from '../../../mappers';
 import { ValidationError } from 'sequelize';
 
@@ -124,6 +124,9 @@ export class StudentDataSource implements IStudentDataSource {
                 {
                   model: UniversityStudiesModel,
                   attributes: ['program'],
+                },
+                {
+                  model: PracticeApplicationModel,
                 },
                 {
                     model: PracticeModel,

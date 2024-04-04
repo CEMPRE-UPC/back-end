@@ -1,3 +1,4 @@
+import { PracticeApplicationEntity } from '../practices';
 
 export class StudentEntity {
    
@@ -19,6 +20,7 @@ export class StudentEntity {
         public userId?: number,
         public practiceId?: string,
         public program?: string,
-        public modality?: string
+        public modality?: string,
+        public practiceApplication?: PracticeApplicationEntity
     ) {}
 }

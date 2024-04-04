@@ -6,6 +6,7 @@ export class StudentMapper {
 
         const modality  = object?.PracticeModel?.modality;
         const program  = object?.UniversityStudiesModel?.program;
+        const practiceApplication  = object?.PracticeApplicationModel;
         
         const {
             _id,
@@ -42,7 +43,6 @@ export class StudentMapper {
         if (!email) throw CustomError.badRequest('Missing email');
         if (!city) throw CustomError.badRequest('Missing city');
 
-
         return new StudentEntity(
             _id || id,
             cedula,
@@ -61,7 +61,8 @@ export class StudentMapper {
             userId,
             practiceId,
             program,
-            modality
+            modality,
+            practiceApplication
         )
     }
 
