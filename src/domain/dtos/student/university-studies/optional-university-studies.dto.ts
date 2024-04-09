@@ -1,3 +1,4 @@
+import { ProgramsEnum } from '../../../types/student';
 
 export class OptionalUniversityStudiesDto {
     constructor(
@@ -19,6 +20,10 @@ export class OptionalUniversityStudiesDto {
         const institution = body.institution || undefined;
         const program = body.program || undefined;
         const semester = body.semester || undefined;
+
+        if (program) {
+            if (!Object.values(ProgramsEnum).includes(program)) return ['program is invalid'];
+        }
 
         return [undefined, new OptionalUniversityStudiesDto(id, institution, program, semester, studentId)];
     }

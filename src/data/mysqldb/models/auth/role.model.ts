@@ -13,7 +13,7 @@ class RoleModel extends Model {
     public name!: string;
 }
 
-const roles = ['STUDENT_ROLE', 'CEMPRE_ADMIN_ROLE', 'CEMPRE_CURR_ROLE', 'CEMPRE_PROF_ROLE'];
+const roles = ['STUDENT_ROLE', 'CEMPRE_ADMIN_ROLE', 'CEMPRE_CURR_ROLE', 'CEMPRE_PROF_ROLE', 'PROGRAM_AE_ROLE', 'PROGRAM_CI_ROLE', 'PROGRAM_EC_ROLE', 'PROGRAM_FI_ROLE'];
 
 RoleModel.init(
     {
@@ -52,5 +52,6 @@ RoleModel.afterSync(async () => {
     console.error('Error during transaction:', error);
   }
 });
+
 
 export { RoleModel };

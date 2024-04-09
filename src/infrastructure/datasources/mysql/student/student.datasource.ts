@@ -115,7 +115,10 @@ export class StudentDataSource implements IStudentDataSource {
         }
     }
 
-    async getAllStudents(modality: string): Promise<StudentEntity[] | null> {
+    async getAllStudents(modality?: string, program?: string): Promise<StudentEntity[] | null> {
+
+        console.log(program, modality);
+
         try {
 
             
@@ -124,6 +127,7 @@ export class StudentDataSource implements IStudentDataSource {
                 {
                   model: UniversityStudiesModel,
                   attributes: ['program'],
+                  where: program ? { program } : {}
                 },
                 {
                   model: PracticeApplicationModel,
@@ -131,7 +135,7 @@ export class StudentDataSource implements IStudentDataSource {
                 {
                     model: PracticeModel,
                     attributes: ['modality'],
-                    where: { modality }
+                    where: modality ? { modality }: {}
                 }
               ],
             });

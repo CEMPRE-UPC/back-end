@@ -1,3 +1,4 @@
+import { ProgramsEnum } from '../../../types/student';
 
 export class UniversityStudiesDto {
     constructor(
@@ -14,6 +15,8 @@ export class UniversityStudiesDto {
 
         if (!institution)  return ['institution is required'];
         if (!program)  return ['program is required'];
+        if (!Object.values(ProgramsEnum).includes(program))  return ['program is invalid'];
+
         if (!semester)  return ['semester is required'];
         if (!studentId)  return ['studentId is required'];
 
