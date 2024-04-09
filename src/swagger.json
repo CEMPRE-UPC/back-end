@@ -156,18 +156,27 @@
         }
       }
     },
-    "/api/student/personal-data/all/{modality}":{
+    "/api/student/personal-data/all": {
       "get": {
         "tags": [
           "students (personal data)"
         ],
-        "description": "Consulta estudiantes por modalidad de practica",
+        "description": "Consulta estudiantes por modalidad de practica y programa",
         "parameters": [
           {
             "name": "modality",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "description": "Modalidad de practica",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "program",
+            "in": "query",
+            "required": false,
+            "description": "Nombre del programa",
             "schema": {
               "type": "string"
             }
@@ -1431,7 +1440,7 @@
           }
         }
       },
-      "delete":{
+      "delete": {
         "tags": [
           "company"
         ],
@@ -1575,8 +1584,8 @@
         }
       }
     },
-    "/api/practice-application/{studentId}":{
-      "get":{
+    "/api/practice-application/{studentId}": {
+      "get": {
         "tags": [
           "practice-application"
         ],
@@ -1597,11 +1606,10 @@
             "description": "Solicitud de practica consultadas con exito"
           }
         }
-      
       }
     },
-    "/api/practice-application/{id}":{
-      "patch":{
+    "/api/practice-application/{id}": {
+      "patch": {
         "tags": [
           "practice-application"
         ],
@@ -2208,7 +2216,7 @@
           }
         }
       },
-      "update-practice-application":{
+      "update-practice-application": {
         "type": "object",
         "required": [
           "studentId"
@@ -2242,7 +2250,6 @@
             "type": "string"
           }
         }
-
       }
     }
   }

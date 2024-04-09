@@ -12,7 +12,7 @@ export interface IStudentDataSource {
 
     getStudentByIdUser( id: string ): Promise<StudentEntity | null>;
 
-    getAllStudents(modality: string): Promise<StudentEntity[] | null>;
+    getAllStudents(modality?: string, program?: string): Promise<StudentEntity[] | null>;
 
     delete(id: string): Promise<boolean>
 
