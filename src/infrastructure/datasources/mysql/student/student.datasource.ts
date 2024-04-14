@@ -94,9 +94,23 @@ export class StudentDataSource implements IStudentDataSource {
     async getStudentByCedula(cedula: string): Promise<StudentEntity | null> {
         try {
 
-            const student = await StudentModel.findOne({ where: { cedula } });
+            const student = await StudentModel.findOne({
+                where: { cedula },
+                include: [
+                    {
+                        model: PracticeModel,
+                        attributes: ['modality']
+                    },
+                    {
+                        model: PracticeApplicationModel
+                    }
+                ]
+            });
 
             if (!student) return student;
+
+            console.log(student.toJSON());
+
 
             return StudentMapper.studentEntityFromObject(student.toJSON());
 
@@ -121,29 +135,29 @@ export class StudentDataSource implements IStudentDataSource {
 
         try {
 
-            
+
             const students = await StudentModel.findAll({
-              include: [
-                {
-                  model: UniversityStudiesModel,
-                  attributes: ['program'],
-                  where: program ? { program } : {}
-                },
-                {
-                  model: PracticeApplicationModel,
-                },
-                {
-                    model: PracticeModel,
-                    attributes: ['modality'],
-                    where: modality ? { modality }: {}
-                }
-              ],
+                include: [
+                    {
+                        model: UniversityStudiesModel,
+                        attributes: ['program'],
+                        where: program ? { program } : {}
+                    },
+                    {
+                        model: PracticeApplicationModel,
+                    },
+                    {
+                        model: PracticeModel,
+                        attributes: ['modality'],
+                        where: modality ? { modality } : {}
+                    }
+                ],
             });
-            
+
 
             students.forEach(s => {
                 console.log(s.toJSON());
-                
+
             });
             if (!students) return students;
 
