@@ -109,7 +109,7 @@ export class StudentDataSource implements IStudentDataSource {
 
             if (!student) return student;
 
-            console.log(student.toJSON());
+            console.log('by cedula: ', student.toJSON());
 
 
             return StudentMapper.studentEntityFromObject(student.toJSON());
