@@ -70,7 +70,18 @@ export class StudentDataSource implements IStudentDataSource {
 
         try {
 
-            const student = await StudentModel.findOne({ where: { userId: id } });
+            const student = await StudentModel.findOne({ 
+                where: { userId: id },
+                include: [
+                    {
+                        model: PracticeModel,
+                        attributes: ['modality']
+                    },
+                    {
+                        model: PracticeApplicationModel
+                    }
+                ] 
+            });
 
             if (!student) return student;
 
@@ -108,9 +119,6 @@ export class StudentDataSource implements IStudentDataSource {
             });
 
             if (!student) return student;
-
-            console.log('by cedula: ', student.toJSON());
-
 
             return StudentMapper.studentEntityFromObject(student.toJSON());
 

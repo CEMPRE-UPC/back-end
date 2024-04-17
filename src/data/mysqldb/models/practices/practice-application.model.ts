@@ -10,7 +10,13 @@ const sequelize = MysqlDatabase.initialize({
     database: envs.MYSQL_DB_NAME
 });
 
-const STATUS = ['Enviado para revisar por CEMPRE', 'Revisado por CEMPRE', 'Revisado por el programa', 'Revisado por la facultad', 'Practicas avaladas', 'Practicas rechazadas'];
+const EVENTS = ['Enviado para revisar por CEMPRE', 'Revisado por CEMPRE', 'Revisado por el programa', 'Revisado por la facultad', 'Practicas avaladas', 'Practicas rechazadas'];
+const STATUS = [
+    'Sin revisar',
+    'Por corregir',
+    'Actualizado',
+    'Correcto'
+]
 
 class PracticeApplicationModel extends Model {
     public id!: string;
@@ -21,7 +27,10 @@ class PracticeApplicationModel extends Model {
     public epsFile!: boolean;
     public graduationCertificateFile!: boolean;
     public companyRequestLetterFile!: boolean;
-    public status!: string;
+    public statusCempre!: string;
+    public statusProgram!: string;
+    public statusFaculty!: string;
+    public event!: string;
     public observation!: string;
     public createdAt!: Date;
     public updatedAt!: Date;
@@ -59,7 +68,19 @@ PracticeApplicationModel.init(
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
-        status: {
+        event: {
+            type: DataTypes.ENUM(...EVENTS),
+            defaultValue: EVENTS.at(0)
+        },
+        statusCempre: {
+            type: DataTypes.ENUM(...STATUS),
+            defaultValue: STATUS.at(0)
+        },
+        statusProgram: {
+            type: DataTypes.ENUM(...STATUS),
+            defaultValue: STATUS.at(0)
+        },
+        statusFaculty: {
             type: DataTypes.ENUM(...STATUS),
             defaultValue: STATUS.at(0)
         },

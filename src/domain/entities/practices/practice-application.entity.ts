@@ -1,5 +1,4 @@
-import { PracticeApplicationStatus } from '../../types/practices';
-import { StudentEntity } from '../student';
+import { PracticeApplicationStatus, PracticeApplicationEvents } from '../../types/practices';
 
 
 
@@ -14,7 +13,10 @@ export class PracticeApplicationEntity {
         public epsFile: boolean,
         public graduationCertificateFile: boolean,
         public companyRequestLetterFile: boolean,
-        public status: PracticeApplicationStatus,
+        public event: PracticeApplicationEvents,
+        public statusCempre: PracticeApplicationStatus,
+        public statusProgram: PracticeApplicationStatus,
+        public statusFaculty: PracticeApplicationStatus,
         public observation: string,
         public createdAt: Date,
         public updatedAt: Date,

@@ -12,7 +12,10 @@ export class PracticeApplicationMapper {
             epsFile,
             graduationCertificateFile,
             companyRequestLetterFile,
-            status,
+            event,
+            statusCempre,
+            statusProgram,
+            statusFaculty,
             observation,
             createdAt,
             updatedAt
@@ -28,7 +31,10 @@ export class PracticeApplicationMapper {
         if (graduationCertificateFile === null) throw CustomError.badRequest('Graduation certificate file is required');
         if (companyRequestLetterFile === null) throw CustomError.badRequest('Company request letter file is required');
 
-        if (!status) throw CustomError.badRequest('Status is required');
+        if (!event) throw CustomError.badRequest('Event is required');
+        if (!statusCempre) throw CustomError.badRequest('Status Cempre is required');
+        if (!statusProgram) throw CustomError.badRequest('Status Program is required');
+        if (!statusFaculty) throw CustomError.badRequest('Status Faculty is required');
         if (!createdAt) throw CustomError.badRequest('Created at is required');
         if (!updatedAt) throw CustomError.badRequest('Updated at is required');
 
@@ -41,7 +47,10 @@ export class PracticeApplicationMapper {
                 epsFile,
                 graduationCertificateFile,
                 companyRequestLetterFile,
-                status,
+                event,
+                statusCempre,
+                statusProgram,
+                statusFaculty,
                 observation,
                 createdAt,
                 updatedAt,
