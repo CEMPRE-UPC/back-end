@@ -10,12 +10,26 @@ const sequelize = MysqlDatabase.initialize({
     database: envs.MYSQL_DB_NAME
 });
 
-const EVENTS = ['Enviado para revisar por CEMPRE', 'Revisado por CEMPRE', 'Revisado por el programa', 'Revisado por la facultad', 'Practicas avaladas', 'Practicas rechazadas'];
-const STATUS = [
+const EVENTS = [
+    'Enviado para revisar por CEMPRE',
+    'Revisado por CEMPRE', 
+    'Revisado por el comité de practica del programa', 
+    'Revisado por el comité de practicas de la facultad', 
+    'Practicas avaladas', 
+    'Practicas rechazadas'
+];
+
+const STATUS_CEMPRE = [
     'Sin revisar',
     'Por corregir',
     'Actualizado',
     'Correcto'
+];
+
+const STATUS_PROGRAM_FACULTY = [
+    ...STATUS_CEMPRE,
+    'Rechazado',
+    'Avalado'
 ]
 
 class PracticeApplicationModel extends Model {
@@ -73,16 +87,16 @@ PracticeApplicationModel.init(
             defaultValue: EVENTS.at(0)
         },
         statusCempre: {
-            type: DataTypes.ENUM(...STATUS),
-            defaultValue: STATUS.at(0)
+            type: DataTypes.ENUM(...STATUS_CEMPRE),
+            defaultValue: STATUS_CEMPRE.at(0)
         },
         statusProgram: {
-            type: DataTypes.ENUM(...STATUS),
-            defaultValue: STATUS.at(0)
+            type: DataTypes.ENUM(...STATUS_PROGRAM_FACULTY),
+            defaultValue: STATUS_PROGRAM_FACULTY.at(0)
         },
         statusFaculty: {
-            type: DataTypes.ENUM(...STATUS),
-            defaultValue: STATUS.at(0)
+            type: DataTypes.ENUM(...STATUS_PROGRAM_FACULTY),
+            defaultValue: STATUS_PROGRAM_FACULTY.at(0)
         },
         observation: {
             type: DataTypes.STRING,
