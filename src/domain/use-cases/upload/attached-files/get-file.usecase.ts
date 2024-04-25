@@ -1,5 +1,5 @@
-import { ShowFileDto } from '../../dtos';
-import { IUploadRepository } from '../../repositories';
+import { ShowFileDto } from '../../../dtos';
+import { IUploadRepository } from '../../../repositories';
 
 
 interface IGetFileUseCase {

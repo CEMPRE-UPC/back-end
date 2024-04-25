@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { FileUpload, GetFileUseCase, GetFilesByIdUseCase, IUploadRepository, SaveFileUseCase, ShowFileDto, UpdateFileUseCase, UploadDto } from '../../domain/';
-import { handleError } from '../helpers';
+import { FileUpload, GetFileUseCase, GetFilesByIdUseCase, IUploadRepository, SaveFileUseCase, ShowFileDto, UpdateFileUseCase, UploadDto } from '../../../domain';
+import { handleError } from '../../helpers';
 
 export class UploadController {
 

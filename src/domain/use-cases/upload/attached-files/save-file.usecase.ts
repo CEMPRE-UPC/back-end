@@ -1,5 +1,5 @@
-import { UploadDto } from '../../dtos';
-import { IUploadRepository } from '../../repositories';
+import { UploadDto } from '../../../dtos';
+import { IUploadRepository } from '../../../repositories';
 
 
 interface ISaveFileUseCase {

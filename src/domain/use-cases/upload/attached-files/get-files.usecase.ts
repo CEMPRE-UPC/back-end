@@ -1,5 +1,5 @@
-import { AttachedFileEntity, } from '../../entities';
-import { IUploadRepository } from '../../repositories';
+import { AttachedFileEntity, } from '../../../entities';
+import { IUploadRepository } from '../../../repositories';
 
 
 interface IUploadUseCase {

@@ -11,4 +11,6 @@ export const envs = {
 
   EMAIL_USER: get('EMAIL_USER').required().asString(),
   EMAIL_PASSWORD: get('EMAIL_PASSWORD').required().asString(),
+
+  UPLOAD_PATH: get('UPLOAD_PATH').required().asString(),
 }

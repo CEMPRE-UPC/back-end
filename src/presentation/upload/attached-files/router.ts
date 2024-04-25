@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { UploadController } from './controller';
-import { AuthDataSource, StudentDataSource, UploadDataSource } from '../../infrastructure/datasources';
-import { AuthRepository, StudentRepository, UploadRepository } from '../../infrastructure/repositories';
-import { AuthMiddleware, StudentMiddleware, UploadMiddleware } from '../middlewares';
+import { AuthDataSource, StudentDataSource, UploadDataSource } from '../../../infrastructure/datasources';
+import { AuthRepository, StudentRepository, UploadRepository } from '../../../infrastructure/repositories';
+import { AuthMiddleware, StudentMiddleware, UploadMiddleware } from '../../middlewares';
 
 export class UploadRouter {
 
