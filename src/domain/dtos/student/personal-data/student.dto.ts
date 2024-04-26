@@ -46,7 +46,7 @@ export class StudentDto {
         } = body;
 
         if ( !cedula ) return ['La cedula es requerida'];
-        if (!Validators.tenCharactersPattern.test(cedula)) return ['La cedula debe tener 10 caracteres'];
+        if (cedula.length < 8 || cedula.length > 10) return ['La cedula debe tener minimo 8 y maximo 10 caracteres'];
         if (!Validators.onlyNumbersPattern.test(cedula)) return ['La cedula solo puede contener numeros'];
 
         if ( !firstName ) return ['El primer nombre es requerido'];
