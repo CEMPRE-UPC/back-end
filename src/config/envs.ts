@@ -13,4 +13,5 @@ export const envs = {
   EMAIL_PASSWORD: get('EMAIL_PASSWORD').required().asString(),
 
   UPLOAD_PATH: get('UPLOAD_PATH').required().asString(),
+  DOMAIN_APP: get('DOMAIN_APP').required().asString(),
 }
