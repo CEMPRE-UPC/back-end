@@ -4,7 +4,8 @@ import fileUpload from 'express-fileupload';
 import swaggerUi from 'swagger-ui-express';
 
 import * as swaggerDocument from '../../src/swagger.json';
-
+import path from 'path';
+const swaggerPath = path.resolve(__dirname, '../swagger.json');
 interface Options {
     port: number;
     routes: Router;

@@ -69,6 +69,10 @@
     {
       "name": "practice-application",
       "description": "Solicitud de aplicacion a la practica"
+    },
+    {
+      "name": "call",
+      "description": "Convocatorias de practica"
     }
   ],
   "paths": {
@@ -1640,7 +1644,98 @@
           }
         }
       }
+    },
+    "/api/call": {
+      "post": {
+        "tags": [
+          "call"
+        ],
+        "description": "Crea una convocatoria",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/post-call"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Convocatoria creada con exito"
+          }
+        }
+      }
+    },
+    "/api/call/all":{
+      "get": {
+        "tags": [
+          "call"
+        ],
+        "description": "Consulta todas las convocatorias",
+        "responses": {
+          "200": {
+            "description": "Convocatorias consultadas con exito"
+          }
+        }
+      }
+    },
+    "/api/call/{id}":{
+      "get": {
+        "tags": [
+          "call"
+        ],
+        "description": "Consulta una convocatoria",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la convocatoria",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Convocatoria consultada con exito"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "call"
+        ],
+        "description": "Actualiza una convocatoria",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la convocatoria",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/update-call"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Convocatoria actualizada con exito"
+          }
+        }
+      }
     }
+    
   },
   "components": {
     "securitySchemes": {
@@ -2247,6 +2342,49 @@
             "type": "string"
           },
           "observation": {
+            "type": "string"
+          }
+        }
+      },
+      "post-call":{
+        "type": "object",
+        "required": [
+          "name",
+          "startDate",
+          "endDate",
+          "practideId"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "practideId": {
+            "type": "string"
+          }
+        }
+      },
+      "update-call":{
+        "type": "object",
+        "required": [
+          "practideId"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "practideId": {
             "type": "string"
           }
         }
