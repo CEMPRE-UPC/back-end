@@ -7,8 +7,10 @@ export class CallRepository implements ICallRepository {
     constructor(
         private readonly callDataSource: ICallDataSource
     ) {}
-
-
+    getByPracticeId(practiceId: string): Promise<CallEntity | null> {
+        return this.callDataSource.getByPracticeId(practiceId);
+    }
+    
     register(callDto: CallDto): Promise<CallEntity> {
         return this.callDataSource.register(callDto);
     }

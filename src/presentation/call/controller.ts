@@ -2,7 +2,7 @@ import { Request, Response,  } from 'express';
 
 import { CallDto, ICallRepository, OptionalCallDto } from '../../domain';
 
-import { RegisterCallUseCase, UpdateCallUseCase, GetByCallIdlUseCase, GetAllCallsUseCase } from '../../domain/use-cases/call';
+import { RegisterCallUseCase, UpdateCallUseCase, GetByCallIdlUseCase, GetAllCallsUseCase, GetByPracticeIdUseCase } from '../../domain/use-cases/call';
 import { handleError } from '../helpers';
 
 
@@ -50,6 +50,14 @@ export class CallController {
     getAllCalls = async(req: Request, res: Response) => {
             
             new GetAllCallsUseCase( this.callRepository ).execute()
+                .then( calls => res.json( calls ) )
+                .catch( error => handleError( error, res ) );
+    }
+
+    getByPracticeId = async(req: Request, res: Response) => {
+            
+            const { practiceId } = req.params;
+            new GetByPracticeIdUseCase( this.callRepository ).execute( practiceId )
                 .then( calls => res.json( calls ) )
                 .catch( error => handleError( error, res ) );
     }

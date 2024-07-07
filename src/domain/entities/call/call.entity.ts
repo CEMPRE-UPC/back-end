@@ -1,3 +1,4 @@
+import { Status } from '../../types/call';
 
 
 
@@ -7,6 +8,7 @@ export class CallEntity {
         public name: string,
         public startDate: string,
         public endDate: string,
+        public status: Status,
         public practiceId: string
     ) {}
 }

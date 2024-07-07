@@ -7,6 +7,14 @@ interface IGetByCallIdUseCase {
     execute(callId: string): Promise<CallEntity | null>;
 }
 
+interface IGetByPracticeIdUseCase {
+    execute(practiceId: string): Promise<CallEntity | null>;
+}
+
+interface IGetAllCallsUseCase {
+    execute(): Promise<CallEntity[] | null>;
+}
+
 export class GetByCallIdlUseCase implements IGetByCallIdUseCase {
 
     constructor(
@@ -21,8 +29,24 @@ export class GetByCallIdlUseCase implements IGetByCallIdUseCase {
     }
 }
 
+export class GetByPracticeIdUseCase implements IGetByPracticeIdUseCase  {
 
-export class GetAllCallsUseCase {
+    constructor(
+        private readonly callRepository: ICallRepository
+    ) { }
+
+    async execute(practiceId: string): Promise<CallEntity | null> {
+
+        if (!practiceId) throw CustomError.badRequest('practiceId is required');
+
+        return await this.callRepository.getByPracticeId(practiceId);
+    }
+
+   
+}
+
+
+export class GetAllCallsUseCase implements IGetAllCallsUseCase {
 
     constructor(
         private readonly callRepository: ICallRepository

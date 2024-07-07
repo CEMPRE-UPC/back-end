@@ -1667,7 +1667,7 @@
         }
       }
     },
-    "/api/call/all":{
+    "/api/call/all": {
       "get": {
         "tags": [
           "call"
@@ -1680,7 +1680,7 @@
         }
       }
     },
-    "/api/call/{id}":{
+    "/api/call/{id}": {
       "get": {
         "tags": [
           "call"
@@ -1735,7 +1735,6 @@
         }
       }
     }
-    
   },
   "components": {
     "securitySchemes": {
@@ -2346,12 +2345,13 @@
           }
         }
       },
-      "post-call":{
+      "post-call": {
         "type": "object",
         "required": [
           "name",
           "startDate",
           "endDate",
+          "status",
           "practideId"
         ],
         "properties": {
@@ -2363,13 +2363,20 @@
           },
           "endDate": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Abierta",
+              "Cerrada"
+            ]
           },
           "practideId": {
             "type": "string"
           }
         }
       },
-      "update-call":{
+      "update-call": {
         "type": "object",
         "required": [
           "practideId"
@@ -2383,6 +2390,13 @@
           },
           "endDate": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Abierta",
+              "Cerrada"
+            ]
           },
           "practideId": {
             "type": "string"

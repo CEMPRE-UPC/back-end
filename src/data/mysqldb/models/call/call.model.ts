@@ -10,11 +10,17 @@ const sequelize = MysqlDatabase.initialize({
   database: envs.MYSQL_DB_NAME
 })
 
+const STATUS: string[] = [
+    'Abierta',
+    'Cerrada'
+];
+
 class CallModel extends Model {
     public id!: string;
     public name!: string;
     public startDate!: Date;
     public endDate!: Date;
+    public status!: string;
     public practiceId!: string;
 
 }
@@ -35,6 +41,9 @@ CallModel.init(
         endDate: {
             type: DataTypes.DATE,
         },
+        status: {
+            type: DataTypes.ENUM(...STATUS),
+        }
     },
     {
         sequelize, 
@@ -45,6 +54,8 @@ CallModel.init(
 
 PracticeModel.hasOne(CallModel, {foreignKey: { name: 'practiceId' }  });
 CallModel.belongsTo(PracticeModel, { foreignKey: { name: 'practiceId' }  });
+
+CallModel.sync({alter: true})
 
 
 

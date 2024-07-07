@@ -20,6 +20,7 @@ export class CallRouter {
         router.get('/all', controller.getAllCalls);
         router.patch('/:id', controller.update);
         router.get('/:id', controller.getCallById);
+        router.get('/practice/:practiceId', controller.getByPracticeId);
 
         return router;
 
