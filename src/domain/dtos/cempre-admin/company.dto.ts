@@ -6,7 +6,7 @@ export class CompanyDto {
     constructor(
         public name: string,
         public startDate: string,
-        public endDate: boolean,
+        public endDate: string,
     ) {}
 
     static create(body: {[key: string]: any }): [string?, CompanyDto?] {

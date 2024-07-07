@@ -4,6 +4,7 @@ import { MysqlDatabase } from '../../mysql-database';
 import { envs } from '../../../../config';
 import { UserModel } from '../auth/user.model';
 import { PracticeModel } from './practice.model';
+import { CallModel } from '../call/call.model';
 
 const sequelize = MysqlDatabase.initialize({
   mysqlUrl: envs.MYSQL_URL,
@@ -52,10 +53,13 @@ StudentModel.init({
 }, {sequelize, timestamps: false, tableName: 'students'})
 
 UserModel.hasOne(StudentModel, { as : 'user', foreignKey: { name: 'userId' }  });
-PracticeModel.hasOne(StudentModel, { as : 'practice', foreignKey: { name: 'practiceId' }  });
 StudentModel.belongsTo(UserModel, { foreignKey: { name: 'userId' }  });
+
+PracticeModel.hasOne(StudentModel, { as : 'practice', foreignKey: { name: 'practiceId' }  });
 StudentModel.belongsTo(PracticeModel, { foreignKey: { name: 'practiceId' }  });
 
+CallModel.hasOne(StudentModel, { as : 'call', foreignKey: { name: 'callId' }  });
+StudentModel.belongsTo(CallModel, { foreignKey: { name: 'callId' }  });
 
 
 export { StudentModel };

@@ -24,10 +24,6 @@ export class StudentController {
 
     update = async(req: Request, res: Response) => {
 
-        console.log('update');
-        
-        
-
         const { cedula } = req.params || req.body;
 
         const [ error, optionalStudentDto] = OptionalStudentDto.create(req.body, cedula);
@@ -40,8 +36,6 @@ export class StudentController {
     }
 
     getStudentByIdUser = async(req: Request, res: Response) => {
-        console.log('getStudentByIdUser');
-
         
         const { id } = req.params;
         new GetStudentByIdUseCase( this.studentRepository ).execute( id )
@@ -50,9 +44,6 @@ export class StudentController {
     }
 
     getStudentByCedula = async(req: Request, res: Response) => {
-        console.log('getStudentByCedula');
-        
-        
         const { cedula } = req.params;
         new GetStudentByCedulaUseCase( this.studentRepository ).execute( cedula )
             .then( student => res.json( student ) )
@@ -63,8 +54,6 @@ export class StudentController {
         
         const modality = req.query.modality as string;
         const program = req.query.program as string;
-        console.log('getAllStudents');
-        
         
         new GetAllStudentsUseCase( this.studentRepository ).execute(modality, program)
             .then( students => res.json( students ) )
@@ -72,8 +61,6 @@ export class StudentController {
     }
 
     delete = async(req: Request, res: Response) => {
-        console.log('delete');
-        
         const { id } = req.params;
 
         new DeleteUseCase( this.studentRepository ).execute(id)

@@ -4,4 +4,6 @@ export * from './upload';
 export * from './cempre-admin';
 export * from './practices';
 
+export * from './call';
+
 export * from './sequelize-error.mapper';

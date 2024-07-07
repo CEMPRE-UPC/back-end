@@ -15,6 +15,7 @@ import { GuiadedRegistrationRouter } from './student/guiaded-registration';
 import { CompanyRouter } from './cempre-admin';
 import { PracticeAppicationRouter } from './practices';
 import { PublicFileRouter } from './upload';
+import { CallRouter } from './call';
 
 export class AppRoutes {
 
@@ -40,6 +41,7 @@ export class AppRoutes {
         ]);
         router.use('/api/company', CompanyRouter.router);
         router.use('/api/practice-application', PracticeAppicationRouter.routes)
+        router.use('/api/call', CallRouter.routes);
 
         return router;
     } 
