@@ -1,9 +1,17 @@
+import { ObservationModel } from '../../../data/mysqldb';
 import { CustomError, PracticeApplicationEntity } from '../../../domain';
+import { ObservationMapper } from './observation.mapper';
 
 
 export class PracticeApplicationMapper {
 
-    static practiceApplicationEntityFromObject(body: { [key: string]: any }): PracticeApplicationEntity {
+
+    
+    static practiceApplicationEntityFromObject(object: { [key: string]: any }): PracticeApplicationEntity {
+
+
+        const observations = object?.ObservationModels ? object?.ObservationModels.map((observation: ObservationModel) => ObservationMapper.observationEntityFromObject(observation)) : null;
+        
         const { id, _id,
             studentId,
             identificationFile,
@@ -16,10 +24,9 @@ export class PracticeApplicationMapper {
             statusCempre,
             statusProgram,
             statusFaculty,
-            observation,
             createdAt,
             updatedAt
-        } = body;
+        } = object;
 
         if (!id && !_id) throw CustomError.badRequest('Id is required');
         if (!studentId) throw CustomError.badRequest('Student id is required');
@@ -51,7 +58,7 @@ export class PracticeApplicationMapper {
                 statusCempre,
                 statusProgram,
                 statusFaculty,
-                observation,
+                observations,
                 createdAt,
                 updatedAt,
                 studentId

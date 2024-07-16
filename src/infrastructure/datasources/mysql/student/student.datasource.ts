@@ -1,5 +1,5 @@
 import { CustomError, StudentDto, StudentEntity, IStudentDataSource, OptionalStudentDto } from '../../../../domain';
-import { PracticeApplicationModel, PracticeModel, StudentModel, UniversityStudiesModel } from '../../../../data/mysqldb';
+import { ObservationModel, PracticeApplicationModel, PracticeModel, StudentModel, UniversityStudiesModel } from '../../../../data/mysqldb';
 import { SequelizeErrorMapper, StudentMapper } from '../../../mappers';
 import { ValidationError } from 'sequelize';
 
@@ -70,7 +70,7 @@ export class StudentDataSource implements IStudentDataSource {
 
         try {
 
-            const student = await StudentModel.findOne({ 
+            const student = await StudentModel.findOne({
                 where: { userId: id },
                 include: [
                     {
@@ -78,9 +78,14 @@ export class StudentDataSource implements IStudentDataSource {
                         attributes: ['modality']
                     },
                     {
-                        model: PracticeApplicationModel
+                        model: PracticeApplicationModel,
+                        include: [
+                            {
+                                model: ObservationModel
+                            }
+                        ]
                     }
-                ] 
+                ]
             });
 
             if (!student) return student;
@@ -113,7 +118,12 @@ export class StudentDataSource implements IStudentDataSource {
                         attributes: ['modality']
                     },
                     {
-                        model: PracticeApplicationModel
+                        model: PracticeApplicationModel,
+                        include: [
+                            {
+                                model: ObservationModel
+                            }
+                        ]
                     }
                 ]
             });
@@ -153,6 +163,11 @@ export class StudentDataSource implements IStudentDataSource {
                     },
                     {
                         model: PracticeApplicationModel,
+                        include: [
+                            {
+                                model: ObservationModel
+                            }
+                        ]
                     },
                     {
                         model: PracticeModel,

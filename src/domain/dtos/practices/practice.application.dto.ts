@@ -1,4 +1,5 @@
 import { PracticeApplicationEvents, PracticeApplicationStatus } from '../../types/practices';
+import { ObservationDto } from './observation.dto';
 
 
 
@@ -16,13 +17,16 @@ export class OptionalPracticeApplicationDto {
         public statusProgram: string,
         public statusFaculty: string,
         public event: string,
-        public observation: string,
+        public observation: ObservationDto,
         public studentId: string,
     ) { }
 
 
 
     static create(body: { [key: string]: any }, id: string): [string?, OptionalPracticeApplicationDto?] {
+
+        let observation = undefined;
+        
         const { studentId } = body;
 
         if (!studentId) return ['studentId is required'];
@@ -37,9 +41,13 @@ export class OptionalPracticeApplicationDto {
         const statusCempre = body.statusCempre || undefined;
         const statusProgram = body.statusProgram || undefined;
         const statusFaculty = body.statusFaculty || undefined;
-        const observation = body.observation || undefined;
-
         const event = body.event || undefined;
+
+
+        if(body.observation) {
+            const [error, _observation] = ObservationDto.create(body.observation);
+            observation = _observation!;
+        }
 
         if (statusCempre) {
             if (!Object.values(PracticeApplicationStatus).includes(statusCempre)) return ['status cempre is invalid'];
@@ -57,6 +65,6 @@ export class OptionalPracticeApplicationDto {
             if (!Object.values(PracticeApplicationEvents).includes(event)) return ['event is invalid'];
         }
 
-        return [undefined, new OptionalPracticeApplicationDto(id, identificationFile, photoFile, classScheduleFile, epsFile, graduationCertificateFile, companyRequestLetterFile, statusCempre, statusProgram, statusFaculty, event, observation, studentId)];
+        return [undefined, new OptionalPracticeApplicationDto(id, identificationFile, photoFile, classScheduleFile, epsFile, graduationCertificateFile, companyRequestLetterFile, statusCempre, statusProgram, statusFaculty, event, observation!, studentId)];
     }
 }

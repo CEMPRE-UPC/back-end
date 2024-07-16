@@ -1,12 +1,20 @@
+import { ObservationModel } from '../../../data/mysqldb';
 import { CustomError, StudentEntity } from '../../../domain';
+import { ObservationMapper, PracticeApplicationMapper } from '../practices';
 
 export class StudentMapper {
 
     static studentEntityFromObject(object: { [key: string]: any }) {
 
+
+
+        
+        
         const modality  = object?.PracticeModel?.modality;
         const program  = object?.UniversityStudiesModel?.program;
-        const practiceApplication  = object?.PracticeApplicationModel;
+        const practiceApplication = object?.PracticeApplicationModel ? PracticeApplicationMapper.practiceApplicationEntityFromObject(object.PracticeApplicationModel) : null;
+        const observations = object?.PracticeApplicationModel?.ObservationModels.map((observation: ObservationModel) => ObservationMapper.observationEntityFromObject(observation));
+        
         
         const {
             _id,
@@ -43,6 +51,10 @@ export class StudentMapper {
         if (!email) throw CustomError.badRequest('Missing email');
         if (!city) throw CustomError.badRequest('Missing city');
 
+        // if (practiceApplication) {
+        //     practiceApplication.observations = observations;
+        // }
+
         return new StudentEntity(
             _id || id,
             cedula,
@@ -62,7 +74,7 @@ export class StudentMapper {
             practiceId,
             program,
             modality,
-            practiceApplication
+            practiceApplication ?? undefined
         )
     }
 

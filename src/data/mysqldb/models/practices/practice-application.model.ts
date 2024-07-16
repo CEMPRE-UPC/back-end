@@ -45,7 +45,6 @@ class PracticeApplicationModel extends Model {
     public statusProgram!: string;
     public statusFaculty!: string;
     public event!: string;
-    public observation!: string;
     public createdAt!: Date;
     public updatedAt!: Date;
 
@@ -98,10 +97,6 @@ PracticeApplicationModel.init(
             type: DataTypes.ENUM(...STATUS_PROGRAM_FACULTY),
             defaultValue: STATUS_PROGRAM_FACULTY.at(0)
         },
-        observation: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         createdAt: {
             type: DataTypes.DATE,
             defaultValue: new Date()
@@ -121,4 +116,6 @@ PracticeApplicationModel.init(
 StudentModel.hasOne(PracticeApplicationModel, { foreignKey: { name: 'studentId' } });
 PracticeApplicationModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' } });
 
+
 export { PracticeApplicationModel };
+

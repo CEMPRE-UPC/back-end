@@ -1,4 +1,5 @@
 import { PracticeApplicationStatus, PracticeApplicationEvents } from '../../types/practices';
+import { ObservationEntity } from './observation.entity';
 
 
 
@@ -17,7 +18,7 @@ export class PracticeApplicationEntity {
         public statusCempre: PracticeApplicationStatus,
         public statusProgram: PracticeApplicationStatus,
         public statusFaculty: PracticeApplicationStatus,
-        public observation: string,
+        public observations: ObservationEntity[] | null,
         public createdAt: Date,
         public updatedAt: Date,
         public studentId: number,
