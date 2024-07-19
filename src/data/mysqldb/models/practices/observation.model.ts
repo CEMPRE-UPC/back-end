@@ -33,7 +33,7 @@ ObservationModel.init(
         },
         creationDate: {
             type: DataTypes.DATE,
-            defaultValue: new Date(),
+            defaultValue: DataTypes.NOW,
         },
     },
     {

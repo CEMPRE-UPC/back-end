@@ -50,9 +50,6 @@ export class PracticeApplicationDataSource implements IPracticeApplicationDataSo
 
                 if (observation) {
                     const { content, createdBy, practiceAppId } = observation;
-
-                    console.log('observation::::::::::xd', observation);
-                    
                     await ObservationModel.create({
                         content,
                         createdBy,
