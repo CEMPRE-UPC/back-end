@@ -7,6 +7,7 @@ export class OptionalCallDto {
         public name?: string,
         public startDate?: string,
         public endDate?: string,
+        public status?: string,
         public practiceId?: string
     ) {}
 
@@ -18,6 +19,8 @@ export class OptionalCallDto {
         const startDate = body.startDate || undefined;
         const endDate = body.endDate || undefined;
         const practiceId = body.practiceId || undefined;
+        const status = body.status || undefined;
+
 
         if (startDate) {
             if (!Validators.datePattern.test(startDate)) return ['startDate is invalid'];
@@ -26,7 +29,7 @@ export class OptionalCallDto {
             if (!Validators.datePattern.test(endDate)) return ['endDate is invalid'];
         }
 
-        return [undefined, new OptionalCallDto(id, name, startDate, endDate, practiceId)];
+        return [undefined, new OptionalCallDto(id, name, startDate, endDate, status, practiceId  )];
     }
 
 

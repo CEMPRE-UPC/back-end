@@ -10,8 +10,6 @@ import { Status } from '../../../../domain/types/call';
 export class CallDataSource implements ICallDataSource {
 
     async register(callDto: CallDto): Promise<CallEntity> {
-        console.log('callDto siuuu', callDto);
-
 
         try {
 
@@ -43,6 +41,8 @@ export class CallDataSource implements ICallDataSource {
         }
     }
     async update(optCallDto: OptionalCallDto): Promise<boolean> {
+        console.log("################ OptionalCallDto.create ################");
+        console.log(optCallDto);
 
         const { id } = optCallDto;
         try {

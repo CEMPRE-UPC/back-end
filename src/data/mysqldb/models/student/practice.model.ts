@@ -1,43 +1,49 @@
 import { DataTypes, ENUM, Model } from 'sequelize';
-
 import { MysqlDatabase } from '../../mysql-database';
 import { envs } from '../../../../config';
 
+// Inicializar Sequelize
 const sequelize = MysqlDatabase.initialize({
   mysqlUrl: envs.MYSQL_URL,
-  database: envs.MYSQL_DB_NAME
-})
+  database: envs.MYSQL_DB_NAME,
+});
 
+// Clase del modelo
 class PracticeModel extends Model {
-    public id!: string;
-    public modality!: string;
-
+  public id!: string;
+  public modality!: string;
 }
 
+// Lista de modalidades permitidas
 const modalities = ['professional', 'curricular'];
 
+// Inicializar el modelo
 PracticeModel.init(
-    {
-        id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-            primaryKey: true,
-        },
-        modality: {
-            type: ENUM(...modalities),
-            unique: true,
-        },
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
     },
-    {
-        sequelize, 
-        tableName: 'practices', 
-        timestamps: false
-    }
-)
+    modality: {
+      type: ENUM(...modalities), // O usa DataTypes.STRING con validate si ENUM causa problemas
+      unique: true,
+    },
+  },
+  {
+    sequelize,
+    tableName: 'practices',
+    timestamps: false,
+    indexes: [
+      {
+        unique: true,
+        fields: ['modality'], // Asegura un índice único
+      },
+    ],
+  }
+);
 
-
-
-// insert if not exists
+// Insertar modalidades si no existen
 PracticeModel.afterSync(async () => {
   try {
     await sequelize.transaction(async (t) => {
@@ -45,16 +51,15 @@ PracticeModel.afterSync(async () => {
         const [existingPractice, created] = await PracticeModel.findOrCreate({
           where: { modality },
           defaults: { modality },
-          transaction: t
+          transaction: t,
         });
-        console.log(existingPractice.get({ plain: true }));
-        console.log(created);
+        console.log('Práctica existente o creada:', existingPractice.get({ plain: true }));
+        console.log('¿Creado nuevo registro?:', created);
       }
     });
   } catch (error) {
-    console.error('Error during transaction:', error);
+    console.error('Error durante la transacción en afterSync:', error);
   }
 });
 
-
-export { PracticeModel };  
+export { PracticeModel };

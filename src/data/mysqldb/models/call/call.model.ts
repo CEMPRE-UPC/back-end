@@ -55,8 +55,5 @@ CallModel.init(
 PracticeModel.hasOne(CallModel, {foreignKey: { name: 'practiceId' }  });
 CallModel.belongsTo(PracticeModel, { foreignKey: { name: 'practiceId' }  });
 
-CallModel.sync({alter: true})
-
-
 
 export { CallModel };  
