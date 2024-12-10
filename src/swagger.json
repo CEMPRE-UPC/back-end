@@ -1734,6 +1734,30 @@
           }
         }
       }
+    },
+    "/api/call/practice/{practiceId}": {
+      "get": {
+        "tags": [
+          "call"
+        ],
+        "description": "Consulta las convocatorias de una practica",
+        "parameters": [
+          {
+            "name": "practiceId",
+            "in": "path",
+            "required": true,
+            "description": "Id de la practica",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Convocatorias consultadas con exito"
+          }
+        }
+      }
     }
   },
   "components": {

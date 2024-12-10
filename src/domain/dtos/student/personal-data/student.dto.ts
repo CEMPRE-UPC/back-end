@@ -18,7 +18,8 @@ export class StudentDto {
         public city: string,
         public userId: string,
         public secondName?: string,
-        public practiceId?: string
+        public practiceId?: string,
+        public callId?: string
     ) {}
 
 
@@ -41,7 +42,8 @@ export class StudentDto {
             email,
             city,
             userId,
-            practiceId
+            practiceId,
+            callId
 
         } = body;
 
@@ -91,6 +93,10 @@ export class StudentDto {
         if ( !userId ) return ['El id del usuario es requerido'];
         if (!Validators.onlyNumbersPattern.test(userId)) return ['El id del usuario solo puede contener numeros'];
 
+        if ( !practiceId ) return ['El id de la practica es requerido'];
+
+        if ( !callId ) return ['El id de la convocatoria es requerido'];
+
 
 
         return [undefined, new StudentDto(
@@ -109,7 +115,8 @@ export class StudentDto {
             city,
             userId,
             secondName,
-            practiceId
+            practiceId,
+            callId
         )]
 
     }
@@ -132,7 +139,8 @@ export class StudentDto {
             email: studentDto.email,
             city: studentDto.city,
             userId: studentDto.userId,
-            practiceId: studentDto.practiceId
+            practiceId: studentDto.practiceId,
+            callId: studentDto.callId
         }
     }
 }
