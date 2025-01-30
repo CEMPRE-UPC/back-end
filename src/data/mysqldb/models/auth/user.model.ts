@@ -11,6 +11,7 @@ const sequelize = MysqlDatabase.initialize({
 
 class UserModel extends Model {
   public id!: number;
+  public name!: string;
   public email!: string;
   public password!: string;
   public isActive!: boolean;
@@ -21,6 +22,10 @@ UserModel.init({
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true,
     primaryKey: true,
+  },
+  name: {
+    type: new DataTypes.STRING(128),
+    allowNull: true,
   },
   email: {
     type: new DataTypes.STRING(128),
@@ -44,5 +49,6 @@ UserModel.init({
 
 RoleModel.hasMany(UserModel, { as: 'role',  foreignKey: { name: 'roleId', }  });
 UserModel.belongsTo(RoleModel, { as: 'role', foreignKey: { name: 'roleId', }  });
+
 
 export { UserModel };

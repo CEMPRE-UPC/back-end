@@ -41,8 +41,6 @@ export class StudentDataSource implements IStudentDataSource {
 
         const { cedula, ...studentObject } = OptionalStudentDto.toJSON(optStudentDto);
 
-        console.log(studentObject);
-
         try {
 
             const affectedCount = await StudentModel.update(studentObject, { where: { cedula } });

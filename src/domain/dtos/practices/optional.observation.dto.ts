@@ -3,6 +3,7 @@ export class OptionalObservationDto {
     constructor(
         public id: string,
         public content: string,
+        public userName: string,
         public createBy: string,
         public creationDate: Date,
         public practiceAppId: string,
@@ -17,10 +18,11 @@ export class OptionalObservationDto {
         if (!id) return ['id is required'];
 
         const content = body.content || undefined;
+        const userName = body.userName || undefined;
         const createdBy = body.createdBy || undefined;
         const creationDate = body.creationDate || undefined;
 
 
-        return [undefined, new OptionalObservationDto(id,content, createdBy, creationDate, practiceAppId)];
+        return [undefined, new OptionalObservationDto(id,content, userName,  createdBy, creationDate, practiceAppId)];
     }
 }

@@ -13,6 +13,7 @@ const sequelize = MysqlDatabase.initialize({
 class ObservationModel extends Model {
     public id!: string;
     public content!: string;
+    public userName!: string;
     public createdBy!: string;
     public creationDate!: Date;
     public practiceAppId!: string;
@@ -27,6 +28,10 @@ ObservationModel.init(
         },
         content: {
             type: DataTypes.STRING,
+        },
+        userName: {
+            type: DataTypes.STRING,
+            allowNull: true,
         },
         createdBy: {
             type: DataTypes.STRING,

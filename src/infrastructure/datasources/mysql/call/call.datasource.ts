@@ -41,8 +41,6 @@ export class CallDataSource implements ICallDataSource {
         }
     }
     async update(optCallDto: OptionalCallDto): Promise<boolean> {
-        console.log("################ OptionalCallDto.create ################");
-        console.log(optCallDto);
 
         const { id } = optCallDto;
         try {

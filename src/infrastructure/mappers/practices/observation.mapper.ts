@@ -4,7 +4,7 @@ import { CustomError, ObservationEntity } from '../../../domain';
 export class ObservationMapper {
 
     static observationEntityFromObject(object: {[key: string]: any}): ObservationEntity {
-        const { id, _id, content, createdBy, creationDate } = object;
+        const { id, _id, content, userName, createdBy, creationDate } = object;
     
         if(!id && !_id) {
             throw CustomError.badRequest('Invalid object');
@@ -17,6 +17,7 @@ export class ObservationMapper {
         return new ObservationEntity(
             _id || id,
             content,
+            userName,
             createdBy,
             creationDate
         );

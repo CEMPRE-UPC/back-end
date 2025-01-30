@@ -7,12 +7,13 @@ import { ObservationMapper } from '../../../mappers';
 export class ObservationDatasource implements IObservationDataSource {
     async register(observationDto: ObservationDto): Promise<ObservationEntity> {
         
-        const { content, createdBy, practiceAppId } = observationDto;
+        const { content, userName, createdBy, practiceAppId } = observationDto;
 
         try {
                 
                 const observation =  ObservationModel.build({
                     content,
+                    userName,
                     createdBy,
                     practiceAppId
                 });

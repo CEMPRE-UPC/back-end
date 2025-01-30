@@ -49,9 +49,10 @@ export class PracticeApplicationDataSource implements IPracticeApplicationDataSo
                 
 
                 if (observation) {
-                    const { content, createdBy, practiceAppId } = observation;
+                    const { content, createdBy, userName, practiceAppId } = observation;
                     await ObservationModel.create({
                         content,
+                        userName,
                         createdBy,
                         practiceAppId
                     }, { transaction });

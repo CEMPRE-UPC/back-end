@@ -22,9 +22,6 @@ export class RegisterUserDto {
         if (!role) return ['El rol es requerido'];
         if (isActive === undefined) return ['El estado es requerido'];
 
-        console.log(isActive);
-        
-
 
         return [undefined, new RegisterUserDto(email, password, isActive, role)];
     }

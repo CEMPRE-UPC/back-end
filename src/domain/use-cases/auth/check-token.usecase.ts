@@ -28,6 +28,7 @@ export class CheckTokenUseCase implements ICheckTokenUseCase {
             user: {
                 id: user.id,
                 email: user.email,
+                name: user.name,
                 isActive: user.isActive,
                 role: user.role
             },

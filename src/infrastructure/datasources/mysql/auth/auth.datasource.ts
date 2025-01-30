@@ -101,7 +101,6 @@ export class AuthDataSource implements IAuthDataSource {
             try {
     
                 const user = await UserModel.findByPk(id);
-                console.log(user);
                 
                 if(!user) throw CustomError.notFound('User not found');
     

@@ -23,6 +23,7 @@ export class RegisterUserUseCase implements IRegisterUseCase{
             user: {
                 id: user.id,
                 email: user.email,
+                name: user.name,
                 isActive: user.isActive,
                 role: user.role
             }
