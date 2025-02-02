@@ -16,7 +16,7 @@ export class UploadDataSource implements IUploadDataSource {
         private readonly generateUUID: () => string = UUIDAdapter.generate,
     ) { }
 
-    private uploadFilePath = path.join(__dirname, envs.UPLOAD_PATH);
+    private uploadFilePath = path.join(process.cwd(), envs.UPLOAD_PATH);
 
   
     async uploadFile(uploadDto: UploadDto): Promise<boolean> {

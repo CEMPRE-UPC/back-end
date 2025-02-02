@@ -18,7 +18,7 @@ export class PublicFileDataSource implements IPublicFileDataSource {
     ) { }
 
 
-    private uploadFilePath = path.join(__dirname, envs.UPLOAD_PATH, 'public-files');
+    private uploadFilePath = path.join(process.cwd(), envs.UPLOAD_PATH, 'public-files');
 
   
     async register(publicFileDto: PublicFileDto): Promise<boolean> {
