@@ -176,10 +176,6 @@ export class StudentDataSource implements IStudentDataSource {
             });
 
 
-            students.forEach(s => {
-                console.log(s.toJSON());
-
-            });
             if (!students) return students;
 
             return students.map(student => StudentMapper.studentEntityFromObject(student.toJSON()));
