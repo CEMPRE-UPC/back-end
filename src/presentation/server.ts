@@ -1,11 +1,13 @@
 import express, { Router } from 'express';
-import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import swaggerUi from 'swagger-ui-express';
 
-import * as swaggerDocument from '../../src/swagger.json';
 import path from 'path';
-const swaggerPath = path.resolve(__dirname, '../swagger.json');
+import fs from 'fs';
+
+
+const swaggerPath = path.resolve(process.cwd(), 'src/swagger.json');
+const swaggerDocument = JSON.parse(fs.readFileSync(swaggerPath, 'utf8'));
 interface Options {
     port: number;
     routes: Router;
@@ -30,11 +32,7 @@ export class Server {
         // Middlewares
         this.app.use( express.json() );
         this.app.use( express.urlencoded({ extended: true }) );
-        this.app.use( cors() )
-
         this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-
 
           // Fileupload - Carga de archivos
           this.app.use( fileUpload({
