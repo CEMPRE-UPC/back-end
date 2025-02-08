@@ -5,6 +5,8 @@ export enum TypeFile {
     EPS = 'EPS',
     GRADUATE_CERTIFICATE = 'Certificado de egresado',
     LETTER = 'Carta solicitud empresa',
+    ENGLISH_CERTIFICATE = 'Certificado de ingles',
+
 }
 export enum PublicTypeFile {
     CURRICULAR_PRACTICES = 'Practicas Curriculares',

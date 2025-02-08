@@ -41,6 +41,7 @@ class PracticeApplicationModel extends Model {
     public epsFile!: boolean;
     public graduationCertificateFile!: boolean;
     public companyRequestLetterFile!: boolean;
+    public englishCertificateFile!: boolean;
     public statusCempre!: string;
     public statusProgram!: string;
     public statusFaculty!: string;
@@ -76,6 +77,10 @@ PracticeApplicationModel.init(
         graduationCertificateFile: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
+        },
+        englishCertificateFile: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
         },
         companyRequestLetterFile: {
             type: DataTypes.BOOLEAN,
@@ -115,7 +120,6 @@ PracticeApplicationModel.init(
 
 StudentModel.hasOne(PracticeApplicationModel, { foreignKey: { name: 'studentId' } });
 PracticeApplicationModel.belongsTo(StudentModel, { foreignKey: { name: 'studentId' } });
-
 
 export { PracticeApplicationModel };
 

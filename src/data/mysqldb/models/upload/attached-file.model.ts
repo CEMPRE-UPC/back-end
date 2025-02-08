@@ -24,7 +24,7 @@ AttachedFileModel.init(
         },
         type: {
                     
-            type: ENUM('Identificacion', 'Foto', 'Horario de clases', 'EPS', 'Certificado de egresado', 'Carta solicitud empresa'),
+            type: ENUM('Identificacion', 'Foto', 'Horario de clases', 'EPS', 'Certificado de egresado', 'Carta solicitud empresa', 'Certificado de ingles'),
         },
         file: {
             type: DataTypes.STRING,

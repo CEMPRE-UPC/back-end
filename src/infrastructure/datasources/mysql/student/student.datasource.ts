@@ -76,6 +76,10 @@ export class StudentDataSource implements IStudentDataSource {
                         attributes: ['modality']
                     },
                     {
+                        model: UniversityStudiesModel,
+                        attributes: ['program'],
+                    },
+                    {
                         model: PracticeApplicationModel,
                         include: [
                             {
@@ -114,6 +118,10 @@ export class StudentDataSource implements IStudentDataSource {
                     {
                         model: PracticeModel,
                         attributes: ['modality']
+                    },
+                    {
+                        model: UniversityStudiesModel,
+                        attributes: ['program'],
                     },
                     {
                         model: PracticeApplicationModel,
