@@ -18,7 +18,7 @@ export class UploadDataSource implements IUploadDataSource {
 
     private uploadFilePath = path.join(process.cwd(), envs.UPLOAD_PATH);
 
-  
+
     async uploadFile(uploadDto: UploadDto): Promise<boolean> {
 
         const { cedula, table, file, typeFile, studentId } = uploadDto;
@@ -40,7 +40,7 @@ export class UploadDataSource implements IUploadDataSource {
             return true;
         } catch (error) {
             console.log(error);
-            
+
             await transaction.rollback();
             fs.unlinkSync(uploadPath);
             return false;
@@ -49,7 +49,7 @@ export class UploadDataSource implements IUploadDataSource {
     }
 
     async getFilesByStudentId(studentId: string): Promise<AttachedFileEntity[]> {
-        
+
         try {
 
             const attachedFiles = await AttachedFileModel.findAll({ where: { studentId } });
@@ -58,7 +58,7 @@ export class UploadDataSource implements IUploadDataSource {
             return attachedFiles.map(AttachedFile => UploadMapper.uploadEntityFromObject(AttachedFile));
 
         } catch (error) {
-            if(error instanceof CustomError) {
+            if (error instanceof CustomError) {
                 throw error;
             }
             console.log(error);
@@ -67,35 +67,35 @@ export class UploadDataSource implements IUploadDataSource {
     }
 
     async getFile(showFileDto: ShowFileDto): Promise<string> {
-        
+
         const { table, id } = showFileDto;
 
         console.log(showFileDto);
-        
-      
+
+
         try {
-            
+
             const attachedFile = await AttachedFileModel.findByPk(id, { include: 'student' });
 
-            if(!attachedFile) throw CustomError.badRequest('File not found');
+            if (!attachedFile) throw CustomError.badRequest('File not found');
 
             const attached = UploadMapper.uploadEntityFromObject(attachedFile.toJSON());
 
-            const filePath = path.join(this.uploadFilePath, table, attached.student!.cedula ,attachedFile.file);
+            const filePath = path.join(this.uploadFilePath, table, attached.student!.cedula, attachedFile.file);
 
             console.log(filePath);
-            
+
 
             return filePath;
-            
+
         } catch (error) {
 
-            if(error instanceof CustomError) {
+            if (error instanceof CustomError) {
                 throw error;
             }
             console.log(error);
             throw CustomError.internalServer();
-            
+
         }
     }
 
@@ -105,14 +105,16 @@ export class UploadDataSource implements IUploadDataSource {
 
         const attachedFile = await AttachedFileModel.findOne({ where: { studentId, type: typeFile } });
 
-        if(!attachedFile) throw CustomError.badRequest('File not found');
+        if (!attachedFile) {
+            return await this.uploadFile(uploadDto);
+        }
 
         const attached = UploadMapper.uploadEntityFromObject(attachedFile.toJSON());
 
 
         // borramos el archivo anterior
 
-        const filePath = path.join(this.uploadFilePath, table, cedula ,attached.file);
+        const filePath = path.join(this.uploadFilePath, table, cedula, attached.file);
         if (fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
         }
@@ -133,12 +135,12 @@ export class UploadDataSource implements IUploadDataSource {
             return true;
         } catch (error) {
             console.log(error);
-            
+
             await transaction.rollback();
             fs.unlinkSync(uploadPath);
             return false;
         }
-        
+
     }
 
 
